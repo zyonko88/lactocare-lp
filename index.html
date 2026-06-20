@@ -97,6 +97,18 @@
     .divider-jp::before, .divider-jp::after { content: ''; flex: 1; height: 1px; background: var(--ink4); }
     .divider-jp-mon { font-size: 14px; color: var(--ink4); }
 
+    /* ===== NATTO GALLERY ===== */
+    .natto-gallery { background: var(--ink); padding: 0; overflow: hidden; }
+    .natto-gallery-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 320px 220px; gap: 3px; }
+    .ng-cell { overflow: hidden; position: relative; }
+    .ng-cell.tall { grid-row: span 2; }
+    .ng-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s ease, filter 0.4s ease; filter: brightness(0.9) saturate(1.15); }
+    .ng-cell:hover .ng-img { transform: scale(1.06); filter: brightness(1.0) saturate(1.3); }
+    .ng-label { position: absolute; bottom: 14px; left: 14px; background: rgba(10,8,5,0.72); backdrop-filter: blur(8px); color: rgba(255,255,255,0.9); font-size: 11px; padding: 5px 12px; letter-spacing: 0.1em; }
+    .ng-hero-text { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem; background: linear-gradient(to top, rgba(10,8,5,0.75) 0%, transparent 55%); }
+    .ng-hero-title { font-family: 'Noto Serif JP', serif; font-size: 28px; font-weight: 300; color: #fff; line-height: 1.3; margin-bottom: 8px; }
+    .ng-hero-sub { font-size: 12px; color: rgba(255,255,255,0.65); letter-spacing: 0.08em; }
+
     /* ===== VIDEO ===== */
     .video-sec { background: var(--navy); padding: 5rem 2rem; }
     .video-inner { max-width: 1100px; margin: 0 auto; }
@@ -305,8 +317,8 @@
     </div>
     <div class="hero-visual">
       <img class="hero-main-img"
-        src="https://images.unsplash.com/photo-1546961342-ea5f62d5a27b?w=800&q=85&auto=format&fit=crop&crop=top"
-        alt="特製納豆を楽しむ女性">
+        src="https://images.unsplash.com/photo-fJ4hIPFrTnM?w=800&q=90&auto=format&fit=crop"
+        alt="特製納豆のクローズアップ">
       <div class="hero-seal">
         <div class="seal-main">国産</div>
         <div class="seal-sub">大豆100%</div>
@@ -346,6 +358,45 @@
     <div class="ticker-item"><span class="ticker-kiku">✿</span> App Store 健康食品 No.1</div>
   </div>
 </div>
+
+<!-- NATTO GALLERY -->
+<section class="natto-gallery">
+  <div class="natto-gallery-grid">
+    <div class="ng-cell tall">
+      <img class="ng-img"
+        src="https://images.unsplash.com/photo-fJ4hIPFrTnM?w=900&q=90&auto=format&fit=crop"
+        alt="特製納豆 クローズアップ">
+      <div class="ng-hero-text">
+        <div class="ng-hero-title">糸を引く、<br>黄金の特製納豆。</div>
+        <div class="ng-hero-sub">国産大豆 × 独自発酵製法</div>
+      </div>
+    </div>
+    <div class="ng-cell">
+      <img class="ng-img"
+        src="https://images.unsplash.com/photo-H3wsvC2Tgk8?w=600&q=88&auto=format&fit=crop"
+        alt="納豆 盛り付け">
+      <div class="ng-label">朝食の主役</div>
+    </div>
+    <div class="ng-cell">
+      <img class="ng-img"
+        src="https://images.unsplash.com/photo-69rdqUL_iNA?w=600&q=88&auto=format&fit=crop"
+        alt="納豆 箸でかき混ぜる">
+      <div class="ng-label">混ぜるほど旨み増す</div>
+    </div>
+    <div class="ng-cell">
+      <img class="ng-img"
+        src="https://images.unsplash.com/photo-DaPYW1V1Mt8?w=600&q=88&auto=format&fit=crop"
+        alt="納豆 大豆">
+      <div class="ng-label">希少な国産大豆</div>
+    </div>
+    <div class="ng-cell">
+      <img class="ng-img"
+        src="https://images.unsplash.com/photo-hdfIOjp8ABE?w=600&q=88&auto=format&fit=crop"
+        alt="納豆 食卓">
+      <div class="ng-label">毎日の食卓に</div>
+    </div>
+  </div>
+</section>
 
 <!-- VIDEO -->
 <section class="video-sec" id="video">
