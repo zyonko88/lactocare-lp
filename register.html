@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     :root {
       --washi:  #FAF7F0;
@@ -240,8 +241,42 @@
 </div>
 
 <script>
-  function handleRegister(e) {
+  const { createClient } = supabase;
+  const db = createClient(
+    'https://djmltcsvsewehvoqbjnx.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRqbWx0Y3N2c2V3ZWh2b3Fiam54Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5MjY3OTksImV4cCI6MjA5NzUwMjc5OX0.Jfu8rnO1IWhx0LOSbtN2EWwsbbhlxZjY22mxFQG_Dac'
+  );
+
+  async function handleRegister(e) {
     e.preventDefault();
+    const form = e.target;
+    const inputs = form.querySelectorAll('input, select');
+    const btn = form.querySelector('.submit-btn');
+
+    const lastName  = form.querySelectorAll('input[type="text"]')[0].value.trim();
+    const firstName = form.querySelectorAll('input[type="text"]')[1].value.trim();
+    const email     = form.querySelector('input[type="email"]').value.trim();
+    const phone     = form.querySelector('input[type="tel"]').value.trim();
+    const plan      = form.querySelector('input[name="plan"]:checked').value;
+
+    btn.disabled = true;
+    btn.textContent = '送信中…';
+
+    const { error } = await db.from('registrations').insert([{
+      last_name: lastName,
+      first_name: firstName,
+      email,
+      phone: phone || null,
+      plan
+    }]);
+
+    if (error) {
+      alert('エラーが発生しました: ' + error.message);
+      btn.disabled = false;
+      btn.textContent = '無料で登録する →';
+      return;
+    }
+
     document.getElementById('formArea').style.display = 'none';
     const s = document.getElementById('successArea');
     s.style.display = 'flex';
