@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>無料会員登録 | 納豆天国</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --washi:  #FAF7F0;
+      --washi2: #F2EBE0;
+      --washi3: #E8DDD0;
+      --navy:   #1A2744;
+      --navy2:  #253560;
+      --red:    #B91C35;
+      --red2:   #96172A;
+      --gold:   #A07830;
+      --ink:    #0E0C08;
+      --ink2:   rgba(14,12,8,0.55);
+      --ink3:   rgba(14,12,8,0.28);
+      --ink4:   rgba(14,12,8,0.10);
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', sans-serif; background: var(--washi); color: var(--ink); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    header { background: rgba(250,247,240,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--ink4); }
+    nav { max-width: 1100px; margin: 0 auto; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 600; color: var(--navy); display: flex; align-items: center; gap: 10px; }
+    .nav-mon { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--red); display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--red); font-weight: 700; }
+    .nav-back { font-size: 13px; color: var(--ink2); display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+    .nav-back:hover { color: var(--red); }
+
+    /* LAYOUT */
+    .page { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 64px); }
+
+    /* LEFT PHOTO SIDE */
+    .photo-side { position: relative; overflow: hidden; }
+    .photo-side img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.75) saturate(1.1); }
+    .photo-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(26,39,68,0.6) 0%, rgba(185,28,53,0.3) 100%); }
+    .photo-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 3rem; }
+    .photo-tag { font-size: 11px; color: var(--gold); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+    .photo-tag::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+    .photo-h { font-family: 'Noto Serif JP', serif; font-size: clamp(24px, 2.5vw, 36px); font-weight: 300; color: #fff; line-height: 1.4; margin-bottom: 1.5rem; }
+    .photo-benefits { display: flex; flex-direction: column; gap: 10px; }
+    .photo-benefit { display: flex; align-items: center; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.85); }
+    .pb-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+    /* RIGHT FORM SIDE */
+    .form-side { padding: 4rem 3rem; display: flex; flex-direction: column; justify-content: center; max-width: 520px; margin: 0 auto; width: 100%; }
+    .form-eyebrow { font-size: 11px; color: var(--red); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+    .form-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--red); }
+    .form-h { font-family: 'Noto Serif JP', serif; font-size: clamp(24px, 2.5vw, 34px); font-weight: 300; color: var(--ink); line-height: 1.35; margin-bottom: 0.5rem; }
+    .form-sub { font-size: 13px; color: var(--ink2); margin-bottom: 2.5rem; font-weight: 300; }
+
+    form { display: flex; flex-direction: column; gap: 18px; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    label { font-size: 12px; color: var(--ink2); letter-spacing: 0.06em; font-weight: 500; }
+    label .req { color: var(--red); margin-left: 3px; }
+    input, select {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      padding: 12px 14px;
+      border: 1px solid var(--washi3);
+      background: #fff;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.18s;
+      width: 100%;
+    }
+    input:focus, select:focus { border-color: var(--red); }
+    input::placeholder { color: var(--ink3); }
+    .plan-select { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 4px; }
+    .plan-opt { position: relative; }
+    .plan-opt input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+    .plan-label {
+      display: block; padding: 12px 10px; border: 1px solid var(--washi3); background: #fff;
+      cursor: pointer; text-align: center; transition: all 0.18s; font-size: 12px; color: var(--ink2);
+    }
+    .plan-label .plan-name { font-family: 'Noto Serif JP', serif; font-size: 14px; font-weight: 600; color: var(--ink); display: block; margin-bottom: 4px; }
+    .plan-label .plan-price { color: var(--red); font-size: 13px; font-weight: 500; }
+    .plan-opt input[type="radio"]:checked + .plan-label { border-color: var(--red); background: var(--washi2); }
+    .plan-opt input[type="radio"]:checked + .plan-label .plan-name { color: var(--red); }
+
+    .submit-btn {
+      background: var(--red); color: #fff; border: none;
+      padding: 15px; font-size: 15px; font-weight: 500;
+      cursor: pointer; font-family: 'Noto Sans JP', sans-serif;
+      letter-spacing: 0.08em; transition: background 0.18s; margin-top: 6px;
+    }
+    .submit-btn:hover { background: var(--red2); }
+
+    .form-note { font-size: 11px; color: var(--ink3); text-align: center; margin-top: 6px; line-height: 1.7; }
+    .form-note a { color: var(--red); border-bottom: 0.5px solid var(--red); }
+
+    .divider { display: flex; align-items: center; gap: 12px; margin: 4px 0; }
+    .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--ink4); }
+    .divider span { font-size: 11px; color: var(--ink3); white-space: nowrap; }
+
+    .login-link { text-align: center; font-size: 13px; color: var(--ink2); }
+    .login-link a { color: var(--red); font-weight: 500; }
+
+    /* SUCCESS */
+    .success-screen { display: none; flex-direction: column; align-items: center; justify-content: center; padding: 4rem 2rem; text-align: center; }
+    .success-seal { width: 88px; height: 88px; border-radius: 50%; background: var(--red); display: flex; align-items: center; justify-content: center; font-size: 36px; margin: 0 auto 2rem; }
+    .success-h { font-family: 'Noto Serif JP', serif; font-size: 28px; font-weight: 300; color: var(--ink); margin-bottom: 12px; }
+    .success-p { font-size: 14px; color: var(--ink2); line-height: 1.9; margin-bottom: 2rem; }
+    .success-btn { display: inline-block; background: var(--navy); color: #fff; padding: 13px 32px; font-size: 14px; letter-spacing: 0.08em; font-family: 'Noto Sans JP', sans-serif; transition: background 0.18s; }
+    .success-btn:hover { background: var(--navy2); }
+
+    @media (max-width: 768px) {
+      .page { grid-template-columns: 1fr; }
+      .photo-side { height: 240px; }
+      .form-side { padding: 2.5rem 1.5rem; }
+      .field-row { grid-template-columns: 1fr; }
+      .plan-select { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <div class="nav-mon">納</div>
+      納豆天国
+    </a>
+    <a href="index.html" class="nav-back">← トップに戻る</a>
+  </nav>
+</header>
+
+<div class="page">
+
+  <!-- LEFT: PHOTO -->
+  <div class="photo-side">
+    <img src="https://images.unsplash.com/photo-AHBvAIVqk64?w=900&q=88&auto=format&fit=crop&crop=top" alt="健康的な日本人女性">
+    <div class="photo-overlay"></div>
+    <div class="photo-content">
+      <div class="photo-tag">会員特典</div>
+      <h2 class="photo-h">特製納豆を、<br>毎日の食卓へ。<br>無料で始める。</h2>
+      <div class="photo-benefits">
+        <div class="photo-benefit"><div class="pb-dot"></div>初回30日間 全額返金保証</div>
+        <div class="photo-benefit"><div class="pb-dot"></div>希少な特製納豆を定期お届け</div>
+        <div class="photo-benefit"><div class="pb-dot"></div>健康スコアアプリ 無料利用</div>
+        <div class="photo-benefit"><div class="pb-dot"></div>食べ忘れリマインダー設定</div>
+        <div class="photo-benefit"><div class="pb-dot"></div>いつでも解約・休止可能</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: FORM -->
+  <div class="form-side">
+    <div id="formArea">
+      <div class="form-eyebrow">会員登録</div>
+      <h1 class="form-h">無料でアカウントを<br>作成する</h1>
+      <p class="form-sub">登録は1分で完了。クレジットカード不要です。</p>
+
+      <form onsubmit="handleRegister(event)">
+        <div class="field-row">
+          <div class="field">
+            <label>姓<span class="req">*</span></label>
+            <input type="text" placeholder="田中" required>
+          </div>
+          <div class="field">
+            <label>名<span class="req">*</span></label>
+            <input type="text" placeholder="さゆり" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>メールアドレス<span class="req">*</span></label>
+          <input type="email" placeholder="example@email.com" required>
+        </div>
+
+        <div class="field">
+          <label>パスワード<span class="req">*</span></label>
+          <input type="password" placeholder="8文字以上" minlength="8" required>
+        </div>
+
+        <div class="field">
+          <label>電話番号</label>
+          <input type="tel" placeholder="090-0000-0000">
+        </div>
+
+        <div class="field">
+          <label>ご希望のプラン<span class="req">*</span></label>
+          <div class="plan-select">
+            <div class="plan-opt">
+              <input type="radio" name="plan" id="plan1" value="standard" checked>
+              <label class="plan-label" for="plan1">
+                <span class="plan-name">極上納豆</span>
+                <span class="plan-price">¥3,980</span>
+              </label>
+            </div>
+            <div class="plan-opt">
+              <input type="radio" name="plan" id="plan2" value="beauty">
+              <label class="plan-label" for="plan2">
+                <span class="plan-name">ビューティー</span>
+                <span class="plan-price">¥4,480</span>
+              </label>
+            </div>
+            <div class="plan-opt">
+              <input type="radio" name="plan" id="plan3" value="kids">
+              <label class="plan-label" for="plan3">
+                <span class="plan-name">キッズ</span>
+                <span class="plan-price">¥2,480</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">無料で登録する →</button>
+
+        <p class="form-note">
+          登録することで<a href="#">利用規約</a>および<a href="#">プライバシーポリシー</a>に同意したものとみなされます。
+        </p>
+      </form>
+
+      <div class="divider" style="margin-top:1.5rem"><span>すでにアカウントをお持ちの方</span></div>
+      <div class="login-link"><a href="#">ログインはこちら</a></div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="success-screen" id="successArea">
+      <div class="success-seal">🎉</div>
+      <h2 class="success-h">登録が完了しました！</h2>
+      <p class="success-p">
+        ご登録いただいたメールアドレスに<br>確認メールをお送りしました。<br>
+        特製納豆のお届けをお楽しみに。
+      </p>
+      <a href="index.html" class="success-btn">トップページへ戻る</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function handleRegister(e) {
+    e.preventDefault();
+    document.getElementById('formArea').style.display = 'none';
+    const s = document.getElementById('successArea');
+    s.style.display = 'flex';
+  }
+</script>
+</body>
+</html>
