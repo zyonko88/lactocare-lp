@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>定期購入 | ラクトケア</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --teal-50: #E1F5EE; --teal-100: #9FE1CB; --teal-500: #1D9E75;
+      --teal-700: #0F6E56; --teal-900: #085041;
+      --gray-50: #F9F9F8; --gray-100: #F1EFE8; --gray-300: #D3D1C7;
+      --gray-500: #888780; --gray-800: #444441; --gray-900: #2C2C2A;
+      --amber-50: #FAEEDA; --amber-100: #FAC775; --amber-900: #633806;
+      --red-50: #FCEBEB; --red-500: #E24B4A; --red-900: #501313;
+      --radius-md: 8px; --radius-lg: 12px;
+    }
+    body { font-family: 'Noto Sans JP', sans-serif; background: #fff; color: var(--gray-900); line-height: 1.7; }
+    a { color: inherit; text-decoration: none; }
+    header { background: #fff; border-bottom: 0.5px solid var(--gray-300); }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; max-width: 960px; margin: 0 auto; }
+    .logo { font-size: 18px; font-weight: 700; color: var(--teal-700); }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a { font-size: 14px; color: var(--gray-800); }
+    .nav-links a:hover { color: var(--teal-500); }
+    .page-hero { background: var(--teal-50); padding: 3rem 1.5rem; text-align: center; }
+    .page-hero h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+    .page-hero p { font-size: 15px; color: var(--gray-800); }
+    .container { max-width: 960px; margin: 0 auto; padding: 4rem 1.5rem; }
+    section { margin-bottom: 4rem; }
+    h2 { font-size: 20px; font-weight: 700; margin-bottom: 1.5rem; padding-bottom: 10px; border-bottom: 2px solid var(--teal-500); display: inline-block; }
+    .benefits { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+    .benefit { background: var(--teal-50); border: 0.5px solid var(--teal-100); border-radius: var(--radius-lg); padding: 1.25rem; text-align: center; }
+    .benefit-icon { font-size: 32px; margin-bottom: 8px; }
+    .benefit-title { font-size: 14px; font-weight: 700; color: var(--teal-700); margin-bottom: 4px; }
+    .benefit-desc { font-size: 12px; color: var(--teal-900); line-height: 1.5; }
+    .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .plan-card { border: 0.5px solid var(--gray-300); border-radius: var(--radius-lg); overflow: hidden; }
+    .plan-card.popular { border: 2px solid var(--teal-500); }
+    .plan-header { padding: 1.25rem 1.5rem; background: var(--gray-50); border-bottom: 0.5px solid var(--gray-300); }
+    .plan-card.popular .plan-header { background: var(--teal-50); border-bottom-color: var(--teal-100); }
+    .popular-badge { display: inline-block; background: var(--teal-500); color: #fff; font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 999px; margin-bottom: 8px; }
+    .plan-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .plan-sub { font-size: 13px; color: var(--gray-500); }
+    .plan-body { padding: 1.5rem; }
+    .plan-price { margin-bottom: 1rem; }
+    .price-regular { font-size: 13px; color: var(--gray-500); text-decoration: line-through; margin-bottom: 2px; }
+    .price-sale { font-size: 28px; font-weight: 700; color: var(--teal-500); }
+    .price-sale span { font-size: 14px; color: var(--gray-500); font-weight: 400; }
+    .price-save { display: inline-block; background: var(--amber-50); color: var(--amber-900); font-size: 12px; font-weight: 500; padding: 2px 10px; border-radius: 999px; margin-top: 4px; }
+    .plan-features { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.5rem; }
+    .plan-features li { font-size: 13px; color: var(--gray-800); display: flex; align-items: center; gap: 8px; }
+    .plan-features li::before { content: "✓"; color: var(--teal-500); font-weight: 700; flex-shrink: 0; }
+    .plan-btn { width: 100%; padding: 12px; border: none; border-radius: var(--radius-md); font-size: 14px; font-weight: 500; cursor: pointer; font-family: 'Noto Sans JP', sans-serif; transition: background 0.15s; }
+    .plan-btn.primary { background: var(--teal-500); color: #fff; }
+    .plan-btn.primary:hover { background: var(--teal-700); }
+    .plan-btn.secondary { background: #fff; color: var(--gray-900); border: 0.5px solid var(--gray-300); }
+    .plan-btn.secondary:hover { background: var(--gray-50); }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0; }
+    .step { text-align: center; padding: 1rem; }
+    .step-num { width: 40px; height: 40px; background: var(--teal-500); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; margin: 0 auto 12px; }
+    .step-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .step-desc { font-size: 12px; color: var(--gray-800); line-height: 1.5; }
+    .faq { display: flex; flex-direction: column; gap: 8px; max-width: 720px; }
+    .faq-item { border: 0.5px solid var(--gray-300); border-radius: var(--radius-md); overflow: hidden; }
+    .faq-q { padding: 14px 20px; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: #fff; border: none; width: 100%; text-align: left; color: var(--gray-900); font-family: 'Noto Sans JP', sans-serif; }
+    .faq-q:hover { background: var(--gray-50); }
+    .faq-icon { font-size: 18px; color: var(--gray-500); transition: transform 0.2s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a { display: none; padding: 0 20px 14px; font-size: 13px; color: var(--gray-800); line-height: 1.7; border-top: 0.5px solid var(--gray-300); }
+    .faq-item.open .faq-a { display: block; }
+    .cta-banner { background: var(--teal-700); color: #fff; border-radius: var(--radius-lg); padding: 2.5rem; text-align: center; }
+    .cta-banner h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .cta-banner p { font-size: 14px; opacity: 0.85; margin-bottom: 1.5rem; }
+    .btn-white { background: #fff; color: var(--teal-700); border: none; padding: 12px 32px; border-radius: var(--radius-md); font-size: 14px; font-weight: 700; cursor: pointer; font-family: 'Noto Sans JP', sans-serif; transition: opacity 0.15s; }
+    .btn-white:hover { opacity: 0.9; }
+    footer { background: var(--gray-900); color: #fff; padding: 2rem 1.5rem; margin-top: 4rem; }
+    .footer-inner { max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-logo { font-size: 16px; font-weight: 700; color: var(--teal-100); }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-size: 13px; color: var(--gray-300); }
+    .copyright { font-size: 12px; color: var(--gray-500); margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html" class="logo">🌿 ラクトケア</a>
+      <div class="nav-links">
+        <a href="index.html">トップ</a>
+        <a href="about.html">会社概要</a>
+        <a href="contact.html">お問い合わせ</a>
+        <a href="ingredients.html">成分・効果</a>
+        <a href="subscription.html">定期購入</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="page-hero">
+    <h1>定期購入プラン</h1>
+    <p>続けるほどお得に。送料無料・いつでも解約OK。</p>
+  </div>
+
+  <div class="container">
+
+    <section>
+      <h2>定期購入の特典</h2>
+      <div class="benefits">
+        <div class="benefit">
+          <div class="benefit-icon">💰</div>
+          <div class="benefit-title">最大20%OFF</div>
+          <div class="benefit-desc">通常価格より毎回割引。まとめ買いよりもお得。</div>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">🚚</div>
+          <div class="benefit-title">送料永久無料</div>
+          <div class="benefit-desc">定期購入中はずっと送料0円でお届け。</div>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">🎁</div>
+          <div class="benefit-title">初回特典付き</div>
+          <div class="benefit-desc">初回限定でオリジナル腸活ガイドブックをプレゼント。</div>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">🔓</div>
+          <div class="benefit-title">いつでも解約</div>
+          <div class="benefit-desc">縛りなし。次回発送3日前までに連絡で解約OK。</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>プランを選ぶ</h2>
+      <div class="plans">
+        <div class="plan-card popular">
+          <div class="plan-header">
+            <div class="popular-badge">人気 No.1</div>
+            <div class="plan-name">ラクトケア プレミアム</div>
+            <div class="plan-sub">定期購入プラン / 毎月お届け</div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-price">
+              <div class="price-regular">通常価格 ¥3,980</div>
+              <div class="price-sale">¥3,180 <span>/ 30日分</span></div>
+              <div class="price-save">20% OFF · 毎月800円お得</div>
+            </div>
+            <ul class="plan-features">
+              <li>100種以上の乳酸菌配合</li>
+              <li>食物繊維・オリゴ糖入り</li>
+              <li>送料無料</li>
+              <li>初回 腸活ガイドブック付き</li>
+              <li>いつでも解約OK</li>
+            </ul>
+            <button class="plan-btn primary">定期購入を始める</button>
+          </div>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-header">
+            <div class="plan-name">ビューティー乳酸菌</div>
+            <div class="plan-sub">定期購入プラン / 毎月お届け</div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-price">
+              <div class="price-regular">通常価格 ¥4,480</div>
+              <div class="price-sale">¥3,580 <span>/ 30日分</span></div>
+              <div class="price-save">20% OFF · 毎月900円お得</div>
+            </div>
+            <ul class="plan-features">
+              <li>乳酸菌 + コラーゲン配合</li>
+              <li>ビタミンC・ヒアルロン酸入り</li>
+              <li>送料無料</li>
+              <li>肌・腸の両方にアプローチ</li>
+              <li>いつでも解約OK</li>
+            </ul>
+            <button class="plan-btn primary">定期購入を始める</button>
+          </div>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-header">
+            <div class="plan-name">キッズ乳酸菌グミ</div>
+            <div class="plan-sub">定期購入プラン / 毎月お届け</div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-price">
+              <div class="price-regular">通常価格 ¥2,480</div>
+              <div class="price-sale">¥1,980 <span>/ 30日分</span></div>
+              <div class="price-save">20% OFF · 毎月500円お得</div>
+            </div>
+            <ul class="plan-features">
+              <li>いちご味グミタイプ</li>
+              <li>3歳から飲める安心設計</li>
+              <li>送料無料</li>
+              <li>着色料・保存料不使用</li>
+              <li>いつでも解約OK</li>
+            </ul>
+            <button class="plan-btn primary">定期購入を始める</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>定期購入の流れ</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-title">プランを選ぶ</div>
+          <div class="step-desc">お好みの商品・プランを選択してお申し込み</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-title">初回お届け</div>
+          <div class="step-desc">注文から最短翌日発送。特典付きでお届け</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-title">毎月自動お届け</div>
+          <div class="step-desc">毎月同じ日に自動で発送。飲み忘れなし</div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-title">いつでも変更OK</div>
+          <div class="step-desc">数量・プラン変更・解約はいつでも可能</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>よくあるご質問</h2>
+      <div class="faq">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>いつでも解約できますか？</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">はい、いつでも解約できます。次回発送日の3日前までにお電話またはマイページよりご連絡ください。違約金・手数料は一切かかりません。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>お届け間隔は変えられますか？</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">マイページから30日・45日・60日の3つの間隔に変更できます。飲むペースに合わせてご調整ください。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>支払い方法は？</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">定期購入はクレジットカード（VISA・Mastercard・JCB・AMEX）のみご利用いただけます。毎月自動で決済されます。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>途中でプランを変更できますか？</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">はい、マイページからいつでも商品・プランの変更が可能です。次回発送分から変更が適用されます。</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="cta-banner">
+      <h3>今すぐ始めて、腸から変わろう。</h3>
+      <p>初回20%OFF・送料無料・30日間返金保証付き</p>
+      <button class="btn-white">定期購入を申し込む</button>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">🌿 ラクトケア</div>
+        <div class="copyright">© 2026 ラクトケア株式会社</div>
+      </div>
+      <div class="footer-links">
+        <a href="#">特定商取引法</a>
+        <a href="#">プライバシーポリシー</a>
+        <a href="contact.html">お問い合わせ</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+  </script>
+</body>
+</html>

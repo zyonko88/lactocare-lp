@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>成分・効果 | ラクトケア</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --teal-50: #E1F5EE; --teal-100: #9FE1CB; --teal-500: #1D9E75;
+      --teal-700: #0F6E56; --teal-900: #085041;
+      --gray-50: #F9F9F8; --gray-100: #F1EFE8; --gray-300: #D3D1C7;
+      --gray-500: #888780; --gray-800: #444441; --gray-900: #2C2C2A;
+      --amber-50: #FAEEDA; --amber-100: #FAC775; --amber-900: #633806;
+      --radius-md: 8px; --radius-lg: 12px;
+    }
+    body { font-family: 'Noto Sans JP', sans-serif; background: #fff; color: var(--gray-900); line-height: 1.7; }
+    a { color: inherit; text-decoration: none; }
+    header { background: #fff; border-bottom: 0.5px solid var(--gray-300); }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; max-width: 960px; margin: 0 auto; }
+    .logo { font-size: 18px; font-weight: 700; color: var(--teal-700); }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a { font-size: 14px; color: var(--gray-800); }
+    .nav-links a:hover { color: var(--teal-500); }
+    .page-hero { background: var(--teal-50); padding: 3rem 1.5rem; text-align: center; }
+    .page-hero h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+    .page-hero p { font-size: 15px; color: var(--gray-800); }
+    .container { max-width: 960px; margin: 0 auto; padding: 4rem 1.5rem; }
+    section { margin-bottom: 4rem; }
+    h2 { font-size: 20px; font-weight: 700; margin-bottom: 1.5rem; padding-bottom: 10px; border-bottom: 2px solid var(--teal-500); display: inline-block; }
+    .effects { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+    .effect-card { background: var(--gray-50); border: 0.5px solid var(--gray-300); border-radius: var(--radius-lg); padding: 1.5rem; }
+    .effect-icon { font-size: 36px; margin-bottom: 12px; }
+    .effect-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .effect-desc { font-size: 13px; color: var(--gray-800); line-height: 1.6; }
+    .bacteria-list { display: flex; flex-direction: column; gap: 12px; }
+    .bacteria-item { background: #fff; border: 0.5px solid var(--gray-300); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; display: flex; gap: 1.5rem; align-items: flex-start; }
+    .bacteria-num { background: var(--teal-500); color: #fff; font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 999px; white-space: nowrap; flex-shrink: 0; margin-top: 3px; }
+    .bacteria-name { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .bacteria-desc { font-size: 13px; color: var(--gray-800); line-height: 1.6; }
+    .ingredients-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .ingredients-table th { background: var(--teal-50); padding: 12px 16px; text-align: left; font-weight: 500; color: var(--teal-700); border: 0.5px solid var(--teal-100); }
+    .ingredients-table td { padding: 12px 16px; border: 0.5px solid var(--gray-300); color: var(--gray-900); }
+    .ingredients-table tr:nth-child(even) td { background: var(--gray-50); }
+    .notice { background: var(--amber-50); border: 0.5px solid var(--amber-100); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; font-size: 13px; color: var(--amber-900); line-height: 1.7; }
+    footer { background: var(--gray-900); color: #fff; padding: 2rem 1.5rem; }
+    .footer-inner { max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-logo { font-size: 16px; font-weight: 700; color: var(--teal-100); }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-size: 13px; color: var(--gray-300); }
+    .copyright { font-size: 12px; color: var(--gray-500); margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html" class="logo">🌿 ラクトケア</a>
+      <div class="nav-links">
+        <a href="index.html">トップ</a>
+        <a href="about.html">会社概要</a>
+        <a href="contact.html">お問い合わせ</a>
+        <a href="ingredients.html">成分・効果</a>
+        <a href="subscription.html">定期購入</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="page-hero">
+    <h1>成分・効果</h1>
+    <p>ラクトケアに配合された乳酸菌と成分を詳しくご説明します。</p>
+  </div>
+
+  <div class="container">
+
+    <section>
+      <h2>期待できる効果</h2>
+      <div class="effects">
+        <div class="effect-card">
+          <div class="effect-icon">🦠</div>
+          <div class="effect-title">腸内フローラの改善</div>
+          <div class="effect-desc">善玉菌を増やし、悪玉菌を抑制。腸内環境のバランスを整えます。</div>
+        </div>
+        <div class="effect-card">
+          <div class="effect-icon">🛡️</div>
+          <div class="effect-title">免疫力のサポート</div>
+          <div class="effect-desc">腸は免疫細胞の約70%が集まる器官。腸活で免疫力の底上げを。</div>
+        </div>
+        <div class="effect-card">
+          <div class="effect-icon">✨</div>
+          <div class="effect-title">肌荒れの改善</div>
+          <div class="effect-desc">腸と肌は密接に関連。腸内環境が整うことで肌のコンディションも向上。</div>
+        </div>
+        <div class="effect-card">
+          <div class="effect-icon">😴</div>
+          <div class="effect-title">睡眠・メンタルケア</div>
+          <div class="effect-desc">幸せホルモン「セロトニン」の約90%は腸で作られます。</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>主要配合菌種</h2>
+      <div class="bacteria-list">
+        <div class="bacteria-item">
+          <div class="bacteria-num">菌種 01</div>
+          <div>
+            <div class="bacteria-name">ラクトバチルス・アシドフィルス</div>
+            <div class="bacteria-desc">小腸に定着しやすい代表的な乳酸菌。乳糖の消化を助け、腸の蠕動運動をサポートします。整腸作用が高く、便秘・下痢の改善に効果的です。</div>
+          </div>
+        </div>
+        <div class="bacteria-item">
+          <div class="bacteria-num">菌種 02</div>
+          <div>
+            <div class="bacteria-name">ビフィドバクテリウム・ロンガム</div>
+            <div class="bacteria-desc">大腸に多く生息するビフィズス菌の一種。悪玉菌の増殖を抑え、腸内pHを下げることで有害物質の産生を減らします。</div>
+          </div>
+        </div>
+        <div class="bacteria-item">
+          <div class="bacteria-num">菌種 03</div>
+          <div>
+            <div class="bacteria-name">ラクトバチルス・ラムノサス</div>
+            <div class="bacteria-desc">アレルギー症状の緩和・免疫調整作用が研究されている菌種。胃酸に強く生きたまま腸に届きやすい特性があります。</div>
+          </div>
+        </div>
+        <div class="bacteria-item">
+          <div class="bacteria-num">菌種 04</div>
+          <div>
+            <div class="bacteria-name">ストレプトコッカス・サーモフィルス</div>
+            <div class="bacteria-desc">乳糖不耐症の症状を緩和する作用が知られています。ヨーグルト製造にも使われる安全性の高い乳酸菌です。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>全成分表示（プレミアム 1日分 / 2粒）</h2>
+      <table class="ingredients-table">
+        <thead>
+          <tr><th>成分名</th><th>1日摂取量</th><th>役割</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>乳酸菌末（100種以上）</td><td>200mg（200億個）</td><td>腸内環境の改善</td></tr>
+          <tr><td>難消化性デキストリン</td><td>500mg</td><td>水溶性食物繊維・プレバイオティクス</td></tr>
+          <tr><td>オリゴ糖（フラクトオリゴ糖）</td><td>100mg</td><td>善玉菌のエサ</td></tr>
+          <tr><td>ビタミンC</td><td>100mg</td><td>抗酸化・免疫サポート</td></tr>
+          <tr><td>亜鉛</td><td>5mg</td><td>免疫機能・細胞修復</td></tr>
+          <tr><td>結晶セルロース</td><td>適量</td><td>賦形剤</td></tr>
+          <tr><td>ステアリン酸カルシウム</td><td>適量</td><td>滑沢剤</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="notice">
+      ⚠️ 本製品は食品であり、疾病の診断・治療・予防を目的とするものではありません。妊娠中・授乳中の方、薬を服用中の方は医師にご相談の上ご使用ください。
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">🌿 ラクトケア</div>
+        <div class="copyright">© 2026 ラクトケア株式会社</div>
+      </div>
+      <div class="footer-links">
+        <a href="#">特定商取引法</a>
+        <a href="#">プライバシーポリシー</a>
+        <a href="contact.html">お問い合わせ</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
