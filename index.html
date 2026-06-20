@@ -109,6 +109,28 @@
     .ng-hero-title { font-family: 'Noto Serif JP', serif; font-size: 28px; font-weight: 300; color: #fff; line-height: 1.3; margin-bottom: 8px; }
     .ng-hero-sub { font-size: 12px; color: rgba(255,255,255,0.65); letter-spacing: 0.08em; }
 
+    /* ===== HEALTH BENEFITS ===== */
+    .health-sec { background: var(--washi2); padding: 0; }
+    .health-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 640px; }
+    .health-photo { position: relative; overflow: hidden; }
+    .health-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.88) saturate(1.05); }
+    .health-photo-overlay { position: absolute; inset: 0; background: linear-gradient(to right, transparent 60%, var(--washi2)); }
+    .health-content { padding: 5rem 3rem; display: flex; flex-direction: column; justify-content: center; }
+    .health-benefits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
+    .hb-card { background: var(--washi); padding: 1.5rem; border-top: 2px solid var(--red); }
+    .hb-card-icon { font-size: 26px; margin-bottom: 10px; }
+    .hb-card-title { font-family: 'Noto Serif JP', serif; font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+    .hb-card-desc { font-size: 12px; color: var(--ink2); line-height: 1.75; font-weight: 300; }
+    @media (max-width: 768px) {
+      .health-inner { grid-template-columns: 1fr; }
+      .health-photo { height: 280px; }
+      .health-photo-overlay { background: linear-gradient(to bottom, transparent 50%, var(--washi2)); }
+      .health-content { padding: 3rem 1.5rem; }
+      .health-benefits-grid { grid-template-columns: 1fr; }
+      .natto-gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 260px 200px 180px; }
+      .ng-cell.tall { grid-row: span 1; grid-column: span 2; }
+    }
+
     /* ===== SCENE ===== */
     .scene-sec { padding: 6rem 2rem; background: var(--washi); }
     .scene-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; grid-template-rows: 300px 260px; gap: 8px; margin-top: 3rem; }
@@ -259,6 +281,7 @@
       NattoReserve
     </div>
     <div class="nav-links">
+      <a href="#health">健康効果</a>
       <a href="#scene">使用シーン</a>
       <a href="#products">商品</a>
       <a href="#reviews">お客様の声</a>
@@ -301,8 +324,8 @@
     </div>
     <div class="hero-visual">
       <img class="hero-main-img"
-        src="https://images.unsplash.com/photo-fJ4hIPFrTnM?w=800&q=90&auto=format&fit=crop"
-        alt="特製納豆のクローズアップ">
+        src="https://images.unsplash.com/photo-o28F-2GN4ZI?w=800&q=90&auto=format&fit=crop&crop=top"
+        alt="特製納豆を楽しむ日本人女性">
       <div class="hero-seal">
         <div class="seal-main">国産</div>
         <div class="seal-sub">大豆100%</div>
@@ -382,6 +405,53 @@
   </div>
 </section>
 
+<!-- HEALTH BENEFITS -->
+<section class="health-sec" id="health">
+  <div class="health-inner">
+    <div class="health-photo">
+      <img src="https://images.unsplash.com/photo-khQY5Eu-aa0?w=800&q=88&auto=format&fit=crop&crop=top" alt="健康的な日本人女性">
+      <div class="health-photo-overlay"></div>
+    </div>
+    <div class="health-content">
+      <div class="sec-eyebrow">毎日食べる理由</div>
+      <h2 class="sec-h">納豆を毎日食べると、<br>体が変わる。</h2>
+      <p class="sec-p" style="font-size:13px">特製納豆に含まれるナットウキナーゼ・ビタミンK2・納豆菌が、全身の健康をサポートします。</p>
+      <div class="health-benefits-grid">
+        <div class="hb-card">
+          <div class="hb-card-icon">🩸</div>
+          <div class="hb-card-title">血液サラサラ</div>
+          <div class="hb-card-desc">ナットウキナーゼが血栓を溶かし、血流を改善。心筋梗塞・脳卒中のリスクを低減。</div>
+        </div>
+        <div class="hb-card">
+          <div class="hb-card-icon">🦠</div>
+          <div class="hb-card-title">腸内環境の改善</div>
+          <div class="hb-card-desc">納豆菌が腸内フローラを整え、便秘・下痢・お腹の張りを解消します。</div>
+        </div>
+        <div class="hb-card">
+          <div class="hb-card-icon">🦴</div>
+          <div class="hb-card-title">骨を強くする</div>
+          <div class="hb-card-desc">ビタミンK2がカルシウムを骨に定着させ、骨粗しょう症を予防します。</div>
+        </div>
+        <div class="hb-card">
+          <div class="hb-card-icon">🛡️</div>
+          <div class="hb-card-title">免疫力アップ</div>
+          <div class="hb-card-desc">腸活で免疫細胞が活性化。風邪やインフルエンザにかかりにくくなります。</div>
+        </div>
+        <div class="hb-card">
+          <div class="hb-card-icon">✨</div>
+          <div class="hb-card-title">肌ツヤが改善</div>
+          <div class="hb-card-desc">腸と肌は密接に連携。腸内環境が整うと肌荒れ・ニキビが改善します。</div>
+        </div>
+        <div class="hb-card">
+          <div class="hb-card-icon">💓</div>
+          <div class="hb-card-title">血圧の安定</div>
+          <div class="hb-card-desc">ナットウキナーゼの働きで血圧を正常値へ。高血圧の方に特におすすめ。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SCENE -->
 <section class="scene-sec" id="scene">
   <div class="wrap">
@@ -390,8 +460,8 @@
     <div class="scene-grid">
       <div class="scene-card tall">
         <img class="scene-img"
-          src="https://images.unsplash.com/photo-1596038890429-c2c4e16f36a8?w=900&q=85&auto=format&fit=crop&crop=top"
-          alt="朝の食卓で特製納豆を食べる女性">
+          src="https://images.unsplash.com/photo-cATZ2eHu5ys?w=900&q=85&auto=format&fit=crop&crop=top"
+          alt="朝の食卓で特製納豆を食べる日本人女性">
         <div class="scene-overlay"></div>
         <div class="scene-stat">
           <div class="ss-num">87</div>
@@ -401,29 +471,29 @@
       </div>
       <div class="scene-card">
         <img class="scene-img"
-          src="https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=700&q=85&auto=format&fit=crop&crop=center"
-          alt="アプリで記録する女性">
+          src="https://images.unsplash.com/photo-3Xkms-gMvZg?w=700&q=85&auto=format&fit=crop&crop=top"
+          alt="アプリで記録する日本人女性">
         <div class="scene-overlay"></div>
         <div class="scene-chip"><div class="scene-chip-red"></div> アプリで記録</div>
       </div>
       <div class="scene-card">
         <img class="scene-img"
-          src="https://images.unsplash.com/photo-1515023115689-589c33041d3c?w=700&q=85&auto=format&fit=crop&crop=top"
-          alt="くつろぐ女性">
+          src="https://images.unsplash.com/photo-VCXleY6RVHY?w=700&q=85&auto=format&fit=crop&crop=top"
+          alt="くつろぐ日本人女性">
         <div class="scene-overlay"></div>
         <div class="scene-chip"><div class="scene-chip-red"></div> 夜のケアに</div>
       </div>
       <div class="scene-card">
         <img class="scene-img"
-          src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=700&q=85&auto=format&fit=crop&crop=face"
-          alt="笑顔の女性">
+          src="https://images.unsplash.com/photo-s4vdHcJf_m0?w=700&q=85&auto=format&fit=crop&crop=face"
+          alt="笑顔の日本人女性">
         <div class="scene-overlay"></div>
         <div class="scene-chip"><div class="scene-chip-red"></div> 28日継続達成</div>
       </div>
       <div class="scene-card">
         <img class="scene-img"
-          src="https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?w=700&q=85&auto=format&fit=crop&crop=face"
-          alt="健康的な女性">
+          src="https://images.unsplash.com/photo-dcZsxUAAJXs?w=700&q=85&auto=format&fit=crop&crop=face"
+          alt="健康的な日本人女性">
         <div class="scene-overlay"></div>
         <div class="scene-chip"><div class="scene-chip-red"></div> 肌ツヤが改善</div>
       </div>
@@ -521,8 +591,8 @@
     <div class="info-grid">
       <div class="info-img-wrap">
         <img class="info-img"
-          src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=700&q=85&auto=format&fit=crop&crop=top"
-          alt="健康的な女性">
+          src="https://images.unsplash.com/photo-5yo65pSHp50?w=700&q=85&auto=format&fit=crop&crop=top"
+          alt="健康的な日本人女性">
         <div class="info-badge">
           <div class="ib-main">特製</div>
           <div class="ib-sub">発酵製法</div>
@@ -586,7 +656,7 @@
         <div class="rv-stars">★★★★★</div>
         <div class="rv-text">「アプリのリマインダーで食べ忘れゼロに。健康スコアが3ヶ月で62→89に上がって、血圧とお腹の調子が明らかに変わっています。普通の納豆とは全然違います。」</div>
         <div class="rv-author">
-          <img class="rv-av" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=88&h=88&q=80&auto=format&fit=crop&crop=face" alt="田中さゆり">
+          <img class="rv-av" src="https://images.unsplash.com/photo-7Cbc8a4ZCpg?w=88&h=88&q=80&auto=format&fit=crop&crop=face" alt="田中さゆり">
           <div><div class="rv-name">田中 さゆり</div><div class="rv-meta">30代 · 6ヶ月利用</div><div class="rv-verified">✓ 認証済みユーザー</div></div>
         </div>
       </div>
@@ -594,7 +664,7 @@
         <div class="rv-stars">★★★★★</div>
         <div class="rv-text">「他の納豆は匂いが気になりましたが、この特製納豆は全然違います。定期予約の変更もアプリで簡単。肌ツヤが上がったと友人から言われました。」</div>
         <div class="rv-author">
-          <img class="rv-av" src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=88&h=88&q=80&auto=format&fit=crop&crop=face" alt="佐々木ひろみ">
+          <img class="rv-av" src="https://images.unsplash.com/photo-oFbk-jLvVTM?w=88&h=88&q=80&auto=format&fit=crop&crop=face" alt="佐々木ひろみ">
           <div><div class="rv-name">佐々木 ひろみ</div><div class="rv-meta">40代 · 1年以上利用</div><div class="rv-verified">✓ 認証済みユーザー</div></div>
         </div>
       </div>
@@ -602,7 +672,7 @@
         <div class="rv-stars">★★★★★</div>
         <div class="rv-text">「子供と一緒にグミタイプを続けています。納豆が苦手な子でもグミなら喜んで食べてくれます。家族の健康管理がアプリで一括できるのも便利です。」</div>
         <div class="rv-author">
-          <img class="rv-av" src="https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?w=88&h=88&q=80&auto=format&fit=crop&crop=face" alt="山本けいこ">
+          <img class="rv-av" src="https://images.unsplash.com/photo-rWJpKloM-Ew?w=88&h=88&q=80&auto=format&fit=crop&crop=face" alt="山本けいこ">
           <div><div class="rv-name">山本 けいこ</div><div class="rv-meta">30代 · 8ヶ月利用</div><div class="rv-verified">✓ 認証済みユーザー</div></div>
         </div>
       </div>
