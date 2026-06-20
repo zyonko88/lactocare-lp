@@ -7,373 +7,318 @@
   <meta name="description" content="希少な特製納豆の定期予約・摂取管理・健康スコア記録をひとつのアプリで。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:   #FBF7F3;
-      --bg2:  #F5EDE6;
-      --bg3:  #EDE0D6;
-      --bg4:  #E4D3C7;
-      --bg5:  #D9C5B6;
-      --line:  rgba(100,60,30,0.07);
-      --line2: rgba(100,60,30,0.12);
-      --line3: rgba(100,60,30,0.22);
-      --text:  #1C1410;
-      --text2: rgba(28,20,16,0.52);
-      --text3: rgba(28,20,16,0.28);
-      --rose:      #C4506A;
-      --rose2:     #A83550;
-      --rose-dim:  rgba(196,80,106,0.1);
-      --rose-glow: rgba(196,80,106,0.06);
-      --sage:      #4E8C68;
-      --sage-dim:  rgba(78,140,104,0.1);
-      --terra:     #C06840;
-      --terra-dim: rgba(192,104,64,0.1);
-      --r: 12px; --r2: 18px; --r3: 24px; --r4: 32px;
+      --washi:  #FAF7F0;
+      --washi2: #F2EBE0;
+      --washi3: #E8DDD0;
+      --washi4: #DCCFBF;
+      --navy:   #1A2744;
+      --navy2:  #253560;
+      --red:    #B91C35;
+      --red2:   #96172A;
+      --red-dim: rgba(185,28,53,0.08);
+      --gold:   #A07830;
+      --gold2:  #7A5C22;
+      --gold-dim: rgba(160,120,48,0.1);
+      --ink:    #0E0C08;
+      --ink2:   rgba(14,12,8,0.55);
+      --ink3:   rgba(14,12,8,0.28);
+      --ink4:   rgba(14,12,8,0.12);
+      --r: 4px; --r2: 8px; --r3: 12px;
     }
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans','Noto Sans JP',sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    body { font-family: 'Noto Sans JP', sans-serif; background: var(--washi); color: var(--ink); line-height: 1.8; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     a { color: inherit; text-decoration: none; }
+    .serif { font-family: 'Noto Serif JP', serif; }
 
-    /* NAV */
-    nav {
-      position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
-      z-index: 200; width: min(900px, calc(100% - 32px));
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 20px;
-      background: rgba(251,247,243,0.82);
-      backdrop-filter: blur(24px) saturate(160%);
-      border: 0.5px solid var(--line2);
-      border-radius: 999px;
-    }
-    .nav-logo { font-size: 15px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
-    .logo-pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--rose); animation: pulse 2.2s ease-in-out infinite; }
-    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.45;transform:scale(0.75)} }
-    .nav-center { display: flex; gap: 1.75rem; }
-    .nav-center a { font-size: 13px; color: var(--text2); transition: color 0.2s; }
-    .nav-center a:hover { color: var(--text); }
-    .nav-btn { background: var(--rose); color: #fff; padding: 8px 20px; border-radius: 999px; font-size: 13px; font-weight: 500; cursor: pointer; border: none; font-family: inherit; transition: opacity 0.15s, transform 0.1s; }
-    .nav-btn:hover { opacity: 0.86; } .nav-btn:active { transform: scale(0.96); }
+    /* ===== NAV ===== */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: rgba(250,247,240,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--ink4); }
+    nav { max-width: 1100px; margin: 0 auto; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 600; color: var(--navy); display: flex; align-items: center; gap: 10px; }
+    .nav-mon { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--red); display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--red); font-weight: 700; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a { font-size: 13px; color: var(--ink2); letter-spacing: 0.06em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--red); }
+    .nav-cta { background: var(--red); color: #fff; padding: 9px 22px; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; border: none; cursor: pointer; font-family: inherit; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--red2); }
 
-    /* HERO */
-    .hero { min-height: 100vh; display: grid; place-items: center; padding: 8rem 2rem 4rem; position: relative; overflow: hidden; }
-    .hero-bg { position: absolute; inset: 0; pointer-events: none; }
-    .hero-grid {
-      position: absolute; inset: 0;
-      background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
-      background-size: 56px 56px;
-      mask-image: radial-gradient(ellipse 80% 80% at 50% 40%, black 20%, transparent 100%);
-    }
-    .hero-orb1 { position: absolute; top: 8%; left: 50%; transform: translateX(-50%); width: 700px; height: 480px; background: radial-gradient(ellipse, rgba(196,80,106,0.09) 0%, transparent 65%); }
-    .hero-orb2 { position: absolute; top: 35%; left: 15%; width: 360px; height: 360px; background: radial-gradient(ellipse, rgba(78,140,104,0.06) 0%, transparent 65%); }
-    .hero-orb3 { position: absolute; top: 18%; right: 10%; width: 280px; height: 280px; background: radial-gradient(ellipse, rgba(192,104,64,0.05) 0%, transparent 65%); }
-    .hero-content { position: relative; text-align: center; max-width: 960px; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--rose-dim); border: 0.5px solid rgba(196,80,106,0.22); color: var(--rose); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 16px; border-radius: 999px; margin-bottom: 2.5rem; }
-    .hero-badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--rose); animation: pulse 2.2s ease-in-out infinite; }
-    .hero-h { font-size: clamp(46px, 8vw, 104px); font-weight: 300; letter-spacing: -0.05em; line-height: 0.95; margin-bottom: 2rem; color: var(--text); }
-    .hero-h em { font-family: 'DM Serif Display',serif; font-style: italic; color: var(--rose); }
-    .hero-p { font-size: clamp(15px, 1.8vw, 17px); color: var(--text2); max-width: 460px; margin: 0 auto 3rem; font-weight: 300; line-height: 1.9; }
-    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem; }
-    .btn-rose { background: var(--rose); color: #fff; padding: 14px 30px; border-radius: 999px; font-size: 15px; font-weight: 500; cursor: pointer; border: none; font-family: inherit; display: flex; align-items: center; gap: 8px; transition: opacity 0.15s, transform 0.1s; }
-    .btn-rose:hover { opacity: 0.86; } .btn-rose:active { transform: scale(0.97); }
-    .btn-ghost { background: transparent; color: var(--text); padding: 14px 30px; border-radius: 999px; font-size: 15px; font-weight: 300; cursor: pointer; border: 0.5px solid var(--line2); font-family: inherit; transition: background 0.15s, border-color 0.15s; }
-    .btn-ghost:hover { background: var(--bg2); border-color: var(--line3); }
+    /* ===== HERO ===== */
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 7rem 0 4rem; max-width: 1100px; margin: 0 auto; gap: 4rem; padding-left: 2rem; padding-right: 2rem; }
+    .hero-text { }
+    .hero-kamon { font-size: 11px; color: var(--red); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+    .hero-kamon::before { content: ''; width: 28px; height: 1px; background: var(--red); }
+    .hero-h { font-family: 'Noto Serif JP', serif; font-size: clamp(38px, 5vw, 64px); font-weight: 300; letter-spacing: -0.01em; line-height: 1.25; margin-bottom: 1.5rem; color: var(--ink); }
+    .hero-h .accent { color: var(--red); }
+    .hero-h .kanji { font-size: 0.85em; color: var(--navy); }
+    .hero-sub { font-size: 15px; color: var(--ink2); line-height: 1.9; margin-bottom: 2.5rem; max-width: 440px; font-weight: 300; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 3rem; }
+    .btn-red { background: var(--red); color: #fff; padding: 14px 32px; font-size: 14px; font-weight: 500; letter-spacing: 0.08em; border: none; cursor: pointer; font-family: inherit; transition: background 0.18s; }
+    .btn-red:hover { background: var(--red2); }
+    .btn-outline { background: transparent; color: var(--navy); padding: 13px 32px; font-size: 14px; letter-spacing: 0.08em; border: 1px solid var(--navy); cursor: pointer; font-family: inherit; transition: background 0.18s; }
+    .btn-outline:hover { background: var(--washi2); }
+    .hero-badges { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .hero-badge-item { display: flex; flex-direction: column; }
+    .hb-num { font-family: 'Noto Serif JP', serif; font-size: 26px; font-weight: 600; color: var(--red); letter-spacing: -0.02em; line-height: 1; }
+    .hb-label { font-size: 11px; color: var(--ink3); margin-top: 4px; letter-spacing: 0.06em; }
+    .hb-div { width: 1px; background: var(--ink4); align-self: stretch; }
 
-    /* HERO BENTO */
-    .hero-bento { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 10px; max-width: 840px; margin: 0 auto; }
-    .bento-card { background: #fff; border: 0.5px solid var(--line2); border-radius: var(--r3); padding: 18px; box-shadow: 0 2px 20px rgba(100,60,30,0.06); }
-    .bento-card.tall { grid-row: span 2; }
-    .bento-sm { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
-    .bento-num { font-size: 38px; font-weight: 300; letter-spacing: -0.04em; color: var(--rose); line-height: 1; }
-    .bento-label { font-size: 12px; color: var(--text2); margin-top: 4px; }
-    .score-ring { width: 80px; height: 80px; position: relative; margin: 12px auto; }
-    .score-ring svg { transform: rotate(-90deg); }
-    .score-ring-bg { fill: none; stroke: var(--bg3); stroke-width: 6; }
-    .score-ring-fill { fill: none; stroke: var(--rose); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 220; stroke-dashoffset: 28; }
-    .score-val { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 500; color: var(--text); }
-    .mini-bars { display: flex; gap: 4px; align-items: flex-end; height: 44px; margin-top: 12px; }
-    .mini-bar { flex: 1; border-radius: 3px; background: var(--bg3); }
-    .mini-bar.on { background: var(--rose); }
-    .streak-row { display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap; }
-    .streak-dot { width: 22px; height: 22px; border-radius: 6px; background: var(--bg3); display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--text3); }
-    .streak-dot.done { background: var(--rose); color: #fff; font-weight: 700; }
-    .streak-dot.today { background: var(--rose-dim); border: 1px solid var(--rose); color: var(--rose); font-size: 8px; }
-    .next-item { background: var(--bg2); border-radius: var(--r); padding: 12px 14px; margin-top: 10px; display: flex; align-items: center; gap: 10px; border: 0.5px solid var(--line); }
-    .ni-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-    .ni-name { font-size: 13px; font-weight: 500; color: var(--text); }
-    .ni-date { font-size: 11px; color: var(--text3); margin-top: 1px; }
-    .ni-badge { margin-left: auto; background: var(--rose-dim); color: var(--rose); font-size: 10px; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+    /* Hero visual */
+    .hero-visual { position: relative; }
+    .hero-main-img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; }
+    .hero-float-card { position: absolute; bottom: -20px; left: -30px; background: #fff; border: 1px solid var(--washi3); padding: 16px 20px; width: 200px; box-shadow: 0 8px 32px rgba(14,12,8,0.1); }
+    .hfc-label { font-size: 10px; color: var(--ink3); letter-spacing: 0.1em; margin-bottom: 8px; }
+    .hfc-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .hfc-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); }
+    .hfc-text { font-size: 13px; font-weight: 500; color: var(--ink); }
+    .hfc-bar-wrap { height: 4px; background: var(--washi3); border-radius: 2px; overflow: hidden; }
+    .hfc-bar { height: 100%; background: var(--red); border-radius: 2px; }
+    .hero-seal { position: absolute; top: -16px; right: -16px; width: 72px; height: 72px; border-radius: 50%; background: var(--red); display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; }
+    .seal-main { font-family: 'Noto Serif JP', serif; font-size: 14px; font-weight: 600; }
+    .seal-sub { font-size: 8px; letter-spacing: 0.05em; opacity: 0.85; margin-top: 2px; }
 
-    /* TICKER */
-    .ticker-wrap { overflow: hidden; border-top: 0.5px solid var(--line); border-bottom: 0.5px solid var(--line); padding: 14px 0; background: var(--bg2); }
-    .ticker { display: flex; gap: 0; animation: ticker 30s linear infinite; width: max-content; }
+    /* ===== TICKER ===== */
+    .ticker-wrap { background: var(--navy); overflow: hidden; padding: 12px 0; }
+    .ticker { display: flex; animation: ticker 32s linear infinite; width: max-content; }
     @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-    .ticker-item { display: flex; align-items: center; gap: 10px; padding: 0 2.5rem; white-space: nowrap; font-size: 13px; color: var(--text2); font-weight: 300; }
-    .ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--rose); }
+    .ticker-item { display: flex; align-items: center; gap: 10px; padding: 0 2.5rem; white-space: nowrap; font-size: 12px; color: rgba(255,255,255,0.7); letter-spacing: 0.1em; }
+    .ticker-kiku { color: var(--gold); font-size: 14px; }
 
-    /* LAYOUT */
-    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 2rem; }
-    .eyebrow { font-size: 11px; color: var(--rose); font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.25rem; }
-    .big-h { font-size: clamp(30px, 4.5vw, 58px); font-weight: 300; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 1.25rem; }
-    .big-h em { font-family: 'DM Serif Display',serif; font-style: italic; color: var(--rose); }
-    .body-p { font-size: 16px; color: var(--text2); font-weight: 300; line-height: 1.85; }
-    hr.div { border: none; border-top: 0.5px solid var(--line); }
+    /* ===== SECTION ===== */
+    .section { padding: 6rem 2rem; }
+    .wrap { max-width: 1100px; margin: 0 auto; }
+    .sec-eyebrow { font-size: 11px; color: var(--red); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+    .sec-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--red); }
+    .sec-h { font-family: 'Noto Serif JP', serif; font-size: clamp(26px, 3.5vw, 44px); font-weight: 300; letter-spacing: -0.01em; line-height: 1.35; margin-bottom: 1.25rem; color: var(--ink); }
+    .sec-p { font-size: 15px; color: var(--ink2); line-height: 1.9; font-weight: 300; }
+    .divider-jp { display: flex; align-items: center; gap: 16px; margin: 0 2rem; }
+    .divider-jp::before, .divider-jp::after { content: ''; flex: 1; height: 1px; background: var(--ink4); }
+    .divider-jp-mon { font-size: 14px; color: var(--ink4); }
 
-    /* SCENE */
-    .scene-sec { padding: 7rem 0; }
-    .scene-header { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 3rem; }
-    .scene-grid { display: grid; grid-template-columns: 1.2fr 0.9fr 0.9fr; grid-template-rows: 320px 280px; gap: 10px; }
-    .scene-card { border-radius: var(--r3); overflow: hidden; position: relative; }
+    /* ===== VIDEO ===== */
+    .video-sec { background: var(--navy); padding: 5rem 2rem; }
+    .video-inner { max-width: 1100px; margin: 0 auto; }
+    .video-header { display: grid; grid-template-columns: 1fr auto; align-items: end; margin-bottom: 2.5rem; gap: 2rem; }
+    .video-eyebrow { font-size: 11px; color: var(--gold); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+    .video-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+    .video-h { font-family: 'Noto Serif JP', serif; font-size: clamp(26px, 3.5vw, 44px); font-weight: 300; color: #fff; line-height: 1.35; }
+    .video-h .accent { color: var(--gold); }
+    .video-p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.8; max-width: 320px; }
+    .video-container { position: relative; width: 100%; border-radius: 0; overflow: hidden; background: #000; }
+    .video-container::before { content: ''; display: block; padding-top: 56.25%; }
+    .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+    .video-tags { display: flex; gap: 10px; margin-top: 1.5rem; flex-wrap: wrap; }
+    .vtag { background: rgba(255,255,255,0.07); border: 0.5px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); font-size: 12px; padding: 5px 14px; letter-spacing: 0.06em; }
+
+    /* ===== SCENE ===== */
+    .scene-sec { padding: 6rem 2rem; background: var(--washi); }
+    .scene-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; grid-template-rows: 300px 260px; gap: 8px; margin-top: 3rem; }
+    .scene-card { overflow: hidden; position: relative; }
     .scene-card.tall { grid-row: span 2; }
-    .scene-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
-    .scene-card:hover .scene-img { transform: scale(1.04); }
-    .scene-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(28,20,16,0.55) 0%, transparent 55%); }
-    .scene-chip { position: absolute; bottom: 16px; left: 16px; background: rgba(251,247,243,0.88); backdrop-filter: blur(12px); border: 0.5px solid var(--line2); border-radius: 999px; padding: 6px 14px; font-size: 12px; color: var(--text); display: flex; align-items: center; gap: 6px; }
-    .scene-chip-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--rose); }
-    .scene-app-badge { position: absolute; top: 14px; right: 14px; background: rgba(251,247,243,0.9); backdrop-filter: blur(12px); border: 0.5px solid var(--line2); border-radius: var(--r2); padding: 10px 14px; min-width: 130px; }
-    .sab-label { font-size: 10px; color: var(--text3); margin-bottom: 4px; }
-    .sab-val { font-size: 18px; font-weight: 500; color: var(--rose); letter-spacing: -0.02em; }
+    .scene-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; filter: brightness(0.92) saturate(1.1); }
+    .scene-card:hover .scene-img { transform: scale(1.05); filter: brightness(0.98) saturate(1.2); }
+    .scene-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(14,12,8,0.6) 0%, transparent 55%); }
+    .scene-chip { position: absolute; bottom: 14px; left: 14px; background: rgba(250,247,240,0.92); backdrop-filter: blur(8px); padding: 5px 12px; font-size: 11px; color: var(--ink); display: flex; align-items: center; gap: 6px; letter-spacing: 0.06em; }
+    .scene-chip-red { width: 5px; height: 5px; border-radius: 50%; background: var(--red); }
+    .scene-stat { position: absolute; top: 14px; right: 14px; background: rgba(250,247,240,0.92); backdrop-filter: blur(8px); padding: 10px 14px; text-align: center; }
+    .ss-num { font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 600; color: var(--red); line-height: 1; }
+    .ss-label { font-size: 9px; color: var(--ink3); margin-top: 3px; letter-spacing: 0.06em; }
 
-    /* FEATURES BENTO */
-    .features-sec { padding: 7rem 0; background: var(--bg2); }
-    .feat-bento { display: grid; grid-template-columns: repeat(12,1fr); gap: 10px; margin-top: 4rem; }
-    .fb { background: var(--bg); border: 0.5px solid var(--line2); border-radius: var(--r3); padding: 2rem 2.25rem; position: relative; overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s; }
-    .fb:hover { border-color: var(--line3); box-shadow: 0 4px 24px rgba(100,60,30,0.08); }
-    .fb.c8 { grid-column: span 8; } .fb.c4 { grid-column: span 4; }
-    .fb.c6 { grid-column: span 6; } .fb.c5 { grid-column: span 5; } .fb.c7 { grid-column: span 7; }
-    .fb-glow { position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(ellipse at top right, rgba(196,80,106,0.07), transparent 70%); pointer-events: none; }
-    .fb-num { font-size: 11px; color: var(--text3); letter-spacing: 0.08em; margin-bottom: 2rem; }
-    .fb-icon { font-size: 34px; margin-bottom: 1.25rem; }
-    .fb-title { font-size: 20px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 10px; color: var(--text); }
-    .fb-desc { font-size: 14px; color: var(--text2); line-height: 1.75; font-weight: 300; max-width: 400px; }
-    .progress-row { display: flex; flex-direction: column; gap: 8px; margin-top: 1rem; }
-    .prog-item { display: flex; align-items: center; gap: 10px; }
-    .prog-label { font-size: 12px; color: var(--text2); width: 70px; flex-shrink: 0; }
-    .prog-bar-wrap { flex: 1; height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
-    .prog-bar { height: 100%; border-radius: 3px; background: var(--rose); }
-    .prog-val { font-size: 11px; color: var(--text3); width: 32px; text-align: right; }
-    .notif-list { display: flex; flex-direction: column; gap: 8px; margin-top: 1rem; }
-    .notif-item { background: var(--bg2); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; border: 0.5px solid var(--line); }
-    .notif-icon-wrap { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
-    .notif-text { font-size: 12px; color: var(--text2); }
-    .notif-time { font-size: 11px; color: var(--text3); margin-left: auto; white-space: nowrap; }
-    .point-display { margin-top: 1rem; }
-    .point-big { font-size: 50px; font-weight: 300; letter-spacing: -0.04em; color: var(--rose); line-height: 1; }
-    .point-sub { font-size: 13px; color: var(--text3); margin-top: 4px; }
-    .rank-badges { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
-    .rank-b { padding: 5px 12px; border-radius: 999px; font-size: 11px; font-weight: 500; }
-    .rank-b.cur { background: var(--rose-dim); color: var(--rose); border: 0.5px solid rgba(196,80,106,0.2); }
-    .rank-b.next { background: var(--bg3); color: var(--text3); border: 0.5px solid var(--line); }
+    /* ===== FEATURES ===== */
+    .features-sec { background: var(--navy); padding: 6rem 2rem; }
+    .features-h { font-family: 'Noto Serif JP', serif; font-size: clamp(26px, 3.5vw, 44px); font-weight: 300; color: #fff; line-height: 1.35; margin-bottom: 1rem; }
+    .features-h .accent { color: var(--gold); }
+    .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 3.5rem; }
+    .feat-box { background: rgba(255,255,255,0.04); border: 0.5px solid rgba(255,255,255,0.08); padding: 2rem 1.75rem; transition: background 0.2s; }
+    .feat-box:hover { background: rgba(255,255,255,0.07); }
+    .feat-num { font-size: 10px; color: var(--gold); letter-spacing: 0.14em; margin-bottom: 1.5rem; }
+    .feat-icon { font-size: 30px; margin-bottom: 1rem; }
+    .feat-title { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 10px; }
+    .feat-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.8; font-weight: 300; }
 
-    /* HOW IT WORKS */
-    .split-sec { padding: 7rem 0; }
-    .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-    .split-visual { background: var(--bg2); border: 0.5px solid var(--line2); border-radius: var(--r4); padding: 2rem; }
-    .timeline { display: flex; flex-direction: column; gap: 0; }
-    .tl-item { display: flex; gap: 16px; }
-    .tl-left { display: flex; flex-direction: column; align-items: center; }
-    .tl-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--rose); flex-shrink: 0; margin-top: 4px; }
-    .tl-dot.dim { background: var(--bg4); border: 1px solid var(--line2); }
-    .tl-line { width: 1px; flex: 1; background: var(--line2); margin: 4px 0; min-height: 28px; }
-    .tl-content { padding-bottom: 20px; }
-    .tl-label { font-size: 11px; color: var(--text3); margin-bottom: 3px; }
-    .tl-title { font-size: 14px; font-weight: 500; margin-bottom: 4px; color: var(--text); }
-    .tl-desc { font-size: 12px; color: var(--text2); line-height: 1.6; }
-    .tl-chip { display: inline-block; background: var(--rose-dim); color: var(--rose); font-size: 10px; padding: 2px 8px; border-radius: 999px; margin-top: 6px; }
-    .split-steps { display: flex; flex-direction: column; gap: 2rem; margin-top: 2.5rem; }
-    .split-step { display: flex; gap: 1.25rem; align-items: flex-start; }
-    .ss-num { width: 32px; height: 32px; border-radius: 50%; border: 0.5px solid var(--line2); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500; color: var(--text2); flex-shrink: 0; }
-    .ss-title { font-size: 16px; font-weight: 500; margin-bottom: 4px; color: var(--text); }
-    .ss-desc { font-size: 14px; color: var(--text2); font-weight: 300; line-height: 1.7; }
+    /* ===== PRODUCTS ===== */
+    .products-sec { padding: 6rem 2rem; background: var(--washi2); }
+    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 3.5rem; }
+    .pcard { background: var(--washi); position: relative; overflow: hidden; transition: box-shadow 0.25s; cursor: pointer; }
+    .pcard:hover { box-shadow: 0 12px 48px rgba(14,12,8,0.12); }
+    .pcard-img { height: 220px; display: flex; align-items: center; justify-content: center; font-size: 80px; position: relative; }
+    .pcard-tag { position: absolute; top: 0; left: 0; background: var(--red); color: #fff; font-size: 10px; font-weight: 700; padding: 5px 14px; letter-spacing: 0.08em; }
+    .pcard-body { padding: 1.5rem; border-top: 1px solid var(--washi3); }
+    .pcard-cat { font-size: 10px; color: var(--ink3); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px; }
+    .pcard-name { font-family: 'Noto Serif JP', serif; font-size: 19px; font-weight: 600; margin-bottom: 8px; color: var(--ink); }
+    .pcard-desc { font-size: 13px; color: var(--ink2); line-height: 1.75; font-weight: 300; margin-bottom: 1.25rem; }
+    .pcard-footer { display: flex; align-items: center; justify-content: space-between; }
+    .pcard-price { font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 600; color: var(--red); }
+    .pcard-price small { font-size: 12px; color: var(--ink3); font-weight: 300; }
+    .pcard-btn { background: var(--navy); color: #fff; padding: 9px 20px; font-size: 12px; letter-spacing: 0.08em; border: none; cursor: pointer; font-family: inherit; transition: background 0.18s; }
+    .pcard-btn:hover { background: var(--navy2); }
+    .pcard-btn.outline { background: transparent; color: var(--navy); border: 1px solid var(--navy); }
+    .pcard-btn.outline:hover { background: var(--washi2); }
 
-    /* PRODUCTS */
-    .products-sec { padding: 7rem 0; background: var(--bg2); }
-    .products-scroll { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 4rem; }
-    .pcard { background: var(--bg); border: 0.5px solid var(--line2); border-radius: var(--r3); overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.2s, transform 0.25s, box-shadow 0.25s; cursor: pointer; }
-    .pcard:hover { border-color: var(--line3); transform: translateY(-5px); box-shadow: 0 12px 40px rgba(100,60,30,0.1); }
-    .pcard.feat { border-color: rgba(196,80,106,0.25); }
-    .pcard-img { height: 200px; display: flex; align-items: center; justify-content: center; font-size: 80px; position: relative; }
-    .pcard-img-tag { position: absolute; top: 12px; left: 12px; background: var(--rose); color: #fff; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
-    .pcard-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
-    .pcard-cat { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
-    .pcard-name { font-size: 20px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 8px; color: var(--text); }
-    .pcard-desc { font-size: 13px; color: var(--text2); line-height: 1.7; font-weight: 300; margin-bottom: auto; }
-    .pcard-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 0.5px solid var(--line); }
-    .pcard-price { font-size: 24px; font-weight: 500; letter-spacing: -0.03em; color: var(--text); }
-    .pcard-price small { font-size: 12px; color: var(--text3); font-weight: 300; }
-    .pcard-btn { background: var(--rose); color: #fff; padding: 9px 20px; border-radius: 999px; font-size: 13px; font-weight: 500; cursor: pointer; border: none; font-family: inherit; transition: opacity 0.15s; }
-    .pcard-btn:hover { opacity: 0.84; }
-    .pcard-btn.ghost { background: transparent; color: var(--text); border: 0.5px solid var(--line2); }
-    .pcard-btn.ghost:hover { background: var(--bg2); }
+    /* ===== NATTO INFO ===== */
+    .info-sec { padding: 6rem 2rem; background: var(--washi); }
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .info-img-wrap { position: relative; }
+    .info-img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; }
+    .info-badge { position: absolute; bottom: -20px; right: -20px; background: var(--red); color: #fff; width: 100px; height: 100px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+    .ib-main { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 600; line-height: 1; }
+    .ib-sub { font-size: 9px; letter-spacing: 0.06em; opacity: 0.85; margin-top: 4px; }
+    .info-list { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+    .info-item { display: flex; gap: 1rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--ink4); }
+    .info-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .info-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex-shrink: 0; margin-top: 8px; }
+    .info-item-title { font-family: 'Noto Serif JP', serif; font-size: 15px; font-weight: 600; margin-bottom: 4px; color: var(--ink); }
+    .info-item-desc { font-size: 13px; color: var(--ink2); line-height: 1.8; font-weight: 300; }
 
-    /* STATS */
-    .stats-sec { padding: 7rem 0; }
-    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 4rem; }
-    .st { background: var(--bg2); padding: 2.5rem 2rem; }
-    .st:first-child { border-radius: var(--r3) 0 0 var(--r3); }
-    .st:last-child { border-radius: 0 var(--r3) var(--r3) 0; }
-    .st-n { font-size: clamp(38px, 5vw, 62px); font-weight: 300; color: var(--rose); letter-spacing: -0.05em; line-height: 1; margin-bottom: 10px; }
-    .st-l { font-size: 13px; color: var(--text2); font-weight: 300; }
-    .st-sub { font-size: 11px; color: var(--text3); margin-top: 4px; }
+    /* ===== STATS ===== */
+    .stats-sec { background: var(--washi2); padding: 5rem 2rem; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 3rem; }
+    .stat-box { background: var(--washi); padding: 2.5rem 2rem; border-top: 3px solid transparent; transition: border-color 0.2s; }
+    .stat-box:hover { border-top-color: var(--red); }
+    .stat-num { font-family: 'Noto Serif JP', serif; font-size: clamp(36px, 4vw, 54px); font-weight: 300; color: var(--red); letter-spacing: -0.02em; line-height: 1; margin-bottom: 8px; }
+    .stat-label { font-size: 13px; color: var(--ink2); }
+    .stat-sub { font-size: 11px; color: var(--ink3); margin-top: 4px; }
 
-    /* REVIEWS */
-    .reviews-sec { padding: 7rem 0; background: var(--bg2); }
-    .reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 4rem; }
-    .rv { background: var(--bg); border: 0.5px solid var(--line2); border-radius: var(--r3); padding: 2rem; display: flex; flex-direction: column; gap: 1.25rem; box-shadow: 0 2px 16px rgba(100,60,30,0.05); }
-    .rv-stars { font-size: 14px; color: var(--rose); letter-spacing: 3px; }
-    .rv-text { font-size: 14px; color: var(--text2); line-height: 1.85; font-weight: 300; font-style: italic; flex: 1; }
-    .rv-author { display: flex; align-items: center; gap: 12px; padding-top: 1rem; border-top: 0.5px solid var(--line); }
-    .rv-av { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid var(--bg3); }
-    .rv-name { font-size: 14px; font-weight: 500; color: var(--text); }
-    .rv-meta { font-size: 12px; color: var(--text3); }
-    .rv-verified { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; color: var(--rose); background: var(--rose-dim); padding: 2px 8px; border-radius: 999px; margin-top: 4px; }
+    /* ===== REVIEWS ===== */
+    .reviews-sec { padding: 6rem 2rem; background: var(--washi); }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 3.5rem; }
+    .rv { background: var(--washi2); padding: 2rem; display: flex; flex-direction: column; gap: 1.25rem; border-top: 2px solid transparent; transition: border-color 0.2s; }
+    .rv:hover { border-top-color: var(--red); }
+    .rv-stars { font-size: 13px; color: var(--gold); letter-spacing: 3px; }
+    .rv-text { font-size: 14px; color: var(--ink2); line-height: 1.9; font-weight: 300; font-style: italic; flex: 1; }
+    .rv-author { display: flex; align-items: center; gap: 12px; padding-top: 1rem; border-top: 1px solid var(--ink4); }
+    .rv-av { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+    .rv-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+    .rv-meta { font-size: 11px; color: var(--ink3); margin-top: 2px; }
+    .rv-verified { font-size: 10px; color: var(--red); margin-top: 3px; }
 
-    /* DOWNLOAD */
-    .dl-sec { padding: 7rem 0; }
-    .dl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-    .dl-phones { display: flex; gap: 14px; justify-content: center; }
-    .dl-phone { background: var(--bg2); border: 0.5px solid var(--line2); border-radius: 28px; padding: 22px 18px; width: 170px; box-shadow: 0 4px 24px rgba(100,60,30,0.08); }
-    .dl-phone:first-child { transform: rotate(-5deg) translateY(12px); }
-    .dl-phone:last-child { transform: rotate(4deg) translateY(-8px); }
-    .dl-ph-head { font-size: 12px; font-weight: 500; margin-bottom: 14px; color: var(--text2); }
-    .dl-ph-row { background: var(--bg3); border-radius: 8px; padding: 8px 10px; margin-bottom: 6px; display: flex; align-items: center; gap: 7px; }
-    .dl-ph-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-    .dl-ph-txt { font-size: 11px; color: var(--text2); }
-    .dl-ph-tag { font-size: 10px; padding: 1px 6px; border-radius: 999px; margin-left: auto; white-space: nowrap; }
-    .dl-stores { display: flex; flex-direction: column; gap: 10px; margin-top: 2.5rem; }
-    .dl-store { display: flex; align-items: center; gap: 14px; background: var(--bg2); border: 0.5px solid var(--line2); border-radius: var(--r2); padding: 14px 20px; cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s; max-width: 260px; }
-    .dl-store:hover { border-color: var(--line3); box-shadow: 0 4px 16px rgba(100,60,30,0.08); }
-    .dl-store-icon { font-size: 28px; }
-    .dl-store-sub { font-size: 11px; color: var(--text3); }
-    .dl-store-name { font-size: 15px; font-weight: 500; color: var(--text); margin-top: 2px; }
+    /* ===== APP SECTION ===== */
+    .app-sec { padding: 6rem 2rem; background: var(--washi2); }
+    .app-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .app-phones { display: flex; gap: 16px; justify-content: center; }
+    .app-phone { background: var(--washi); border: 1px solid var(--washi3); padding: 20px 16px; width: 160px; box-shadow: 0 4px 24px rgba(14,12,8,0.08); }
+    .app-phone:first-child { transform: rotate(-4deg) translateY(10px); }
+    .app-phone:last-child  { transform: rotate(3deg) translateY(-8px); }
+    .ap-head { font-size: 11px; font-weight: 500; color: var(--ink2); margin-bottom: 12px; }
+    .ap-row { background: var(--washi2); padding: 7px 10px; margin-bottom: 5px; display: flex; align-items: center; gap: 7px; }
+    .ap-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .ap-txt { font-size: 11px; color: var(--ink2); }
+    .ap-tag { font-size: 9px; padding: 1px 6px; margin-left: auto; white-space: nowrap; border: 0.5px solid; }
+    .stores { display: flex; flex-direction: column; gap: 10px; margin-top: 2rem; }
+    .store { display: flex; align-items: center; gap: 14px; background: var(--navy); padding: 14px 20px; cursor: pointer; max-width: 240px; transition: background 0.18s; }
+    .store:hover { background: var(--navy2); }
+    .store-icon { font-size: 24px; }
+    .store-sub { font-size: 10px; color: rgba(255,255,255,0.5); letter-spacing: 0.06em; }
+    .store-name { font-size: 14px; font-weight: 500; color: #fff; margin-top: 2px; }
 
-    /* CTA */
-    .cta-sec { padding: 9rem 2rem; text-align: center; position: relative; overflow: hidden; background: var(--bg2); }
-    .cta-orb { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 600px; height: 400px; background: radial-gradient(ellipse, rgba(196,80,106,0.09) 0%, transparent 65%); pointer-events: none; }
-    .cta-h { font-size: clamp(38px, 6vw, 76px); font-weight: 300; letter-spacing: -0.05em; line-height: 1.05; margin-bottom: 1.5rem; position: relative; }
-    .cta-h em { font-family: 'DM Serif Display',serif; font-style: italic; color: var(--rose); }
-    .cta-p { font-size: 16px; color: var(--text2); font-weight: 300; margin-bottom: 2.5rem; position: relative; }
+    /* ===== CTA ===== */
+    .cta-sec { background: var(--red); padding: 6rem 2rem; text-align: center; position: relative; overflow: hidden; }
+    .cta-bg-kanji { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: 'Noto Serif JP', serif; font-size: 300px; font-weight: 700; color: rgba(255,255,255,0.04); pointer-events: none; white-space: nowrap; line-height: 1; }
+    .cta-h { font-family: 'Noto Serif JP', serif; font-size: clamp(32px, 5vw, 64px); font-weight: 300; color: #fff; line-height: 1.2; margin-bottom: 1.25rem; position: relative; }
+    .cta-p { font-size: 15px; color: rgba(255,255,255,0.75); margin-bottom: 2.5rem; font-weight: 300; position: relative; }
     .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; }
-    .cta-note { font-size: 12px; color: var(--text3); margin-top: 1.25rem; }
+    .btn-white { background: #fff; color: var(--red); padding: 14px 36px; font-size: 14px; font-weight: 500; letter-spacing: 0.08em; border: none; cursor: pointer; font-family: inherit; transition: opacity 0.15s; }
+    .btn-white:hover { opacity: 0.92; }
+    .btn-outline-white { background: transparent; color: #fff; padding: 13px 36px; font-size: 14px; letter-spacing: 0.08em; border: 1px solid rgba(255,255,255,0.5); cursor: pointer; font-family: inherit; transition: background 0.18s; }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.1); }
+    .cta-note { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 1.5rem; position: relative; }
 
-    /* FOOTER */
-    footer { background: var(--bg3); border-top: 0.5px solid var(--line); padding: 4rem 2rem 2rem; }
-    .footer-top { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
-    .f-brand-logo { font-size: 16px; font-weight: 500; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: var(--text); }
-    .f-brand-p { font-size: 13px; color: var(--text3); line-height: 1.8; font-weight: 300; max-width: 280px; }
-    .f-col h5 { font-size: 11px; color: var(--text3); font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
-    .f-col a { display: block; font-size: 13px; color: var(--text3); margin-bottom: 10px; font-weight: 300; transition: color 0.15s; }
-    .f-col a:hover { color: var(--text2); }
-    .footer-bottom { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; border-top: 0.5px solid var(--line); }
-    .f-copy { font-size: 12px; color: var(--text3); }
+    /* ===== FOOTER ===== */
+    footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: 4rem 2rem 2rem; }
+    .footer-top { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .f-logo { font-family: 'Noto Serif JP', serif; font-size: 17px; font-weight: 600; color: #fff; display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .f-mon { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--gold); font-weight: 700; }
+    .f-desc { font-size: 13px; line-height: 1.8; font-weight: 300; max-width: 260px; }
+    .f-col h5 { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; }
+    .f-col a { display: block; font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 9px; font-weight: 300; transition: color 0.15s; }
+    .f-col a:hover { color: rgba(255,255,255,0.75); }
+    .footer-bottom { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px; color: rgba(255,255,255,0.3); }
 
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
-      nav { width: calc(100% - 24px); border-radius: 16px; }
-      .nav-center { display: none; }
-      .hero-h { font-size: 40px; }
-      .hero-bento { grid-template-columns: 1fr 1fr; }
-      .hero-bento .bento-card.tall { grid-row: span 1; }
-      .scene-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 240px 240px 220px; }
+      .hero { grid-template-columns: 1fr; padding-top: 6rem; }
+      .hero-visual { display: none; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .scene-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 240px 220px 200px; }
       .scene-card.tall { grid-row: span 1; grid-column: span 2; }
-      .feat-bento .fb { grid-column: span 12 !important; }
-      .split-grid, .dl-grid { grid-template-columns: 1fr; }
-      .products-scroll { grid-template-columns: 1fr; }
+      .products-grid { grid-template-columns: 1fr; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
-      .st:first-child { border-radius: var(--r3) 0 0 0; }
-      .st:nth-child(2) { border-radius: 0 var(--r3) 0 0; }
-      .st:nth-child(3) { border-radius: 0 0 0 var(--r3); }
-      .st:last-child { border-radius: 0 0 var(--r3) 0; }
       .reviews-grid { grid-template-columns: 1fr; }
+      .info-grid, .app-grid { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo"><div class="logo-pulse"></div> NattoReserve</div>
-  <div class="nav-center">
-    <a href="#scene">使用シーン</a>
-    <a href="#features">機能</a>
-    <a href="#products">商品</a>
-    <a href="#reviews">レビュー</a>
-    <a href="about.html">会社概要</a>
-  </div>
-  <button class="nav-btn">無料で始める</button>
-</nav>
+<!-- HEADER -->
+<header>
+  <nav>
+    <div class="nav-logo">
+      <div class="nav-mon">納</div>
+      NattoReserve
+    </div>
+    <div class="nav-links">
+      <a href="#video">動画</a>
+      <a href="#scene">使用シーン</a>
+      <a href="#products">商品</a>
+      <a href="#reviews">お客様の声</a>
+      <a href="about.html">会社概要</a>
+    </div>
+    <button class="nav-cta">無料で始める</button>
+  </nav>
+</header>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-bg">
-    <div class="hero-grid"></div>
-    <div class="hero-orb1"></div>
-    <div class="hero-orb2"></div>
-    <div class="hero-orb3"></div>
-  </div>
-  <div class="hero-content">
-    <div class="hero-badge"><div class="hero-badge-dot"></div> App Store 健康食品 No.1 — 50万DL突破</div>
-    <h1 class="hero-h">特製納豆を、<em>予約</em>する<br>時代へ。</h1>
-    <p class="hero-p">NattoReserve は、希少な特製納豆の定期配送・摂取管理・健康スコア記録をひとつのアプリで完結させる、次世代の発酵食品プラットフォームです。</p>
-    <div class="hero-actions">
-      <button class="btn-rose">無料ダウンロード <span style="font-size:17px;line-height:1">↗</span></button>
-      <button class="btn-ghost">機能を見る</button>
+<section style="background:var(--washi);padding-top:0">
+  <div class="hero">
+    <div class="hero-text">
+      <div class="hero-kamon">App Store 健康食品部門 No.1</div>
+      <h1 class="hero-h">
+        希少な<span class="accent">特製納豆</span>を、<br>
+        <span class="kanji">毎日の食卓へ。</span>
+      </h1>
+      <p class="hero-sub">厳選された国産大豆を独自の発酵技術で仕上げた、他では手に入らない特製納豆。NattoReserve のアプリで、定期予約・健康記録・摂取管理をひとつに。</p>
+      <div class="hero-actions">
+        <button class="btn-red">無料でダウンロード</button>
+        <button class="btn-outline">商品を見る</button>
+      </div>
+      <div class="hero-badges">
+        <div class="hero-badge-item">
+          <div class="hb-num">50万+</div>
+          <div class="hb-label">累計ダウンロード</div>
+        </div>
+        <div class="hb-div"></div>
+        <div class="hero-badge-item">
+          <div class="hb-num">4.9</div>
+          <div class="hb-label">App Store 評価</div>
+        </div>
+        <div class="hb-div"></div>
+        <div class="hero-badge-item">
+          <div class="hb-num">30日</div>
+          <div class="hb-label">返金保証</div>
+        </div>
+      </div>
     </div>
-    <div class="hero-bento">
-      <div class="bento-card">
-        <div class="bento-sm">連続摂取</div>
-        <div class="bento-num">28</div>
-        <div class="bento-label">日継続中 🔥</div>
-        <div class="mini-bars">
-          <div class="mini-bar on" style="height:55%"></div>
-          <div class="mini-bar on" style="height:80%"></div>
-          <div class="mini-bar on" style="height:60%"></div>
-          <div class="mini-bar on" style="height:95%"></div>
-          <div class="mini-bar on" style="height:70%"></div>
-          <div class="mini-bar on" style="height:100%"></div>
-          <div class="mini-bar" style="height:35%"></div>
-        </div>
+    <div class="hero-visual">
+      <img class="hero-main-img"
+        src="https://images.unsplash.com/photo-1546961342-ea5f62d5a27b?w=800&q=85&auto=format&fit=crop&crop=top"
+        alt="特製納豆を楽しむ女性">
+      <div class="hero-seal">
+        <div class="seal-main">国産</div>
+        <div class="seal-sub">大豆100%</div>
       </div>
-      <div class="bento-card tall">
-        <div class="bento-sm">ダッシュボード</div>
-        <div style="text-align:center">
-          <div class="score-ring">
-            <svg viewBox="0 0 80 80" width="80" height="80">
-              <circle class="score-ring-bg" cx="40" cy="40" r="35"/>
-              <circle class="score-ring-fill" cx="40" cy="40" r="35"/>
-            </svg>
-            <div class="score-val">87</div>
-          </div>
-          <div style="font-size:12px;color:var(--text2);margin-top:4px">健康スコア</div>
+      <div class="hero-float-card">
+        <div class="hfc-label">今日の健康スコア</div>
+        <div class="hfc-row">
+          <div class="hfc-dot"></div>
+          <div class="hfc-text">87 / 100</div>
         </div>
-        <div class="next-item">
-          <div class="ni-icon" style="background:var(--rose-dim)">🌿</div>
-          <div>
-            <div class="ni-name">プレミアム 30日分</div>
-            <div class="ni-date">6月25日到着予定</div>
-          </div>
-          <div class="ni-badge">次回</div>
-        </div>
-        <div class="streak-row" style="margin-top:14px">
-          <div class="streak-dot done">M</div>
-          <div class="streak-dot done">T</div>
-          <div class="streak-dot done">W</div>
-          <div class="streak-dot done">T</div>
-          <div class="streak-dot done">F</div>
-          <div class="streak-dot today">今</div>
-          <div class="streak-dot">S</div>
-        </div>
-      </div>
-      <div class="bento-card">
-        <div class="bento-sm">今月の達成率</div>
-        <div class="bento-num">96%</div>
-        <div class="bento-label">目標：毎日摂取</div>
-        <div class="next-item" style="margin-top:14px">
-          <div class="ni-icon" style="background:var(--sage-dim)">✨</div>
-          <div>
-            <div class="ni-name" style="font-size:12px">ビューティー</div>
-            <div class="ni-date">7月1日到着</div>
-          </div>
+        <div class="hfc-bar-wrap">
+          <div class="hfc-bar" style="width:87%"></div>
         </div>
       </div>
     </div>
@@ -383,231 +328,150 @@
 <!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker">
-    <div class="ticker-item"><div class="ticker-dot"></div> 腸内環境の改善</div>
-    <div class="ticker-item"><div class="ticker-dot"></div> 免疫力サポート</div>
-    <div class="ticker-item"><div class="ticker-dot"></div> 血液サラサラ効果</div>
-    <div class="ticker-item"><div class="ticker-dot"></div> 骨を強くする</div>
-    <div class="ticker-item"><div class="ticker-dot"></div> App Store No.1</div>
-    <div class="ticker-item"><div class="ticker-dot"></div> 30日間返金保証</div>
-    <div class="ticker-item"><div class="ticker-dot"></div> 希少な特製納豆</div>
-    <div class="ticker-item"><div class="ticker-dot"></div> 国内産大豆100%使用</div>
-    <div class="ticker-item"><div class="ticker-dot"></div> 腸内環境の改善</div>
-    <div class="ticker-item"><div class="ticker-dot"></div> 免疫力サポート</div>
-    <div class="ticker-item"><div class="ticker-dot"></div> 血液サラサラ効果</div>
-    <div class="ticker-item"><div class="ticker-dot"></div> 骨を強くする</div>
-    <div class="ticker-item"><div class="ticker-dot"></div> App Store No.1</div>
-    <div class="ticker-item"><div class="ticker-dot"></div> 30日間返金保証</div>
-    <div class="ticker-item"><div class="ticker-dot"></div> 100種以上の納豆</div>
-    <div class="ticker-item"><div class="ticker-dot"></div> GMP認定工場製造</div>
+    <div class="ticker-item"><span class="ticker-kiku">✿</span> 国産大豆100%使用</div>
+    <div class="ticker-item"><span class="ticker-kiku">✿</span> ナットウキナーゼ豊富</div>
+    <div class="ticker-item"><span class="ticker-kiku">✿</span> 血液サラサラ効果</div>
+    <div class="ticker-item"><span class="ticker-kiku">✿</span> 腸内環境の改善</div>
+    <div class="ticker-item"><span class="ticker-kiku">✿</span> 骨を強くするビタミンK2</div>
+    <div class="ticker-item"><span class="ticker-kiku">✿</span> 30日間返金保証</div>
+    <div class="ticker-item"><span class="ticker-kiku">✿</span> 希少な特製発酵技術</div>
+    <div class="ticker-item"><span class="ticker-kiku">✿</span> App Store 健康食品 No.1</div>
+    <div class="ticker-item"><span class="ticker-kiku">✿</span> 国産大豆100%使用</div>
+    <div class="ticker-item"><span class="ticker-kiku">✿</span> ナットウキナーゼ豊富</div>
+    <div class="ticker-item"><span class="ticker-kiku">✿</span> 血液サラサラ効果</div>
+    <div class="ticker-item"><span class="ticker-kiku">✿</span> 腸内環境の改善</div>
+    <div class="ticker-item"><span class="ticker-kiku">✿</span> 骨を強くするビタミンK2</div>
+    <div class="ticker-item"><span class="ticker-kiku">✿</span> 30日間返金保証</div>
+    <div class="ticker-item"><span class="ticker-kiku">✿</span> 希少な特製発酵技術</div>
+    <div class="ticker-item"><span class="ticker-kiku">✿</span> App Store 健康食品 No.1</div>
   </div>
 </div>
+
+<!-- VIDEO -->
+<section class="video-sec" id="video">
+  <div class="video-inner">
+    <div class="video-header">
+      <div>
+        <div class="video-eyebrow">特製納豆 × 映像</div>
+        <h2 class="video-h">見るだけで<span class="accent">食べたくなる</span>、<br>特製納豆の魅力。</h2>
+      </div>
+      <p class="video-p">糸を引く黄金の納豆。混ぜるほど旨みが増す、唯一無二の食体験。</p>
+    </div>
+    <div class="video-container">
+      <iframe
+        src="https://www.youtube.com/embed/1N1PrNXPdFU?autoplay=1&mute=1&loop=1&playlist=1N1PrNXPdFU&controls=1&rel=0&modestbranding=1"
+        title="特製納豆の魅力" allow="autoplay; encrypted-media" allowfullscreen>
+      </iframe>
+    </div>
+    <div class="video-tags">
+      <div class="vtag">国産大豆</div>
+      <div class="vtag">独自発酵技術</div>
+      <div class="vtag">職人製造</div>
+      <div class="vtag">無添加</div>
+      <div class="vtag">毎朝の食卓に</div>
+    </div>
+  </div>
+</section>
 
 <!-- SCENE -->
 <section class="scene-sec" id="scene">
   <div class="wrap">
-    <div class="scene-header">
-      <div>
-        <div class="eyebrow">使用シーン</div>
-        <h2 class="big-h" style="margin-bottom:0">実際に使っている<br><em>毎日の姿。</em></h2>
-      </div>
-      <p class="body-p" style="max-width:300px;font-size:14px">朝の習慣に、仕事の合間に、育児の傍らに。ライフスタイルに自然に溶け込む納豆活。</p>
-    </div>
+    <div class="sec-eyebrow">使用シーン</div>
+    <h2 class="sec-h">毎日の食卓に、<br>自然に溶け込む特製納豆。</h2>
     <div class="scene-grid">
       <div class="scene-card tall">
         <img class="scene-img"
           src="https://images.unsplash.com/photo-1596038890429-c2c4e16f36a8?w=900&q=85&auto=format&fit=crop&crop=top"
-          alt="日本人女性が朝の時間に特製納豆サプリを摂取">
+          alt="朝の食卓で特製納豆を食べる女性">
         <div class="scene-overlay"></div>
-        <div class="scene-app-badge">
-          <div class="sab-label">今日の健康スコア</div>
-          <div class="sab-val">87 <span style="font-size:12px;color:var(--text2);font-weight:300">/ 100</span></div>
+        <div class="scene-stat">
+          <div class="ss-num">87</div>
+          <div class="ss-label">健康スコア</div>
         </div>
-        <div class="scene-chip"><div class="scene-chip-dot"></div> 朝のルーティン</div>
+        <div class="scene-chip"><div class="scene-chip-red"></div> 朝食に</div>
       </div>
       <div class="scene-card">
         <img class="scene-img"
           src="https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=700&q=85&auto=format&fit=crop&crop=center"
-          alt="女性がスマートフォンでアプリを使用">
+          alt="アプリで記録する女性">
         <div class="scene-overlay"></div>
-        <div class="scene-chip"><div class="scene-chip-dot"></div> アプリで記録</div>
+        <div class="scene-chip"><div class="scene-chip-red"></div> アプリで記録</div>
       </div>
       <div class="scene-card">
         <img class="scene-img"
           src="https://images.unsplash.com/photo-1515023115689-589c33041d3c?w=700&q=85&auto=format&fit=crop&crop=top"
-          alt="女性がリラックスしながら過ごす">
+          alt="くつろぐ女性">
         <div class="scene-overlay"></div>
-        <div class="scene-chip"><div class="scene-chip-dot"></div> くつろぎの時間に</div>
+        <div class="scene-chip"><div class="scene-chip-red"></div> 夜のケアに</div>
       </div>
       <div class="scene-card">
         <img class="scene-img"
-          src="https://images.unsplash.com/photo-1546961342-ea5f62d5a27b?w=700&q=85&auto=format&fit=crop&crop=face"
-          alt="笑顔の日本人女性">
+          src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=700&q=85&auto=format&fit=crop&crop=face"
+          alt="笑顔の女性">
         <div class="scene-overlay"></div>
-        <div class="scene-app-badge" style="top:auto;bottom:52px;right:14px">
-          <div class="sab-label">連続摂取</div>
-          <div class="sab-val">28日 🔥</div>
-        </div>
-        <div class="scene-chip"><div class="scene-chip-dot"></div> 28日継続達成</div>
+        <div class="scene-chip"><div class="scene-chip-red"></div> 28日継続達成</div>
       </div>
       <div class="scene-card">
         <img class="scene-img"
-          src="https://images.unsplash.com/photo-1505932794465-147d1f1b2c97?w=700&q=85&auto=format&fit=crop&crop=center"
-          alt="女性が健康的な生活を楽しむ">
+          src="https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?w=700&q=85&auto=format&fit=crop&crop=face"
+          alt="健康的な女性">
         <div class="scene-overlay"></div>
-        <div class="scene-chip"><div class="scene-chip-dot"></div> 肌の調子が改善</div>
+        <div class="scene-chip"><div class="scene-chip-red"></div> 肌ツヤが改善</div>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="div">
+<div class="divider-jp"><span class="divider-jp-mon">✿</span></div>
 
 <!-- FEATURES -->
 <section class="features-sec" id="features">
   <div class="wrap">
-    <div class="eyebrow">アプリの機能</div>
-    <h2 class="big-h">特製納豆の管理を、<br>ひとつのアプリで<em>完結。</em></h2>
-    <div class="feat-bento">
-      <div class="fb c8">
-        <div class="fb-glow"></div>
-        <div class="fb-num">01 —</div>
-        <div class="fb-icon">📅</div>
-        <div class="fb-title">スマート予約管理</div>
-        <div class="fb-desc">次回お届け日・数量・商品をアプリからいつでも変更可能。希少な特製納豆の在庫を確保しながら、スキップ・早期配送もワンタップで完結します。</div>
-        <div style="margin-top:1.5rem">
-          <div class="progress-row">
-            <div class="prog-item"><div class="prog-label">プレミアム</div><div class="prog-bar-wrap"><div class="prog-bar" style="width:82%"></div></div><div class="prog-val">82%</div></div>
-            <div class="prog-item"><div class="prog-label">ビューティー</div><div class="prog-bar-wrap"><div class="prog-bar" style="width:65%;background:var(--sage)"></div></div><div class="prog-val">65%</div></div>
-            <div class="prog-item"><div class="prog-label">キッズ</div><div class="prog-bar-wrap"><div class="prog-bar" style="width:91%;background:var(--terra)"></div></div><div class="prog-val">91%</div></div>
-          </div>
-        </div>
+    <div class="video-eyebrow">アプリの機能</div>
+    <h2 class="features-h">特製納豆の管理を、<br>ひとつのアプリで<span class="accent">完結。</span></h2>
+    <div class="features-grid">
+      <div class="feat-box">
+        <div class="feat-num">01 —</div>
+        <div class="feat-icon">📅</div>
+        <div class="feat-title">スマート予約管理</div>
+        <div class="feat-desc">希少な特製納豆の在庫を確保しながら、お届け日・数量の変更をアプリから自由に。</div>
       </div>
-      <div class="fb c4">
-        <div class="fb-num">02 —</div>
-        <div class="fb-icon">🔔</div>
-        <div class="fb-title">食べ忘れリマインダー</div>
-        <div class="fb-desc">毎日の摂取時間をカスタム設定。プッシュ通知が優しくお知らせし、継続をサポートします。</div>
-        <div class="notif-list">
-          <div class="notif-item"><div class="notif-icon-wrap" style="background:var(--rose-dim)">🌿</div><div class="notif-text">今日の納豆を飲みましょう</div><div class="notif-time">今</div></div>
-          <div class="notif-item"><div class="notif-icon-wrap" style="background:var(--sage-dim)">📦</div><div class="notif-text">明日お届け予定です</div><div class="notif-time">昨日</div></div>
-        </div>
+      <div class="feat-box">
+        <div class="feat-num">02 —</div>
+        <div class="feat-icon">🔔</div>
+        <div class="feat-title">食べ忘れリマインダー</div>
+        <div class="feat-desc">毎日の摂取時間をカスタム設定。継続のモチベーションを保つ通知をお届けします。</div>
       </div>
-      <div class="fb c5">
-        <div class="fb-num">03 —</div>
-        <div class="fb-icon">📊</div>
-        <div class="fb-title">健康スコアの可視化</div>
-        <div class="fb-desc">血圧・便通・肌・睡眠を日々記録。特製納豆の効果を独自アルゴリズムが数値で可視化します。</div>
-        <div style="text-align:center;padding:14px 0">
-          <div class="score-ring" style="margin:0 auto">
-            <svg viewBox="0 0 80 80" width="80" height="80">
-              <circle class="score-ring-bg" cx="40" cy="40" r="35"/>
-              <circle class="score-ring-fill" cx="40" cy="40" r="35" style="stroke:var(--sage)"/>
-            </svg>
-            <div class="score-val" style="color:var(--sage)">87</div>
-          </div>
-          <div style="font-size:11px;color:var(--text3);margin-top:8px">先月より +12点 ↑</div>
-        </div>
+      <div class="feat-box">
+        <div class="feat-num">03 —</div>
+        <div class="feat-icon">📊</div>
+        <div class="feat-title">健康スコアの可視化</div>
+        <div class="feat-desc">血圧・便通・肌・睡眠の変化を毎日記録。特製納豆の効果を数値で確認できます。</div>
       </div>
-      <div class="fb c7">
-        <div class="fb-num">04 —</div>
-        <div class="fb-icon">🎁</div>
-        <div class="fb-title">ポイント＆ランク制度</div>
-        <div class="fb-desc">購入・連続摂取・レビューでポイントが貯まり、ランクアップで特典が解放されます。</div>
-        <div class="point-display">
-          <div class="point-big">2,480</div>
-          <div class="point-sub">現在のポイント残高</div>
-        </div>
-        <div class="rank-badges">
-          <div class="rank-b cur">🌸 ローズ（現在）</div>
-          <div class="rank-b next">⭐ ゴールド まで 520pt</div>
-        </div>
+      <div class="feat-box">
+        <div class="feat-num">04 —</div>
+        <div class="feat-icon">🎁</div>
+        <div class="feat-title">ポイント＆特典</div>
+        <div class="feat-desc">継続するほどポイントが貯まり、限定商品や特別割引にアクセスできます。</div>
       </div>
     </div>
   </div>
 </section>
-
-<hr class="div">
-
-<!-- HOW IT WORKS -->
-<section class="split-sec" id="how">
-  <div class="wrap">
-    <div class="split-grid">
-      <div class="split-visual">
-        <div class="bento-sm" style="margin-bottom:1.5rem">アプリの使い方フロー</div>
-        <div class="timeline">
-          <div class="tl-item">
-            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
-            <div class="tl-content">
-              <div class="tl-label">STEP 01</div>
-              <div class="tl-title">アプリをダウンロード</div>
-              <div class="tl-desc">App Store / Google Play から30秒でアカウント作成完了。</div>
-              <div class="tl-chip">無料 · iOS & Android</div>
-            </div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
-            <div class="tl-content">
-              <div class="tl-label">STEP 02</div>
-              <div class="tl-title">納豆活診断を受ける</div>
-              <div class="tl-desc">AIが3分の質問で最適な納豆をご提案します。</div>
-              <div class="tl-chip">AI診断 · 無料</div>
-            </div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
-            <div class="tl-content">
-              <div class="tl-label">STEP 03</div>
-              <div class="tl-title">定期予約を設定</div>
-              <div class="tl-desc">お届けサイクルを選んで予約。最短翌日から配送スタート。</div>
-              <div class="tl-chip">最短翌日配送</div>
-            </div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-left"><div class="tl-dot dim"></div></div>
-            <div class="tl-content">
-              <div class="tl-label">STEP 04</div>
-              <div class="tl-title">毎日記録して改善</div>
-              <div class="tl-desc">摂取を記録するだけで健康スコアが可視化されます。</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="eyebrow">使い方</div>
-        <h2 class="big-h">始めるのは、<br><em>たった4ステップ。</em></h2>
-        <p class="body-p">難しい設定は一切なし。アプリをダウンロードしてAI診断を受けるだけで、あなた専用の納豆活プランが自動で組まれます。</p>
-        <div class="split-steps">
-          <div class="split-step"><div class="ss-num">01</div><div><div class="ss-title">AIが最適な商品を提案</div><div class="ss-desc">3分の納豆活診断でパーソナライズされた納豆をご提案。</div></div></div>
-          <div class="split-step"><div class="ss-num">02</div><div><div class="ss-title">定期配送を自動管理</div><div class="ss-desc">飲むペースに合わせてお届けサイクルをいつでも調整できます。</div></div></div>
-          <div class="split-step"><div class="ss-num">03</div><div><div class="ss-title">成果をデータで確認</div><div class="ss-desc">健康スコアの推移をグラフで確認。改善の実感を数字で証明。</div></div></div>
-        </div>
-        <button class="btn-rose" style="margin-top:2.5rem;width:fit-content">アプリを試してみる ↗</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="div">
 
 <!-- PRODUCTS -->
 <section class="products-sec" id="products">
   <div class="wrap">
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:4rem">
-      <div>
-        <div class="eyebrow">ラインナップ</div>
-        <h2 class="big-h" style="margin-bottom:0">あなたに<br>ぴったりの<em>一本。</em></h2>
-      </div>
-      <a href="subscription.html"><button class="btn-ghost" style="height:fit-content">全商品を見る →</button></a>
-    </div>
-    <div class="products-scroll">
-      <div class="pcard feat">
-        <div class="pcard-img" style="background:linear-gradient(135deg,#F5E8E0,#EDD5C8)">
-          <div class="pcard-img-tag">人気 No.1</div>🫘
+    <div class="sec-eyebrow">ラインナップ</div>
+    <h2 class="sec-h">あなたに<br>ぴったりの特製納豆。</h2>
+    <div class="products-grid">
+      <div class="pcard">
+        <div class="pcard-img" style="background:linear-gradient(135deg,#F5E8D8,#E8D5C0)">
+          <div class="pcard-tag">人気 No.1</div>🫘
         </div>
         <div class="pcard-body">
           <div class="pcard-cat">スタンダード</div>
           <div class="pcard-name">極上 特製納豆</div>
-          <div class="pcard-desc">希少な大粒大豆を独自の発酵技術で仕上げた特製納豆。ナットウキナーゼ・ビタミンK2を豊富に含み、腸内環境・血管健康を強力サポート。</div>
+          <div class="pcard-desc">希少な大粒大豆を独自の発酵技術で仕上げた看板商品。ナットウキナーゼ・ビタミンK2を豊富に含み、腸内環境・血管健康をサポート。</div>
           <div class="pcard-footer">
             <div class="pcard-price">¥3,980 <small>/ 30日分</small></div>
             <button class="pcard-btn">予約する</button>
@@ -619,10 +483,10 @@
         <div class="pcard-body">
           <div class="pcard-cat">美容特化</div>
           <div class="pcard-name">ビューティー納豆</div>
-          <div class="pcard-desc">特製納豆にコラーゲン・ビタミンCを追加配合。発酵の力で腸の内側から肌まで同時にケアする美容特化型。</div>
+          <div class="pcard-desc">特製納豆にコラーゲン・ビタミンCを追加配合。発酵の力で腸の内側から肌まで同時にケア。</div>
           <div class="pcard-footer">
             <div class="pcard-price">¥4,480 <small>/ 30日分</small></div>
-            <button class="pcard-btn ghost">予約する</button>
+            <button class="pcard-btn outline">予約する</button>
           </div>
         </div>
       </div>
@@ -631,10 +495,55 @@
         <div class="pcard-body">
           <div class="pcard-cat">子供向け</div>
           <div class="pcard-name">キッズ納豆グミ</div>
-          <div class="pcard-desc">納豆の栄養をいちご味グミに凝縮。3歳から食べられる安心設計。着色料・保存料不使用でおやつ感覚で続けられます。</div>
+          <div class="pcard-desc">納豆の栄養をいちご味グミに凝縮。3歳から食べられる安心設計。着色料・保存料不使用。</div>
           <div class="pcard-footer">
             <div class="pcard-price">¥2,480 <small>/ 30日分</small></div>
-            <button class="pcard-btn ghost">予約する</button>
+            <button class="pcard-btn outline">予約する</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NATTO INFO -->
+<section class="info-sec">
+  <div class="wrap">
+    <div class="info-grid">
+      <div class="info-img-wrap">
+        <img class="info-img"
+          src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=700&q=85&auto=format&fit=crop&crop=top"
+          alt="健康的な女性">
+        <div class="info-badge">
+          <div class="ib-main">特製</div>
+          <div class="ib-sub">発酵製法</div>
+        </div>
+      </div>
+      <div>
+        <div class="sec-eyebrow">なぜ特製なのか</div>
+        <h2 class="sec-h">普通の納豆とは、<br>次元が違う。</h2>
+        <p class="sec-p">私たちの特製納豆は、一般市場に出回らない希少な品種の大豆を使用。独自の低温長期発酵技術により、ナットウキナーゼ含有量が市販品の3倍以上。</p>
+        <div class="info-list">
+          <div class="info-item">
+            <div class="info-dot"></div>
+            <div>
+              <div class="info-item-title">ナットウキナーゼ含有量3倍</div>
+              <div class="info-item-desc">独自の低温長期発酵技術により、血液をサラサラにする酵素を市販品の3倍以上含有しています。</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-dot"></div>
+            <div>
+              <div class="info-item-title">希少品種の国産大豆使用</div>
+              <div class="info-item-desc">契約農家のみが栽培する希少品種。年間生産量に限りがあるため、定期予約での確保をおすすめします。</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-dot"></div>
+            <div>
+              <div class="info-item-title">無添加・無農薬</div>
+              <div class="info-item-desc">農薬不使用・添加物ゼロ。大豆と納豆菌だけで作られた、本来の納豆の力をお届けします。</div>
+            </div>
           </div>
         </div>
       </div>
@@ -645,92 +554,78 @@
 <!-- STATS -->
 <section class="stats-sec" id="stats">
   <div class="wrap">
-    <div class="eyebrow">実績</div>
-    <h2 class="big-h">数字が語る、<em>信頼。</em></h2>
+    <div class="sec-eyebrow">実績</div>
+    <h2 class="sec-h">数字が語る、信頼。</h2>
     <div class="stats-grid">
-      <div class="st"><div class="st-n">50万+</div><div class="st-l">累計ダウンロード</div><div class="st-sub">2024年7月時点</div></div>
-      <div class="st"><div class="st-n">4.9</div><div class="st-l">App Store 評価</div><div class="st-sub">12,000件以上のレビュー</div></div>
-      <div class="st"><div class="st-n">92%</div><div class="st-l">3ヶ月継続率</div><div class="st-sub">業界平均の2.3倍</div></div>
-      <div class="st"><div class="st-n">30日</div><div class="st-l">全額返金保証</div><div class="st-sub">理由不要・即対応</div></div>
+      <div class="stat-box"><div class="stat-num">50万+</div><div class="stat-label">累計ダウンロード</div><div class="stat-sub">2024年7月時点</div></div>
+      <div class="stat-box"><div class="stat-num">4.9</div><div class="stat-label">App Store 評価</div><div class="stat-sub">12,000件以上のレビュー</div></div>
+      <div class="stat-box"><div class="stat-num">92%</div><div class="stat-label">3ヶ月継続率</div><div class="stat-sub">業界平均の2.3倍</div></div>
+      <div class="stat-box"><div class="stat-num">30日</div><div class="stat-label">全額返金保証</div><div class="stat-sub">理由不要・即対応</div></div>
     </div>
   </div>
 </section>
 
-<hr class="div">
+<div class="divider-jp"><span class="divider-jp-mon">✿</span></div>
 
 <!-- REVIEWS -->
 <section class="reviews-sec" id="reviews">
   <div class="wrap">
-    <div class="eyebrow">ユーザーの声</div>
-    <h2 class="big-h">毎日使われている<br><em>理由があります。</em></h2>
+    <div class="sec-eyebrow">お客様の声</div>
+    <h2 class="sec-h">毎日続けられる<br>理由があります。</h2>
     <div class="reviews-grid">
       <div class="rv">
         <div class="rv-stars">★★★★★</div>
-        <div class="rv-text">「リマインダーのおかげで食べ忘れがゼロになりました。健康スコアが3ヶ月で62→89に上がって、血圧とお腹の調子が明らかに変わっています。もう手放せません。」</div>
+        <div class="rv-text">「アプリのリマインダーで食べ忘れゼロに。健康スコアが3ヶ月で62→89に上がって、血圧とお腹の調子が明らかに変わっています。普通の納豆とは全然違います。」</div>
         <div class="rv-author">
           <img class="rv-av" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=88&h=88&q=80&auto=format&fit=crop&crop=face" alt="田中さゆり">
-          <div>
-            <div class="rv-name">田中 さゆり</div>
-            <div class="rv-meta">30代 · 6ヶ月利用</div>
-            <div class="rv-verified">✓ 認証済みユーザー</div>
-          </div>
+          <div><div class="rv-name">田中 さゆり</div><div class="rv-meta">30代 · 6ヶ月利用</div><div class="rv-verified">✓ 認証済みユーザー</div></div>
         </div>
       </div>
       <div class="rv">
         <div class="rv-stars">★★★★★</div>
-        <div class="rv-text">「定期予約の変更がアプリで完結するのが最高。他の納豆は匂いが気になりましたが、この特製納豆は全然違います。続けやすいし、肌ツヤも上がりました。」</div>
+        <div class="rv-text">「他の納豆は匂いが気になりましたが、この特製納豆は全然違います。定期予約の変更もアプリで簡単。肌ツヤが上がったと友人から言われました。」</div>
         <div class="rv-author">
           <img class="rv-av" src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=88&h=88&q=80&auto=format&fit=crop&crop=face" alt="佐々木ひろみ">
-          <div>
-            <div class="rv-name">佐々木 ひろみ</div>
-            <div class="rv-meta">40代 · 1年以上利用</div>
-            <div class="rv-verified">✓ 認証済みユーザー</div>
-          </div>
+          <div><div class="rv-name">佐々木 ひろみ</div><div class="rv-meta">40代 · 1年以上利用</div><div class="rv-verified">✓ 認証済みユーザー</div></div>
         </div>
       </div>
       <div class="rv">
         <div class="rv-stars">★★★★★</div>
-        <div class="rv-text">「子供と一緒にグミタイプを続けています。納豆が苦手な子でもグミなら喜んで食べてくれます。アプリで家族全員分を一括管理できるのもとても便利です。」</div>
+        <div class="rv-text">「子供と一緒にグミタイプを続けています。納豆が苦手な子でもグミなら喜んで食べてくれます。家族の健康管理がアプリで一括できるのも便利です。」</div>
         <div class="rv-author">
           <img class="rv-av" src="https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?w=88&h=88&q=80&auto=format&fit=crop&crop=face" alt="山本けいこ">
-          <div>
-            <div class="rv-name">山本 けいこ</div>
-            <div class="rv-meta">30代 · 8ヶ月利用</div>
-            <div class="rv-verified">✓ 認証済みユーザー</div>
-          </div>
+          <div><div class="rv-name">山本 けいこ</div><div class="rv-meta">30代 · 8ヶ月利用</div><div class="rv-verified">✓ 認証済みユーザー</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="div">
-
-<!-- DOWNLOAD -->
-<section class="dl-sec">
+<!-- APP SECTION -->
+<section class="app-sec">
   <div class="wrap">
-    <div class="dl-grid">
+    <div class="app-grid">
       <div>
-        <div class="eyebrow">ダウンロード</div>
-        <h2 class="big-h">今すぐ、納豆活を<br><em>アップグレード。</em></h2>
-        <p class="body-p" style="max-width:400px">iOS・Android 両対応。完全無料でダウンロードして、まず30日間お試しください。気に入らなければ全額返金します。</p>
-        <div class="dl-stores">
-          <div class="dl-store"><div class="dl-store-icon">🍎</div><div><div class="dl-store-sub">Download on the</div><div class="dl-store-name">App Store</div></div></div>
-          <div class="dl-store"><div class="dl-store-icon">▶</div><div><div class="dl-store-sub">GET IT ON</div><div class="dl-store-name">Google Play</div></div></div>
+        <div class="sec-eyebrow">アプリ</div>
+        <h2 class="sec-h">今すぐ、健康を<br>アップグレード。</h2>
+        <p class="sec-p" style="max-width:380px">iOS・Android 両対応。無料でダウンロードして、まず30日間お試しください。</p>
+        <div class="stores">
+          <div class="store"><div class="store-icon">🍎</div><div><div class="store-sub">DOWNLOAD ON THE</div><div class="store-name">App Store</div></div></div>
+          <div class="store"><div class="store-icon">▶</div><div><div class="store-sub">GET IT ON</div><div class="store-name">Google Play</div></div></div>
         </div>
       </div>
-      <div class="dl-phones">
-        <div class="dl-phone">
-          <div class="dl-ph-head">📦 今月の注文</div>
-          <div class="dl-ph-row"><div class="dl-ph-dot" style="background:var(--rose)"></div><div class="dl-ph-txt">プレミアム</div><div class="dl-ph-tag" style="background:var(--rose-dim);color:var(--rose)">配送済</div></div>
-          <div class="dl-ph-row"><div class="dl-ph-dot" style="background:var(--sage)"></div><div class="dl-ph-txt">ビューティー</div><div class="dl-ph-tag" style="background:var(--sage-dim);color:var(--sage)">6/25</div></div>
-          <div class="dl-ph-row"><div class="dl-ph-dot" style="background:var(--terra)"></div><div class="dl-ph-txt">キッズ</div><div class="dl-ph-tag" style="background:var(--terra-dim);color:var(--terra)">7/1</div></div>
+      <div class="app-phones">
+        <div class="app-phone">
+          <div class="ap-head">📦 今月の注文</div>
+          <div class="ap-row"><div class="ap-dot" style="background:var(--red)"></div><div class="ap-txt">極上特製納豆</div><div class="ap-tag" style="border-color:var(--red);color:var(--red)">配送済</div></div>
+          <div class="ap-row"><div class="ap-dot" style="background:var(--gold)"></div><div class="ap-txt">ビューティー</div><div class="ap-tag" style="border-color:var(--gold);color:var(--gold)">6/25</div></div>
+          <div class="ap-row"><div class="ap-dot" style="background:var(--navy)"></div><div class="ap-txt">キッズグミ</div><div class="ap-tag" style="border-color:var(--navy);color:var(--navy)">7/1</div></div>
         </div>
-        <div class="dl-phone">
-          <div class="dl-ph-head">📊 健康スコア推移</div>
-          <div class="dl-ph-row"><div class="dl-ph-dot" style="background:var(--bg5)"></div><div class="dl-ph-txt">4月</div><div class="dl-ph-tag" style="color:var(--text3)">62点</div></div>
-          <div class="dl-ph-row"><div class="dl-ph-dot" style="background:var(--terra)"></div><div class="dl-ph-txt">5月</div><div class="dl-ph-tag" style="background:var(--terra-dim);color:var(--terra)">74点</div></div>
-          <div class="dl-ph-row"><div class="dl-ph-dot" style="background:var(--rose)"></div><div class="dl-ph-txt">6月</div><div class="dl-ph-tag" style="background:var(--rose-dim);color:var(--rose)">87点 ↑</div></div>
+        <div class="app-phone">
+          <div class="ap-head">📊 健康スコア推移</div>
+          <div class="ap-row"><div class="ap-dot" style="background:var(--washi4)"></div><div class="ap-txt">4月</div><div class="ap-tag" style="border-color:var(--ink4);color:var(--ink3)">62点</div></div>
+          <div class="ap-row"><div class="ap-dot" style="background:var(--gold)"></div><div class="ap-txt">5月</div><div class="ap-tag" style="border-color:var(--gold);color:var(--gold)">74点</div></div>
+          <div class="ap-row"><div class="ap-dot" style="background:var(--red)"></div><div class="ap-txt">6月</div><div class="ap-tag" style="border-color:var(--red);color:var(--red)">87点 ↑</div></div>
         </div>
       </div>
     </div>
@@ -739,22 +634,22 @@
 
 <!-- CTA -->
 <section class="cta-sec">
-  <div class="cta-orb"></div>
-  <h2 class="cta-h">特製納豆で、<br><em>毎日が変わる。</em></h2>
+  <div class="cta-bg-kanji">納豆</div>
+  <h2 class="cta-h">特製納豆で、<br>毎日が変わる。</h2>
   <p class="cta-p">30日間の全額返金保証付き。まず試して、特製納豆の力を実感してください。</p>
   <div class="cta-row">
-    <button class="btn-rose" style="font-size:16px;padding:16px 36px">無料でダウンロード ↗</button>
-    <a href="subscription.html"><button class="btn-ghost" style="font-size:16px;padding:16px 36px">定期購入プランを見る</button></a>
+    <button class="btn-white">無料でダウンロード</button>
+    <a href="subscription.html"><button class="btn-outline-white">定期購入プランを見る</button></a>
   </div>
-  <div class="cta-note">クレジットカード不要 · いつでも解約 · 30日間返金保証</div>
+  <div class="cta-note">クレジットカード不要 · いつでも解約 · 30日間全額返金保証</div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div>
-      <div class="f-brand-logo"><div class="logo-pulse"></div> NattoReserve</div>
-      <p class="f-brand-p">特製納豆を、予約する時代へ。希少な発酵食品の定期配送・摂取管理・健康スコア記録をひとつのアプリで。</p>
+      <div class="f-logo"><div class="f-mon">納</div> NattoReserve</div>
+      <p class="f-desc">特製納豆を、予約する時代へ。希少な発酵食品の定期配送・摂取管理・健康スコア記録をひとつのアプリで。</p>
     </div>
     <div class="f-col">
       <h5>アプリ</h5>
@@ -764,8 +659,8 @@
     </div>
     <div class="f-col">
       <h5>商品</h5>
-      <a href="#">プレミアム納豆</a>
-      <a href="#">ビューティー</a>
+      <a href="#">極上 特製納豆</a>
+      <a href="#">ビューティー納豆</a>
       <a href="subscription.html">定期購入</a>
       <a href="ingredients.html">成分・効果</a>
     </div>
@@ -774,12 +669,12 @@
       <a href="about.html">会社概要</a>
       <a href="contact.html">お問い合わせ</a>
       <a href="#">特定商取引法</a>
-      <a href="#">プライバシー</a>
+      <a href="#">プライバシーポリシー</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="f-copy">© 2026 ナットーケア株式会社</div>
-    <div class="f-copy">Made with 🌸 in Osaka, Japan</div>
+    <div>© 2026 ナットーケア株式会社</div>
+    <div>Made with ✿ in Japan</div>
   </div>
 </footer>
 
