@@ -109,21 +109,6 @@
     .ng-hero-title { font-family: 'Noto Serif JP', serif; font-size: 28px; font-weight: 300; color: #fff; line-height: 1.3; margin-bottom: 8px; }
     .ng-hero-sub { font-size: 12px; color: rgba(255,255,255,0.65); letter-spacing: 0.08em; }
 
-    /* ===== VIDEO ===== */
-    .video-sec { background: var(--navy); padding: 5rem 2rem; }
-    .video-inner { max-width: 1100px; margin: 0 auto; }
-    .video-header { display: grid; grid-template-columns: 1fr auto; align-items: end; margin-bottom: 2.5rem; gap: 2rem; }
-    .video-eyebrow { font-size: 11px; color: var(--gold); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
-    .video-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
-    .video-h { font-family: 'Noto Serif JP', serif; font-size: clamp(26px, 3.5vw, 44px); font-weight: 300; color: #fff; line-height: 1.35; }
-    .video-h .accent { color: var(--gold); }
-    .video-p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.8; max-width: 320px; }
-    .video-container { position: relative; width: 100%; border-radius: 0; overflow: hidden; background: #000; }
-    .video-container::before { content: ''; display: block; padding-top: 56.25%; }
-    .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-    .video-tags { display: flex; gap: 10px; margin-top: 1.5rem; flex-wrap: wrap; }
-    .vtag { background: rgba(255,255,255,0.07); border: 0.5px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); font-size: 12px; padding: 5px 14px; letter-spacing: 0.06em; }
-
     /* ===== SCENE ===== */
     .scene-sec { padding: 6rem 2rem; background: var(--washi); }
     .scene-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; grid-template-rows: 300px 260px; gap: 8px; margin-top: 3rem; }
@@ -274,7 +259,6 @@
       NattoReserve
     </div>
     <div class="nav-links">
-      <a href="#video">動画</a>
       <a href="#scene">使用シーン</a>
       <a href="#products">商品</a>
       <a href="#reviews">お客様の声</a>
@@ -394,32 +378,6 @@
         src="https://images.unsplash.com/photo-hdfIOjp8ABE?w=600&q=88&auto=format&fit=crop"
         alt="納豆 食卓">
       <div class="ng-label">毎日の食卓に</div>
-    </div>
-  </div>
-</section>
-
-<!-- VIDEO -->
-<section class="video-sec" id="video">
-  <div class="video-inner">
-    <div class="video-header">
-      <div>
-        <div class="video-eyebrow">特製納豆 × 映像</div>
-        <h2 class="video-h">見るだけで<span class="accent">食べたくなる</span>、<br>特製納豆の魅力。</h2>
-      </div>
-      <p class="video-p">糸を引く黄金の納豆。混ぜるほど旨みが増す、唯一無二の食体験。</p>
-    </div>
-    <div class="video-container">
-      <iframe
-        src="https://www.youtube.com/embed/1N1PrNXPdFU?autoplay=1&mute=1&loop=1&playlist=1N1PrNXPdFU&controls=1&rel=0&modestbranding=1"
-        title="特製納豆の魅力" allow="autoplay; encrypted-media" allowfullscreen>
-      </iframe>
-    </div>
-    <div class="video-tags">
-      <div class="vtag">国産大豆</div>
-      <div class="vtag">独自発酵技術</div>
-      <div class="vtag">職人製造</div>
-      <div class="vtag">無添加</div>
-      <div class="vtag">毎朝の食卓に</div>
     </div>
   </div>
 </section>
