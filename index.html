@@ -210,6 +210,21 @@
     .st-l { font-size: 13px; color: var(--text2); font-weight: 300; }
     .st-sub { font-size: 11px; color: var(--text3); margin-top: 4px; }
 
+    /* SCENE SECTION */
+    .scene-sec { padding: 7rem 0; background: var(--bg); }
+    .scene-header { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 3rem; }
+    .scene-grid { display: grid; grid-template-columns: 1.2fr 0.9fr 0.9fr; grid-template-rows: 320px 280px; gap: 10px; }
+    .scene-card { border-radius: var(--r3); overflow: hidden; position: relative; }
+    .scene-card.tall { grid-row: span 2; }
+    .scene-img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.88) saturate(1.1); transition: transform 0.5s ease, filter 0.4s; }
+    .scene-card:hover .scene-img { transform: scale(1.03); filter: brightness(0.95) saturate(1.15); }
+    .scene-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,8,8,0.7) 0%, transparent 50%); }
+    .scene-chip { position: absolute; bottom: 16px; left: 16px; background: rgba(15,15,15,0.75); backdrop-filter: blur(12px); border: 0.5px solid var(--line2); border-radius: 999px; padding: 6px 14px; font-size: 12px; color: var(--text); display: flex; align-items: center; gap: 6px; }
+    .scene-chip-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--lime); }
+    .scene-app-badge { position: absolute; top: 14px; right: 14px; background: rgba(8,8,8,0.8); backdrop-filter: blur(12px); border: 0.5px solid rgba(212,247,60,0.2); border-radius: var(--r2); padding: 10px 14px; min-width: 130px; }
+    .sab-label { font-size: 10px; color: var(--text3); margin-bottom: 4px; }
+    .sab-val { font-size: 18px; font-weight: 500; color: var(--lime); letter-spacing: -0.02em; }
+
     /* REVIEWS */
     .reviews-sec { padding: 7rem 0; background: var(--bg2); }
     .reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 4rem; }
@@ -217,9 +232,11 @@
     .rv-stars { font-size: 14px; color: var(--lime); letter-spacing: 3px; }
     .rv-text { font-size: 14px; color: var(--text2); line-height: 1.85; font-weight: 300; font-style: italic; flex: 1; }
     .rv-author { display: flex; align-items: center; gap: 12px; padding-top: 1rem; border-top: 0.5px solid var(--line); }
-    .rv-av { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; flex-shrink: 0; }
+    .rv-av { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+    .rv-av-txt { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; flex-shrink: 0; }
     .rv-name { font-size: 14px; font-weight: 500; }
     .rv-meta { font-size: 12px; color: var(--text3); }
+    .rv-verified { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; color: var(--lime); background: var(--lime-dim); padding: 2px 8px; border-radius: 999px; margin-top: 4px; }
 
     /* DOWNLOAD */
     .dl-sec { padding: 7rem 0; }
@@ -609,6 +626,62 @@
   </div>
 </section>
 
+<!-- SCENE -->
+<section class="scene-sec">
+  <div class="wrap">
+    <div class="scene-header">
+      <div>
+        <div class="eyebrow">使用シーン</div>
+        <h2 class="big-h" style="margin-bottom:0">実際に使っている<br><em>毎日の姿。</em></h2>
+      </div>
+      <p class="body-p" style="max-width:320px;font-size:14px">朝の習慣に、仕事の合間に、育児の傍らに。ライフスタイルに自然に溶け込む腸活。</p>
+    </div>
+    <div class="scene-grid">
+
+      <div class="scene-card tall">
+        <img class="scene-img" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=900&q=85&auto=format&fit=crop" alt="女性が朝のルーティンで乳酸菌サプリを摂取">
+        <div class="scene-overlay"></div>
+        <div class="scene-app-badge">
+          <div class="sab-label">今日の腸内スコア</div>
+          <div class="sab-val">87 <span style="font-size:12px;color:var(--text2);font-weight:300">/ 100</span></div>
+        </div>
+        <div class="scene-chip"><div class="scene-chip-dot"></div> 朝のルーティン</div>
+      </div>
+
+      <div class="scene-card">
+        <img class="scene-img" src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=700&q=85&auto=format&fit=crop" alt="女性がスマートフォンでアプリを使用">
+        <div class="scene-overlay"></div>
+        <div class="scene-chip"><div class="scene-chip-dot"></div> アプリで記録</div>
+      </div>
+
+      <div class="scene-card">
+        <img class="scene-img" src="https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?w=700&q=85&auto=format&fit=crop" alt="女性がリラックスしながらアプリを使用">
+        <div class="scene-overlay"></div>
+        <div class="scene-chip"><div class="scene-chip-dot"></div> くつろぎの時間に</div>
+      </div>
+
+      <div class="scene-card">
+        <img class="scene-img" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=700&q=85&auto=format&fit=crop" alt="笑顔の女性">
+        <div class="scene-overlay"></div>
+        <div class="scene-app-badge" style="top:auto;bottom:52px;right:14px">
+          <div class="sab-label">連続摂取</div>
+          <div class="sab-val">28日 🔥</div>
+        </div>
+        <div class="scene-chip"><div class="scene-chip-dot"></div> 28日継続達成</div>
+      </div>
+
+      <div class="scene-card">
+        <img class="scene-img" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=700&q=85&auto=format&fit=crop" alt="女性のポートレート">
+        <div class="scene-overlay"></div>
+        <div class="scene-chip"><div class="scene-chip-dot"></div> 肌の調子が改善</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
 <!-- STATS -->
 <section class="stats-sec" id="stats">
   <div class="wrap">
@@ -635,24 +708,36 @@
         <div class="rv-stars">★★★★★</div>
         <div class="rv-text">「アプリのリマインダーのおかげで飲み忘れがゼロになりました。腸内スコアが3ヶ月で62→89に上がって、お腹の調子が明らかに変わっています。もう手放せません。」</div>
         <div class="rv-author">
-          <div class="rv-av" style="background:var(--lime-dim);color:var(--lime)">田</div>
-          <div><div class="rv-name">田中 さゆり</div><div class="rv-meta">30代 · 6ヶ月利用</div></div>
+          <img class="rv-av" src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=88&h=88&q=80&auto=format&fit=crop&crop=face" alt="田中さゆり">
+          <div>
+            <div class="rv-name">田中 さゆり</div>
+            <div class="rv-meta">30代 · 6ヶ月利用</div>
+            <div class="rv-verified">✓ 認証済みユーザー</div>
+          </div>
         </div>
       </div>
       <div class="rv">
         <div class="rv-stars">★★★★★</div>
         <div class="rv-text">「定期予約の変更がアプリで完結するのが最高。以前は電話が面倒で解約してしまいましたが、これは続けられます。UIのデザインもすごくおしゃれです。」</div>
         <div class="rv-author">
-          <div class="rv-av" style="background:var(--teal-dim);color:var(--teal)">佐</div>
-          <div><div class="rv-name">佐々木 ひろみ</div><div class="rv-meta">40代 · 1年以上利用</div></div>
+          <img class="rv-av" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=88&h=88&q=80&auto=format&fit=crop&crop=face" alt="佐々木ひろみ">
+          <div>
+            <div class="rv-name">佐々木 ひろみ</div>
+            <div class="rv-meta">40代 · 1年以上利用</div>
+            <div class="rv-verified">✓ 認証済みユーザー</div>
+          </div>
         </div>
       </div>
       <div class="rv">
         <div class="rv-stars">★★★★★</div>
         <div class="rv-text">「子供と一緒にグミタイプを続けています。アプリで家族全員分の摂取を一括管理できるのがとても便利。ポイントも貯まって嬉しいです。」</div>
         <div class="rv-author">
-          <div class="rv-av" style="background:var(--coral-dim);color:var(--coral)">山</div>
-          <div><div class="rv-name">山本 けいこ</div><div class="rv-meta">30代 · 8ヶ月利用</div></div>
+          <img class="rv-av" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=88&h=88&q=80&auto=format&fit=crop&crop=face" alt="山本けいこ">
+          <div>
+            <div class="rv-name">山本 けいこ</div>
+            <div class="rv-meta">30代 · 8ヶ月利用</div>
+            <div class="rv-verified">✓ 認証済みユーザー</div>
+          </div>
         </div>
       </div>
     </div>
