@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ラクトケア | 乳酸菌サプリメント通販</title>
+  <meta name="description" content="100種以上の乳酸菌を独自配合。GMP認定工場製造の腸活サプリメントをお届けします。30日間返金保証付き。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --teal-50: #E1F5EE;
+      --teal-100: #9FE1CB;
+      --teal-500: #1D9E75;
+      --teal-700: #0F6E56;
+      --teal-900: #085041;
+      --amber-100: #FAC775;
+      --amber-900: #633806;
+      --gray-50: #F9F9F8;
+      --gray-100: #F1EFE8;
+      --gray-300: #D3D1C7;
+      --gray-500: #888780;
+      --gray-800: #444441;
+      --gray-900: #2C2C2A;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #fff;
+      color: var(--gray-900);
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* ===== LAYOUT ===== */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ===== NAV ===== */
+    header {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      border-bottom: 0.5px solid var(--gray-300);
+      z-index: 100;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--teal-700);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--teal-500);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 14px;
+    }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a {
+      font-size: 14px;
+      color: var(--gray-800);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--teal-500); }
+    .cart-btn {
+      background: #fff;
+      border: 0.5px solid var(--gray-300);
+      border-radius: var(--radius-md);
+      padding: 8px 16px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s;
+    }
+    .cart-btn:hover { background: var(--gray-50); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--gray-800); border-radius: 2px; }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: var(--teal-50);
+      padding: 5rem 1.5rem 4rem;
+      text-align: center;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--teal-500);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 16px;
+      border-radius: 999px;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      font-size: clamp(26px, 5vw, 40px);
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--gray-900);
+      margin-bottom: 1rem;
+    }
+    .hero h1 em { font-style: normal; color: var(--teal-500); }
+    .hero p {
+      font-size: 15px;
+      color: var(--gray-800);
+      max-width: 480px;
+      margin: 0 auto 2rem;
+    }
+    .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
+    .btn-primary {
+      background: var(--teal-500);
+      color: #fff;
+      border: none;
+      padding: 14px 32px;
+      border-radius: var(--radius-md);
+      font-size: 15px;
+      font-weight: 500;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn-primary:hover { background: var(--teal-700); }
+    .btn-primary:active { transform: scale(0.98); }
+    .btn-secondary {
+      background: #fff;
+      color: var(--gray-900);
+      border: 0.5px solid var(--gray-300);
+      padding: 14px 32px;
+      border-radius: var(--radius-md);
+      font-size: 15px;
+      transition: background 0.15s;
+    }
+    .btn-secondary:hover { background: var(--gray-50); }
+
+    .stats {
+      display: inline-grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      background: #fff;
+      border: 0.5px solid var(--gray-300);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 2rem;
+    }
+    .stat { text-align: center; }
+    .stat + .stat { border-left: 0.5px solid var(--gray-300); padding-left: 1.5rem; }
+    .stat-num { font-size: 24px; font-weight: 700; color: var(--teal-500); }
+    .stat-label { font-size: 11px; color: var(--gray-500); margin-top: 2px; }
+
+    /* ===== SECTIONS ===== */
+    section { padding: 4rem 1.5rem; }
+    .section-header { text-align: center; margin-bottom: 2.5rem; }
+    .section-label {
+      font-size: 12px;
+      color: var(--teal-500);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .section-title { font-size: 22px; font-weight: 700; color: var(--gray-900); }
+
+    /* ===== FEATURES ===== */
+    .features-section { background: #fff; }
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; max-width: 960px; margin: 0 auto; }
+    .feature-card {
+      background: var(--gray-50);
+      border: 0.5px solid var(--gray-300);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+    }
+    .feat-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--teal-50);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 1rem;
+    }
+    .feat-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .feat-desc { font-size: 13px; color: var(--gray-800); line-height: 1.6; }
+
+    /* ===== PRODUCTS ===== */
+    .products-section { background: var(--gray-100); }
+    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; max-width: 960px; margin: 0 auto; }
+    .product-card {
+      background: #fff;
+      border: 0.5px solid var(--gray-300);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: transform 0.15s;
+    }
+    .product-card:hover { transform: translateY(-2px); }
+    .product-card.popular { border: 2px solid var(--teal-100); }
+    .product-img { height: 160px; display: flex; align-items: center; justify-content: center; font-size: 64px; }
+    .product-body { padding: 1rem 1.25rem 1.25rem; }
+    .popular-badge {
+      display: inline-block;
+      background: var(--amber-100);
+      color: var(--amber-900);
+      font-size: 11px;
+      font-weight: 500;
+      padding: 2px 10px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+    .product-tag {
+      display: inline-block;
+      background: var(--teal-50);
+      color: var(--teal-700);
+      font-size: 11px;
+      padding: 2px 10px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+    .product-name { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .product-desc { font-size: 13px; color: var(--gray-800); margin-bottom: 12px; line-height: 1.5; }
+    .product-price { font-size: 20px; font-weight: 700; color: var(--gray-900); margin-bottom: 12px; }
+    .product-price span { font-size: 13px; color: var(--gray-500); font-weight: 400; }
+    .add-btn {
+      width: 100%;
+      padding: 10px;
+      background: var(--teal-500);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 0.15s;
+    }
+    .add-btn:hover { background: var(--teal-700); }
+
+    /* ===== STEPS ===== */
+    .steps-section { background: #fff; }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0; max-width: 720px; margin: 0 auto; position: relative; }
+    .step { text-align: center; padding: 1rem; }
+    .step-num {
+      width: 40px;
+      height: 40px;
+      background: var(--teal-500);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      margin: 0 auto 12px;
+    }
+    .step-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .step-desc { font-size: 13px; color: var(--gray-800); line-height: 1.5; }
+
+    /* ===== REVIEWS ===== */
+    .reviews-section { background: var(--teal-50); }
+    .reviews { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; max-width: 960px; margin: 0 auto; }
+    .review-card {
+      background: #fff;
+      border: 0.5px solid var(--teal-100);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+    }
+    .stars { color: #EF9F27; font-size: 14px; margin-bottom: 8px; }
+    .review-text { font-size: 14px; color: var(--gray-900); line-height: 1.7; margin-bottom: 12px; }
+    .reviewer { display: flex; align-items: center; gap: 10px; }
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--teal-50);
+      border: 1px solid var(--teal-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--teal-700);
+    }
+    .reviewer-name { font-size: 13px; color: var(--gray-500); }
+
+    /* ===== FAQ ===== */
+    .faq-section { background: #fff; }
+    .faq { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; }
+    .faq-item {
+      border: 0.5px solid var(--gray-300);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .faq-q {
+      padding: 16px 20px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      border: none;
+      width: 100%;
+      text-align: left;
+      color: var(--gray-900);
+    }
+    .faq-q:hover { background: var(--gray-50); }
+    .faq-icon { font-size: 18px; color: var(--gray-500); transition: transform 0.2s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a {
+      display: none;
+      padding: 0 20px 16px;
+      font-size: 14px;
+      color: var(--gray-800);
+      line-height: 1.7;
+      border-top: 0.5px solid var(--gray-300);
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ===== CTA BANNER ===== */
+    .cta-section { background: var(--teal-700); color: #fff; text-align: center; padding: 4rem 1.5rem; }
+    .cta-section h2 { font-size: 24px; font-weight: 700; margin-bottom: 10px; }
+    .cta-section p { font-size: 15px; opacity: 0.85; margin-bottom: 2rem; }
+    .btn-white {
+      background: #fff;
+      color: var(--teal-700);
+      border: none;
+      padding: 14px 36px;
+      border-radius: var(--radius-md);
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .btn-white:hover { opacity: 0.9; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--gray-900);
+      color: #fff;
+      padding: 2rem 1.5rem;
+    }
+    .footer-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-logo { font-size: 16px; font-weight: 700; color: var(--teal-100); }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-size: 13px; color: var(--gray-300); transition: color 0.15s; }
+    .footer-links a:hover { color: #fff; }
+    .copyright { font-size: 12px; color: var(--gray-500); margin-top: 4px; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .stats { grid-template-columns: repeat(3, 1fr); padding: 1rem; }
+      .stat + .stat { padding-left: 1rem; }
+      .stat-num { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo">
+        <div class="logo-icon">🌿</div>
+        ラクトケア
+      </div>
+      <div class="nav-links">
+        <a href="#features">特長</a>
+        <a href="#products">商品</a>
+        <a href="#reviews">お客様の声</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <button class="cart-btn" aria-label="カートを見る">
+        🛒 カート (0)
+      </button>
+      <button class="hamburger" aria-label="メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="badge">累計販売数 50万個突破</div>
+    <h1>腸から変わる、<br><em>毎日が変わる。</em></h1>
+    <p>厳選された100種類以上の乳酸菌を独自配合。国内GMP認定工場製造で安心・安全な腸活サプリメント。</p>
+    <div class="cta-row">
+      <a href="#products"><button class="btn-primary">今すぐ購入する →</button></a>
+      <a href="#features"><button class="btn-secondary">詳しく見る</button></a>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">100<span style="font-size:16px">+</span></div>
+        <div class="stat-label">乳酸菌種類</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4.8</div>
+        <div class="stat-label">平均評価</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">30日</div>
+        <div class="stat-label">返金保証</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features-section" id="features">
+    <div class="section-header">
+      <div class="section-label">なぜラクトケア？</div>
+      <div class="section-title">選ばれる4つの理由</div>
+    </div>
+    <div class="features">
+      <div class="feature-card">
+        <div class="feat-icon">🔬</div>
+        <div class="feat-title">100種以上の乳酸菌</div>
+        <div class="feat-desc">多様な菌種を配合し、腸内フローラのバランスをサポートします。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">🏅</div>
+        <div class="feat-title">GMP認定工場製造</div>
+        <div class="feat-desc">国内最高水準の品質管理を行う認定工場で製造。安心の品質。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">📦</div>
+        <div class="feat-title">定期便で送料無料</div>
+        <div class="feat-desc">定期購入なら毎月自動お届け。送料無料でさらにお得に。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feat-icon">🛡️</div>
+        <div class="feat-title">30日間返金保証</div>
+        <div class="feat-desc">効果を感じなければ全額返金。はじめての方も安心してお試しください。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products-section" id="products">
+    <div class="section-header">
+      <div class="section-label">ラインナップ</div>
+      <div class="section-title">人気商品</div>
+    </div>
+    <div class="products">
+      <div class="product-card popular">
+        <div class="product-img" style="background: #E1F5EE;">🌿</div>
+        <div class="product-body">
+          <div class="popular-badge">人気 No.1</div><br>
+          <div class="product-tag">スタンダード</div>
+          <div class="product-name">ラクトケア プレミアム</div>
+          <div class="product-desc">100種の乳酸菌 + 食物繊維。毎日の腸活に最適な定番商品。</div>
+          <div class="product-price">¥3,980 <span>/ 30日分</span></div>
+          <button class="add-btn">カートに追加</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background: #FAEEDA;">✨</div>
+        <div class="product-body">
+          <div class="product-tag">美容特化</div>
+          <div class="product-name">ビューティー乳酸菌</div>
+          <div class="product-desc">コラーゲン・ビタミンC配合。腸活しながら肌の内側からケア。</div>
+          <div class="product-price">¥4,480 <span>/ 30日分</span></div>
+          <button class="add-btn">カートに追加</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background: #EEEDFE;">🧒</div>
+        <div class="product-body">
+          <div class="product-tag">子供向け</div>
+          <div class="product-name">キッズ乳酸菌グミ</div>
+          <div class="product-desc">いちご味のグミタイプ。子供が喜んで食べる乳酸菌サプリ。</div>
+          <div class="product-price">¥2,480 <span>/ 30日分</span></div>
+          <button class="add-btn">カートに追加</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="steps-section">
+    <div class="section-header">
+      <div class="section-label">購入の流れ</div>
+      <div class="section-title">かんたん3ステップ</div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-title">商品を選ぶ</div>
+        <div class="step-desc">目的や悩みに合わせてサプリを選択</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-title">注文・決済</div>
+        <div class="step-desc">クレジットカード・PayPayなど各種決済対応</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-title">自宅でお届け</div>
+        <div class="step-desc">注文から最短翌日発送。ポスト投函可</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews-section" id="reviews">
+    <div class="section-header">
+      <div class="section-label">お客様の声</div>
+      <div class="section-title">使って実感した方々の声</div>
+    </div>
+    <div class="reviews">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">「飲み始めて2週間でお腹の調子が整ってきました。続けやすい価格も嬉しいです。」</div>
+        <div class="reviewer">
+          <div class="avatar">田</div>
+          <div class="reviewer-name">田中さん・30代女性</div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">「子供に飲ませています。グミタイプなのでおやつ感覚で続けられています！」</div>
+        <div class="reviewer">
+          <div class="avatar">佐</div>
+          <div class="reviewer-name">佐藤さん・40代女性</div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★☆</div>
+        <div class="review-text">「定期便にしたらコスパも良く、飲み忘れも減りました。肌の調子も上がった気がします。」</div>
+        <div class="reviewer">
+          <div class="avatar">山</div>
+          <div class="reviewer-name">山田さん・20代女性</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" id="faq">
+    <div class="section-header">
+      <div class="section-label">よくある質問</div>
+      <div class="section-title">FAQ</div>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>定期購入はいつでも解約できますか？</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">はい、いつでも解約いただけます。次回発送の3日前までにお電話またはメールにてご連絡ください。違約金等は一切かかりません。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>妊娠中・授乳中でも飲めますか？</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">妊娠中・授乳中の方は、ご利用前に医師または薬剤師にご相談ください。乳酸菌自体は食品由来のものですが、個人差がありますのでご注意ください。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>支払い方法はどうなっていますか？</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">クレジットカード（VISA・Mastercard・JCB・AMEX）、コンビニ払い、PayPay、代金引換に対応しています。定期便はクレジットカードのみとなります。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>効果が出るまでどれくらいかかりますか？</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">個人差がありますが、腸内環境が整ってくるまでの目安は2〜4週間です。まずは3ヶ月間継続してお飲みいただくことをおすすめします。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>まずは1ヶ月、試してみませんか？</h2>
+    <p>30日間の返金保証付き。効果を感じなければ全額お返しします。</p>
+    <a href="#products"><button class="btn-white">定期購入で始める（送料無料）</button></a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">🌿 ラクトケア</div>
+        <div class="copyright">© 2026 ラクトケア株式会社</div>
+      </div>
+      <div class="footer-links">
+        <a href="#">特定商取引法</a>
+        <a href="#">プライバシーポリシー</a>
+        <a href="#">お問い合わせ</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+  </script>
+</body>
+</html>
