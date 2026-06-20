@@ -3,683 +3,746 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LactoReserve — 乳酸菌サプリ定期予約アプリ</title>
-  <meta name="description" content="LactoReserve は、あなたの腸活スケジュールを管理する次世代の乳酸菌予約アプリ。">
+  <title>LactoReserve — 腸活予約アプリ</title>
+  <meta name="description" content="乳酸菌サプリの定期予約・摂取管理・腸内スコア記録をひとつのアプリで。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0A0A0A;
-      --bg2: #111111;
-      --bg3: #1A1A1A;
-      --bg4: #222222;
-      --border: rgba(255,255,255,0.08);
-      --border2: rgba(255,255,255,0.14);
-      --text: #F5F5F0;
-      --text2: rgba(245,245,240,0.55);
-      --text3: rgba(245,245,240,0.3);
-      --accent: #C8F55A;
-      --accent2: #A8D93E;
-      --accent-dim: rgba(200,245,90,0.12);
-      --accent-dim2: rgba(200,245,90,0.06);
-      --teal: #2DD4A0;
-      --teal-dim: rgba(45,212,160,0.12);
-      --r: 14px;
-      --r2: 20px;
-      --r3: 28px;
+      --bg: #080808;
+      --bg2: #0F0F0F;
+      --bg3: #161616;
+      --bg4: #1E1E1E;
+      --bg5: #252525;
+      --line: rgba(255,255,255,0.07);
+      --line2: rgba(255,255,255,0.12);
+      --line3: rgba(255,255,255,0.2);
+      --text: #EFEFEB;
+      --text2: rgba(239,239,235,0.5);
+      --text3: rgba(239,239,235,0.25);
+      --lime: #D4F73C;
+      --lime2: #B8D932;
+      --lime-dim: rgba(212,247,60,0.1);
+      --lime-glow: rgba(212,247,60,0.06);
+      --teal: #34D9A5;
+      --teal-dim: rgba(52,217,165,0.1);
+      --coral: #FF6B4A;
+      --coral-dim: rgba(255,107,74,0.1);
+      --r: 12px; --r2: 18px; --r3: 24px; --r4: 32px;
     }
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: 'DM Sans', 'Noto Sans JP', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-    }
+    body { font-family: 'DM Sans', 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
+    .serif { font-family: 'DM Serif Display', serif; }
 
-    /* ===== NAV ===== */
+    /* NAV */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+      z-index: 200; width: min(900px, calc(100% - 32px));
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.25rem 3rem;
-      background: rgba(10,10,10,0.8);
-      backdrop-filter: blur(20px);
-      border-bottom: 0.5px solid var(--border);
+      padding: 12px 20px;
+      background: rgba(15,15,15,0.75);
+      backdrop-filter: blur(24px) saturate(180%);
+      border: 0.5px solid var(--line2);
+      border-radius: 999px;
     }
-    .nav-logo { font-size: 17px; font-weight: 500; letter-spacing: -0.02em; display: flex; align-items: center; gap: 10px; }
-    .logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-    .nav-links { display: flex; gap: 2rem; }
-    .nav-links a { font-size: 14px; color: var(--text2); transition: color 0.2s; }
-    .nav-links a:hover { color: var(--text); }
-    .nav-cta {
-      background: var(--accent); color: #0A0A0A;
-      padding: 9px 22px; border-radius: 999px;
-      font-size: 14px; font-weight: 500; cursor: pointer; border: none;
-      font-family: inherit; transition: opacity 0.15s;
-    }
-    .nav-cta:hover { opacity: 0.88; }
+    .nav-logo { font-size: 15px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
+    .logo-pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+    .nav-center { display: flex; gap: 1.75rem; }
+    .nav-center a { font-size: 13px; color: var(--text2); transition: color 0.2s; }
+    .nav-center a:hover { color: var(--text); }
+    .nav-btn { background: var(--lime); color: #080808; padding: 8px 20px; border-radius: 999px; font-size: 13px; font-weight: 500; cursor: pointer; border: none; font-family: inherit; transition: opacity 0.15s, transform 0.1s; }
+    .nav-btn:hover { opacity: 0.88; } .nav-btn:active { transform: scale(0.96); }
 
-    /* ===== HERO ===== */
-    .hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 8rem 2rem 6rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+    /* HERO */
+    .hero { min-height: 100vh; display: grid; place-items: center; padding: 8rem 2rem 4rem; position: relative; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; pointer-events: none; }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 40%, black 30%, transparent 100%);
     }
-    .hero-glow {
-      position: absolute; top: 20%; left: 50%; transform: translateX(-50%);
-      width: 600px; height: 600px;
-      background: radial-gradient(ellipse at center, rgba(200,245,90,0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-tag {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--accent-dim); border: 0.5px solid rgba(200,245,90,0.25);
-      color: var(--accent); font-size: 12px; font-weight: 500; letter-spacing: 0.06em;
-      padding: 6px 16px; border-radius: 999px; margin-bottom: 2.5rem;
-      text-transform: uppercase;
-    }
-    .hero-tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
-    .hero h1 {
-      font-size: clamp(42px, 7vw, 88px);
-      font-weight: 300;
-      letter-spacing: -0.04em;
-      line-height: 1.08;
-      margin-bottom: 1.5rem;
-      max-width: 900px;
-    }
-    .hero h1 em { font-style: italic; color: var(--accent); font-weight: 300; }
-    .hero-sub {
-      font-size: clamp(15px, 2vw, 18px);
-      color: var(--text2);
-      max-width: 520px;
-      margin: 0 auto 3rem;
-      font-weight: 300;
-      line-height: 1.8;
-    }
-    .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 5rem; }
-    .btn-lime {
-      background: var(--accent); color: #0A0A0A;
-      padding: 14px 32px; border-radius: 999px;
-      font-size: 15px; font-weight: 500; cursor: pointer; border: none;
-      font-family: inherit; transition: opacity 0.15s, transform 0.1s;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .btn-lime:hover { opacity: 0.88; }
-    .btn-lime:active { transform: scale(0.97); }
-    .btn-ghost {
-      background: transparent; color: var(--text);
-      padding: 14px 32px; border-radius: 999px;
-      font-size: 15px; font-weight: 400; cursor: pointer;
-      border: 0.5px solid var(--border2);
-      font-family: inherit; transition: background 0.15s;
-    }
-    .btn-ghost:hover { background: var(--bg3); }
+    .hero-orb1 { position: absolute; top: 10%; left: 50%; transform: translateX(-50%); width: 800px; height: 500px; background: radial-gradient(ellipse, rgba(212,247,60,0.07) 0%, transparent 65%); }
+    .hero-orb2 { position: absolute; top: 30%; left: 20%; width: 400px; height: 400px; background: radial-gradient(ellipse, rgba(52,217,165,0.05) 0%, transparent 65%); }
+    .hero-orb3 { position: absolute; top: 20%; right: 15%; width: 300px; height: 300px; background: radial-gradient(ellipse, rgba(255,107,74,0.04) 0%, transparent 65%); }
+    .hero-content { position: relative; text-align: center; max-width: 960px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(212,247,60,0.08); border: 0.5px solid rgba(212,247,60,0.2); color: var(--lime); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 16px; border-radius: 999px; margin-bottom: 2.5rem; }
+    .hero-badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--lime); animation: pulse 2s ease-in-out infinite; }
+    .hero-h { font-size: clamp(48px, 8vw, 108px); font-weight: 300; letter-spacing: -0.05em; line-height: 0.95; margin-bottom: 2rem; }
+    .hero-h .line2 { display: block; }
+    .hero-h em { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--lime); }
+    .hero-p { font-size: clamp(15px, 1.8vw, 18px); color: var(--text2); max-width: 480px; margin: 0 auto 3rem; font-weight: 300; line-height: 1.9; }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem; }
+    .btn-lime { background: var(--lime); color: #080808; padding: 14px 30px; border-radius: 999px; font-size: 15px; font-weight: 500; cursor: pointer; border: none; font-family: inherit; display: flex; align-items: center; gap: 8px; transition: opacity 0.15s, transform 0.1s; }
+    .btn-lime:hover { opacity: 0.88; } .btn-lime:active { transform: scale(0.97); }
+    .btn-ghost { background: transparent; color: var(--text); padding: 14px 30px; border-radius: 999px; font-size: 15px; font-weight: 300; cursor: pointer; border: 0.5px solid var(--line2); font-family: inherit; transition: background 0.15s, border-color 0.15s; }
+    .btn-ghost:hover { background: var(--bg3); border-color: var(--line3); }
 
-    /* App mockup */
-    .app-mockup {
-      width: min(380px, 90vw);
-      background: var(--bg3);
-      border: 0.5px solid var(--border2);
-      border-radius: 36px;
-      padding: 28px 22px 22px;
-      position: relative;
-    }
-    .mockup-notch { width: 100px; height: 10px; background: var(--bg); border-radius: 999px; margin: 0 auto 24px; }
-    .mockup-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-    .mockup-title { font-size: 22px; font-weight: 500; letter-spacing: -0.02em; }
-    .mockup-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--accent-dim); border: 0.5px solid rgba(200,245,90,0.3); display: flex; align-items: center; justify-content: center; font-size: 16px; }
-    .mockup-streak { background: var(--accent-dim); border: 0.5px solid rgba(200,245,90,0.2); border-radius: var(--r); padding: 14px 16px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; }
-    .streak-label { font-size: 12px; color: var(--text2); margin-bottom: 4px; }
-    .streak-num { font-size: 28px; font-weight: 500; color: var(--accent); letter-spacing: -0.02em; }
-    .streak-unit { font-size: 12px; color: var(--text2); }
-    .streak-chart { display: flex; gap: 5px; align-items: flex-end; height: 40px; }
-    .bar { width: 8px; border-radius: 4px; background: var(--bg4); }
-    .bar.active { background: var(--accent); }
-    .mockup-next { background: var(--bg4); border-radius: var(--r); padding: 14px 16px; margin-bottom: 14px; }
-    .next-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
-    .next-row { display: flex; align-items: center; justify-content: space-between; }
-    .next-product { display: flex; align-items: center; gap: 10px; }
-    .next-icon { width: 36px; height: 36px; border-radius: 10px; background: var(--teal-dim); display: flex; align-items: center; justify-content: center; font-size: 18px; }
-    .next-name { font-size: 14px; font-weight: 500; }
-    .next-date { font-size: 12px; color: var(--text2); margin-top: 1px; }
-    .next-badge { background: var(--teal-dim); color: var(--teal); font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 999px; }
-    .mockup-pills { display: flex; gap: 8px; }
-    .pill { flex: 1; background: var(--bg4); border-radius: var(--r); padding: 12px; text-align: center; }
-    .pill-icon { font-size: 20px; margin-bottom: 4px; }
-    .pill-val { font-size: 16px; font-weight: 500; }
-    .pill-label { font-size: 10px; color: var(--text3); }
+    /* HERO BENTO */
+    .hero-bento { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 10px; max-width: 860px; margin: 0 auto; }
+    .bento-card { background: var(--bg2); border: 0.5px solid var(--line2); border-radius: var(--r3); padding: 18px; }
+    .bento-card.tall { grid-row: span 2; }
+    .bento-sm { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+    .bento-num { font-size: 38px; font-weight: 300; letter-spacing: -0.04em; color: var(--lime); line-height: 1; }
+    .bento-label { font-size: 12px; color: var(--text2); margin-top: 4px; }
+    .score-ring { width: 80px; height: 80px; position: relative; margin: 12px auto; }
+    .score-ring svg { transform: rotate(-90deg); }
+    .score-ring-bg { fill: none; stroke: var(--bg4); stroke-width: 6; }
+    .score-ring-fill { fill: none; stroke: var(--lime); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 220; stroke-dashoffset: 28; }
+    .score-val { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 500; }
+    .mini-bars { display: flex; gap: 4px; align-items: flex-end; height: 44px; margin-top: 12px; }
+    .mini-bar { flex: 1; border-radius: 3px; background: var(--bg4); }
+    .mini-bar.on { background: var(--lime); }
+    .streak-row { display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap; }
+    .streak-dot { width: 22px; height: 22px; border-radius: 6px; background: var(--bg4); display: flex; align-items: center; justify-content: center; font-size: 9px; }
+    .streak-dot.done { background: var(--lime); color: #080808; font-weight: 700; }
+    .streak-dot.today { background: var(--lime-dim); border: 1px solid var(--lime); color: var(--lime); font-size: 8px; }
+    .next-item { background: var(--bg3); border-radius: var(--r); padding: 12px 14px; margin-top: 10px; display: flex; align-items: center; gap: 10px; }
+    .ni-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+    .ni-name { font-size: 13px; font-weight: 500; }
+    .ni-date { font-size: 11px; color: var(--text3); margin-top: 1px; }
+    .ni-badge { margin-left: auto; background: var(--lime-dim); color: var(--lime); font-size: 10px; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
 
-    /* ===== SECTION BASE ===== */
-    .section { padding: 7rem 2rem; }
-    .section-inner { max-width: 1100px; margin: 0 auto; }
-    .eyebrow { font-size: 11px; color: var(--accent); font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; }
-    .section-h { font-size: clamp(28px, 4vw, 48px); font-weight: 300; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 1.5rem; }
-    .section-p { font-size: 16px; color: var(--text2); font-weight: 300; line-height: 1.8; max-width: 500px; }
-    .divider { border: none; border-top: 0.5px solid var(--border); }
+    /* TICKER */
+    .ticker-wrap { overflow: hidden; border-top: 0.5px solid var(--line); border-bottom: 0.5px solid var(--line); padding: 14px 0; background: var(--bg2); }
+    .ticker { display: flex; gap: 0; animation: ticker 28s linear infinite; width: max-content; }
+    @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .ticker-item { display: flex; align-items: center; gap: 10px; padding: 0 2.5rem; white-space: nowrap; font-size: 13px; color: var(--text2); font-weight: 300; }
+    .ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--lime); }
 
-    /* ===== APP FEATURES ===== */
-    .features-section { background: var(--bg); }
-    .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 5rem; }
-    .feat { background: var(--bg2); padding: 2.5rem; position: relative; overflow: hidden; }
-    .feat:first-child { border-radius: var(--r3) 0 0 0; }
-    .feat:nth-child(2) { border-radius: 0 var(--r3) 0 0; }
-    .feat:nth-child(3) { border-radius: 0 0 0 var(--r3); }
-    .feat:last-child { border-radius: 0 0 var(--r3) 0; }
-    .feat-num { font-size: 11px; color: var(--text3); font-weight: 500; letter-spacing: 0.08em; margin-bottom: 2rem; }
-    .feat-icon { font-size: 32px; margin-bottom: 1.25rem; }
-    .feat-title { font-size: 20px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 10px; }
-    .feat-desc { font-size: 14px; color: var(--text2); line-height: 1.75; font-weight: 300; }
-    .feat-accent { position: absolute; top: 0; right: 0; width: 120px; height: 120px; background: radial-gradient(ellipse at top right, rgba(200,245,90,0.06), transparent 70%); pointer-events: none; }
+    /* LAYOUT */
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 2rem; }
+    .eyebrow { font-size: 11px; color: var(--lime); font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.25rem; }
+    .big-h { font-size: clamp(32px, 4.5vw, 60px); font-weight: 300; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 1.25rem; }
+    .big-h em { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--lime); }
+    .body-p { font-size: 16px; color: var(--text2); font-weight: 300; line-height: 1.85; }
+    hr.div { border: none; border-top: 0.5px solid var(--line); }
 
-    /* ===== HOW IT WORKS ===== */
-    .how-section { background: var(--bg2); }
-    .steps-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 4rem; }
-    .step-box { background: var(--bg3); padding: 2rem 1.5rem; position: relative; }
-    .step-box:first-child { border-radius: var(--r2) 0 0 var(--r2); }
-    .step-box:last-child { border-radius: 0 var(--r2) var(--r2) 0; }
-    .step-line { position: absolute; top: 2rem; right: 0; width: 2px; height: 28px; background: var(--border); }
-    .step-box:last-child .step-line { display: none; }
-    .step-n { font-size: 48px; font-weight: 300; color: var(--border2); letter-spacing: -0.04em; line-height: 1; margin-bottom: 1.25rem; }
-    .step-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
-    .step-desc { font-size: 13px; color: var(--text2); line-height: 1.7; font-weight: 300; }
+    /* FEATURES BENTO */
+    .features-sec { padding: 7rem 0; }
+    .feat-bento { display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: auto; gap: 10px; margin-top: 4rem; }
+    .fb { background: var(--bg2); border: 0.5px solid var(--line2); border-radius: var(--r3); padding: 2rem 2.25rem; position: relative; overflow: hidden; transition: border-color 0.2s; }
+    .fb:hover { border-color: var(--line3); }
+    .fb.c8 { grid-column: span 8; }
+    .fb.c4 { grid-column: span 4; }
+    .fb.c6 { grid-column: span 6; }
+    .fb.c5 { grid-column: span 5; }
+    .fb.c7 { grid-column: span 7; }
+    .fb-glow { position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(ellipse at top right, rgba(212,247,60,0.06), transparent 70%); pointer-events: none; }
+    .fb-num { font-size: 11px; color: var(--text3); letter-spacing: 0.08em; margin-bottom: 2rem; }
+    .fb-icon { font-size: 36px; margin-bottom: 1.25rem; }
+    .fb-title { font-size: 21px; font-weight: 500; letter-spacing: -0.025em; margin-bottom: 10px; }
+    .fb-desc { font-size: 14px; color: var(--text2); line-height: 1.75; font-weight: 300; max-width: 400px; }
+    .fb-visual { margin-top: 1.75rem; }
+    .fb-tag { display: inline-flex; align-items: center; gap: 6px; background: var(--lime-dim); border: 0.5px solid rgba(212,247,60,0.15); color: var(--lime); font-size: 11px; font-weight: 500; padding: 4px 12px; border-radius: 999px; }
+    .progress-row { display: flex; flex-direction: column; gap: 8px; margin-top: 1rem; }
+    .prog-item { display: flex; align-items: center; gap: 10px; }
+    .prog-label { font-size: 12px; color: var(--text2); width: 70px; flex-shrink: 0; }
+    .prog-bar-wrap { flex: 1; height: 6px; background: var(--bg4); border-radius: 3px; overflow: hidden; }
+    .prog-bar { height: 100%; border-radius: 3px; background: var(--lime); }
+    .prog-val { font-size: 11px; color: var(--text3); width: 32px; text-align: right; }
+    .notif-list { display: flex; flex-direction: column; gap: 8px; margin-top: 1rem; }
+    .notif-item { background: var(--bg3); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; border: 0.5px solid var(--line); }
+    .notif-icon-wrap { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+    .notif-text { font-size: 12px; color: var(--text2); }
+    .notif-time { font-size: 11px; color: var(--text3); margin-left: auto; white-space: nowrap; }
+    .point-display { margin-top: 1rem; }
+    .point-big { font-size: 52px; font-weight: 300; letter-spacing: -0.04em; color: var(--lime); line-height: 1; }
+    .point-sub { font-size: 13px; color: var(--text3); margin-top: 4px; }
+    .rank-badges { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+    .rank-b { padding: 5px 12px; border-radius: 999px; font-size: 11px; font-weight: 500; }
+    .rank-b.cur { background: var(--lime-dim); color: var(--lime); border: 0.5px solid rgba(212,247,60,0.25); }
+    .rank-b.next { background: var(--bg4); color: var(--text3); border: 0.5px solid var(--line); }
 
-    /* ===== PRODUCT CARDS ===== */
-    .products-section { background: var(--bg); }
-    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 4rem; }
-    .product { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--r2); overflow: hidden; transition: border-color 0.2s; }
-    .product:hover { border-color: var(--border2); }
-    .product.featured { border-color: rgba(200,245,90,0.25); }
-    .product-img { height: 180px; display: flex; align-items: center; justify-content: center; font-size: 72px; }
-    .product-body { padding: 1.25rem 1.5rem 1.5rem; }
-    .product-tag { font-size: 11px; color: var(--accent); background: var(--accent-dim); padding: 3px 10px; border-radius: 999px; display: inline-block; margin-bottom: 10px; font-weight: 500; }
-    .product-tag.teal { color: var(--teal); background: var(--teal-dim); }
-    .product-name { font-size: 17px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 6px; }
-    .product-desc { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 16px; font-weight: 300; }
-    .product-footer { display: flex; align-items: center; justify-content: space-between; }
-    .product-price { font-size: 22px; font-weight: 500; letter-spacing: -0.02em; }
-    .product-price small { font-size: 12px; color: var(--text3); font-weight: 300; }
-    .product-btn {
-      background: var(--accent); color: #0A0A0A;
-      padding: 8px 18px; border-radius: 999px;
-      font-size: 13px; font-weight: 500; cursor: pointer; border: none;
-      font-family: inherit; transition: opacity 0.15s;
-    }
-    .product-btn:hover { opacity: 0.85; }
+    /* SPLIT SECTION */
+    .split-sec { padding: 7rem 0; }
+    .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .split-visual { background: var(--bg2); border: 0.5px solid var(--line2); border-radius: var(--r4); padding: 2rem; }
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .tl-item { display: flex; gap: 16px; }
+    .tl-left { display: flex; flex-direction: column; align-items: center; }
+    .tl-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--lime); flex-shrink: 0; margin-top: 4px; }
+    .tl-dot.dim { background: var(--bg5); border: 1px solid var(--line2); }
+    .tl-line { width: 1px; flex: 1; background: var(--line); margin: 4px 0; min-height: 28px; }
+    .tl-content { padding-bottom: 20px; }
+    .tl-label { font-size: 11px; color: var(--text3); margin-bottom: 3px; }
+    .tl-title { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+    .tl-desc { font-size: 12px; color: var(--text2); line-height: 1.6; }
+    .tl-chip { display: inline-block; background: var(--lime-dim); color: var(--lime); font-size: 10px; padding: 2px 8px; border-radius: 999px; margin-top: 6px; }
+    .split-text .eyebrow { display: block; }
+    .split-steps { display: flex; flex-direction: column; gap: 2rem; margin-top: 2.5rem; }
+    .split-step { display: flex; gap: 1.25rem; align-items: flex-start; }
+    .ss-num { width: 32px; height: 32px; border-radius: 50%; border: 0.5px solid var(--line2); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500; color: var(--text2); flex-shrink: 0; }
+    .ss-title { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+    .ss-desc { font-size: 14px; color: var(--text2); font-weight: 300; line-height: 1.7; }
 
-    /* ===== STATS ===== */
-    .stats-section { background: var(--bg2); }
-    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 4rem; }
-    .stat-box { background: var(--bg3); padding: 2.5rem 2rem; }
-    .stat-box:first-child { border-radius: var(--r2) 0 0 var(--r2); }
-    .stat-box:last-child { border-radius: 0 var(--r2) var(--r2) 0; }
-    .stat-num { font-size: clamp(36px, 5vw, 56px); font-weight: 300; letter-spacing: -0.04em; color: var(--accent); line-height: 1; margin-bottom: 8px; }
-    .stat-label { font-size: 13px; color: var(--text2); font-weight: 300; }
+    /* PRODUCTS */
+    .products-sec { padding: 7rem 0; background: var(--bg2); }
+    .products-scroll { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 4rem; }
+    .pcard { background: var(--bg); border: 0.5px solid var(--line2); border-radius: var(--r3); overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.2s, transform 0.2s; cursor: pointer; }
+    .pcard:hover { border-color: var(--line3); transform: translateY(-4px); }
+    .pcard.feat { border-color: rgba(212,247,60,0.2); }
+    .pcard-img { height: 200px; display: flex; align-items: center; justify-content: center; font-size: 80px; position: relative; }
+    .pcard-img-tag { position: absolute; top: 12px; left: 12px; background: var(--lime); color: #080808; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+    .pcard-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .pcard-cat { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+    .pcard-name { font-size: 20px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .pcard-desc { font-size: 13px; color: var(--text2); line-height: 1.7; font-weight: 300; margin-bottom: auto; }
+    .pcard-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 0.5px solid var(--line); }
+    .pcard-price { font-size: 24px; font-weight: 500; letter-spacing: -0.03em; }
+    .pcard-price small { font-size: 12px; color: var(--text3); font-weight: 300; }
+    .pcard-btn { background: var(--lime); color: #080808; padding: 9px 20px; border-radius: 999px; font-size: 13px; font-weight: 500; cursor: pointer; border: none; font-family: inherit; transition: opacity 0.15s; }
+    .pcard-btn:hover { opacity: 0.85; }
+    .pcard-btn.ghost { background: transparent; color: var(--text); border: 0.5px solid var(--line2); }
+    .pcard-btn.ghost:hover { background: var(--bg3); }
 
-    /* ===== TESTIMONIALS ===== */
-    .testimonials-section { background: var(--bg); }
-    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 4rem; }
-    .review { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--r2); padding: 1.75rem; }
-    .review-stars { color: var(--accent); font-size: 13px; margin-bottom: 14px; letter-spacing: 2px; }
-    .review-text { font-size: 14px; color: var(--text2); line-height: 1.8; font-weight: 300; margin-bottom: 1.25rem; font-style: italic; }
-    .review-author { display: flex; align-items: center; gap: 10px; }
-    .review-av { width: 32px; height: 32px; border-radius: 50%; background: var(--bg4); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500; color: var(--text2); border: 0.5px solid var(--border2); }
-    .review-name { font-size: 13px; font-weight: 500; }
-    .review-meta { font-size: 12px; color: var(--text3); }
+    /* STATS */
+    .stats-sec { padding: 7rem 0; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 4rem; }
+    .st { background: var(--bg2); padding: 2.5rem 2rem; border-radius: 0; }
+    .st:first-child { border-radius: var(--r3) 0 0 var(--r3); }
+    .st:last-child { border-radius: 0 var(--r3) var(--r3) 0; }
+    .st-n { font-size: clamp(40px, 5vw, 64px); font-weight: 300; color: var(--lime); letter-spacing: -0.05em; line-height: 1; margin-bottom: 10px; }
+    .st-l { font-size: 13px; color: var(--text2); font-weight: 300; }
+    .st-sub { font-size: 11px; color: var(--text3); margin-top: 4px; }
 
-    /* ===== APP DOWNLOAD ===== */
-    .download-section { background: var(--bg2); }
-    .download-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; padding: 7rem 2rem; }
-    .download-phones { display: flex; gap: 16px; justify-content: center; }
-    .phone-card {
-      background: var(--bg3); border: 0.5px solid var(--border2);
-      border-radius: 28px; padding: 20px 16px; width: 160px;
-    }
-    .phone-card:first-child { transform: rotate(-4deg); margin-top: 24px; }
-    .phone-card:last-child { transform: rotate(3deg); }
-    .phone-mini-header { font-size: 13px; font-weight: 500; margin-bottom: 12px; }
-    .phone-mini-item { background: var(--bg4); border-radius: 8px; padding: 8px 10px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
-    .phone-mini-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-    .phone-mini-text { font-size: 11px; color: var(--text2); }
-    .phone-mini-badge { background: var(--accent-dim); color: var(--accent); font-size: 10px; padding: 2px 6px; border-radius: 999px; margin-left: auto; white-space: nowrap; }
-    .store-btns { display: flex; flex-direction: column; gap: 12px; margin-top: 2.5rem; }
-    .store-btn {
-      display: flex; align-items: center; gap: 14px;
-      background: var(--bg3); border: 0.5px solid var(--border2);
-      border-radius: var(--r); padding: 14px 20px; cursor: pointer;
-      transition: border-color 0.15s; max-width: 240px;
-    }
-    .store-btn:hover { border-color: var(--border2); background: var(--bg4); }
-    .store-icon { font-size: 26px; }
-    .store-sub { font-size: 11px; color: var(--text3); }
-    .store-name { font-size: 15px; font-weight: 500; margin-top: 1px; }
+    /* REVIEWS */
+    .reviews-sec { padding: 7rem 0; background: var(--bg2); }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 4rem; }
+    .rv { background: var(--bg); border: 0.5px solid var(--line2); border-radius: var(--r3); padding: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
+    .rv-stars { font-size: 14px; color: var(--lime); letter-spacing: 3px; }
+    .rv-text { font-size: 14px; color: var(--text2); line-height: 1.85; font-weight: 300; font-style: italic; flex: 1; }
+    .rv-author { display: flex; align-items: center; gap: 12px; padding-top: 1rem; border-top: 0.5px solid var(--line); }
+    .rv-av { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; flex-shrink: 0; }
+    .rv-name { font-size: 14px; font-weight: 500; }
+    .rv-meta { font-size: 12px; color: var(--text3); }
 
-    /* ===== CTA ===== */
-    .cta-section { background: var(--bg); padding: 7rem 2rem; text-align: center; }
-    .cta-box { max-width: 680px; margin: 0 auto; }
-    .cta-box h2 { font-size: clamp(32px, 5vw, 60px); font-weight: 300; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 1.25rem; }
-    .cta-box h2 em { font-style: italic; color: var(--accent); }
-    .cta-box p { font-size: 16px; color: var(--text2); font-weight: 300; margin-bottom: 2.5rem; }
-    .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    /* DOWNLOAD */
+    .dl-sec { padding: 7rem 0; }
+    .dl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .dl-phones { display: flex; gap: 14px; justify-content: center; }
+    .dl-phone { background: var(--bg2); border: 0.5px solid var(--line2); border-radius: 28px; padding: 22px 18px; width: 170px; }
+    .dl-phone:first-child { transform: rotate(-5deg) translateY(12px); }
+    .dl-phone:last-child { transform: rotate(4deg) translateY(-8px); }
+    .dl-ph-head { font-size: 12px; font-weight: 500; margin-bottom: 14px; color: var(--text2); }
+    .dl-ph-row { background: var(--bg3); border-radius: 8px; padding: 8px 10px; margin-bottom: 6px; display: flex; align-items: center; gap: 7px; }
+    .dl-ph-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .dl-ph-txt { font-size: 11px; color: var(--text2); }
+    .dl-ph-tag { font-size: 10px; padding: 1px 6px; border-radius: 999px; margin-left: auto; white-space: nowrap; }
+    .dl-stores { display: flex; flex-direction: column; gap: 10px; margin-top: 2.5rem; }
+    .dl-store { display: flex; align-items: center; gap: 14px; background: var(--bg2); border: 0.5px solid var(--line2); border-radius: var(--r2); padding: 14px 20px; cursor: pointer; transition: border-color 0.15s; max-width: 260px; }
+    .dl-store:hover { border-color: var(--line3); }
+    .dl-store-icon { font-size: 28px; }
+    .dl-store-sub { font-size: 11px; color: var(--text3); }
+    .dl-store-name { font-size: 15px; font-weight: 500; margin-top: 2px; }
 
-    /* ===== FOOTER ===== */
-    footer { background: var(--bg2); border-top: 0.5px solid var(--border); padding: 3rem 2rem; }
-    .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
-    .footer-brand p { font-size: 13px; color: var(--text3); line-height: 1.8; margin-top: 12px; font-weight: 300; }
-    .footer-col h4 { font-size: 13px; font-weight: 500; margin-bottom: 1rem; color: var(--text2); }
-    .footer-col a { display: block; font-size: 13px; color: var(--text3); margin-bottom: 8px; transition: color 0.15s; font-weight: 300; }
-    .footer-col a:hover { color: var(--text2); }
-    .footer-bottom { max-width: 1100px; margin: 2rem auto 0; padding-top: 2rem; border-top: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-    .footer-bottom p { font-size: 12px; color: var(--text3); }
+    /* CTA */
+    .cta-sec { padding: 9rem 2rem; text-align: center; position: relative; overflow: hidden; }
+    .cta-orb { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 400px; background: radial-gradient(ellipse, rgba(212,247,60,0.07) 0%, transparent 65%); pointer-events: none; }
+    .cta-h { font-size: clamp(40px, 6vw, 80px); font-weight: 300; letter-spacing: -0.05em; line-height: 1; margin-bottom: 1.5rem; position: relative; }
+    .cta-h em { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--lime); }
+    .cta-p { font-size: 16px; color: var(--text2); font-weight: 300; margin-bottom: 2.5rem; position: relative; }
+    .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; }
+    .cta-note { font-size: 12px; color: var(--text3); margin-top: 1.25rem; }
 
-    /* ===== RESPONSIVE ===== */
+    /* FOOTER */
+    footer { background: var(--bg2); border-top: 0.5px solid var(--line); padding: 4rem 2rem 2rem; }
+    .footer-top { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .f-brand-logo { font-size: 16px; font-weight: 500; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+    .f-brand-p { font-size: 13px; color: var(--text3); line-height: 1.8; font-weight: 300; max-width: 280px; }
+    .f-col h5 { font-size: 11px; color: var(--text3); font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
+    .f-col a { display: block; font-size: 13px; color: var(--text3); margin-bottom: 10px; font-weight: 300; transition: color 0.15s; }
+    .f-col a:hover { color: var(--text2); }
+    .footer-bottom { max-width: 1120px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; border-top: 0.5px solid var(--line); }
+    .f-copy { font-size: 12px; color: var(--text3); }
+
     @media (max-width: 768px) {
-      nav { padding: 1rem 1.25rem; }
-      .nav-links { display: none; }
-      .hero h1 { font-size: 38px; }
-      .features-grid { grid-template-columns: 1fr; }
-      .feat:first-child, .feat:nth-child(2), .feat:nth-child(3), .feat:last-child { border-radius: 0; }
-      .features-grid { border-radius: var(--r2); overflow: hidden; }
-      .steps-row { grid-template-columns: 1fr 1fr; }
-      .step-box:first-child { border-radius: var(--r2) 0 0 0; }
-      .step-box:nth-child(2) { border-radius: 0 var(--r2) 0 0; }
-      .step-box:nth-child(3) { border-radius: 0 0 0 var(--r2); }
-      .step-box:last-child { border-radius: 0 0 var(--r2) 0; }
-      .products-grid { grid-template-columns: 1fr; }
+      nav { width: calc(100% - 24px); border-radius: 16px; }
+      .nav-center { display: none; }
+      .hero-bento { grid-template-columns: 1fr 1fr; }
+      .hero-bento .bento-card.tall { grid-row: span 1; }
+      .feat-bento .fb.c8, .feat-bento .fb.c4, .feat-bento .fb.c6, .feat-bento .fb.c5, .feat-bento .fb.c7 { grid-column: span 12; }
+      .split-grid, .dl-grid { grid-template-columns: 1fr; }
+      .products-scroll { grid-template-columns: 1fr; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
-      .stat-box:first-child { border-radius: var(--r2) 0 0 0; }
-      .stat-box:nth-child(2) { border-radius: 0 var(--r2) 0 0; }
-      .stat-box:nth-child(3) { border-radius: 0 0 0 var(--r2); }
-      .stat-box:last-child { border-radius: 0 0 var(--r2) 0; }
+      .st:first-child { border-radius: var(--r3) 0 0 0; }
+      .st:nth-child(2) { border-radius: 0 var(--r3) 0 0; }
+      .st:nth-child(3) { border-radius: 0 0 0 var(--r3); }
+      .st:last-child { border-radius: 0 0 var(--r3) 0; }
       .reviews-grid { grid-template-columns: 1fr; }
-      .download-inner { grid-template-columns: 1fr; padding: 4rem 1.25rem; }
-      .footer-inner { grid-template-columns: 1fr 1fr; }
-      .footer-brand { grid-column: 1 / -1; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .f-brand { grid-column: 1 / -1; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <div class="nav-logo"><div class="logo-dot"></div> LactoReserve</div>
-    <div class="nav-links">
-      <a href="#features">機能</a>
-      <a href="#products">商品</a>
-      <a href="#reviews">レビュー</a>
-      <a href="about.html">会社概要</a>
-    </div>
-    <button class="nav-cta">無料で始める</button>
-  </nav>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><div class="logo-pulse"></div> LactoReserve</div>
+  <div class="nav-center">
+    <a href="#features">機能</a>
+    <a href="#products">商品</a>
+    <a href="#reviews">レビュー</a>
+    <a href="about.html">会社概要</a>
+  </div>
+  <button class="nav-btn">無料で始める</button>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-glow"></div>
-    <div class="hero-tag"><div class="hero-tag-dot"></div> App Store 腸活カテゴリ No.1</div>
-    <h1>腸活を、<em>予約する</em><br>時代へ。</h1>
-    <p class="hero-sub">LactoReserve は、乳酸菌サプリの定期配送・飲み忘れ管理・腸内スコアの記録をひとつのアプリで完結させる、次世代の腸活プラットフォームです。</p>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-orb1"></div>
+    <div class="hero-orb2"></div>
+    <div class="hero-orb3"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge"><div class="hero-badge-dot"></div> App Store 腸活 No.1 — 50万DL突破</div>
+    <h1 class="hero-h">
+      腸活を、<em>予約</em>する<br>
+      <span class="line2">時代へ。</span>
+    </h1>
+    <p class="hero-p">LactoReserve は、乳酸菌サプリの定期配送・飲み忘れ管理・腸内スコア記録をひとつのアプリで完結させる、次世代の腸活プラットフォームです。</p>
     <div class="hero-actions">
-      <button class="btn-lime">アプリを無料ダウンロード <span>↗</span></button>
+      <button class="btn-lime">無料ダウンロード <span style="font-size:18px;line-height:1">↗</span></button>
       <button class="btn-ghost">機能を見る</button>
     </div>
-
-    <!-- App mockup -->
-    <div class="app-mockup">
-      <div class="mockup-notch"></div>
-      <div class="mockup-header">
-        <div class="mockup-title">腸活ダッシュボード</div>
-        <div class="mockup-avatar">🌿</div>
-      </div>
-      <div class="mockup-streak">
-        <div>
-          <div class="streak-label">連続摂取</div>
-          <div class="streak-num">28<span class="streak-unit"> 日</span></div>
-        </div>
-        <div class="streak-chart">
-          <div class="bar active" style="height:60%"></div>
-          <div class="bar active" style="height:80%"></div>
-          <div class="bar active" style="height:55%"></div>
-          <div class="bar active" style="height:90%"></div>
-          <div class="bar active" style="height:70%"></div>
-          <div class="bar active" style="height:100%"></div>
-          <div class="bar" style="height:30%"></div>
+    <div class="hero-bento">
+      <div class="bento-card">
+        <div class="bento-sm">連続摂取</div>
+        <div class="bento-num">28</div>
+        <div class="bento-label">日継続中 🔥</div>
+        <div class="mini-bars">
+          <div class="mini-bar on" style="height:55%"></div>
+          <div class="mini-bar on" style="height:80%"></div>
+          <div class="mini-bar on" style="height:60%"></div>
+          <div class="mini-bar on" style="height:95%"></div>
+          <div class="mini-bar on" style="height:70%"></div>
+          <div class="mini-bar on" style="height:100%"></div>
+          <div class="mini-bar" style="height:35%"></div>
         </div>
       </div>
-      <div class="mockup-next">
-        <div class="next-label">次回お届け</div>
-        <div class="next-row">
-          <div class="next-product">
-            <div class="next-icon">🦠</div>
-            <div>
-              <div class="next-name">プレミアム 30日分</div>
-              <div class="next-date">6月25日（水）到着予定</div>
-            </div>
+      <div class="bento-card tall">
+        <div class="bento-sm">ダッシュボード</div>
+        <div style="text-align:center">
+          <div class="score-ring">
+            <svg viewBox="0 0 80 80" width="80" height="80">
+              <circle class="score-ring-bg" cx="40" cy="40" r="35"/>
+              <circle class="score-ring-fill" cx="40" cy="40" r="35"/>
+            </svg>
+            <div class="score-val">87</div>
           </div>
-          <div class="next-badge">自動</div>
+          <div style="font-size:12px;color:var(--text2);margin-top:4px">腸内スコア</div>
         </div>
-      </div>
-      <div class="mockup-pills">
-        <div class="pill">
-          <div class="pill-icon">💊</div>
-          <div class="pill-val">2</div>
-          <div class="pill-label">本日の摂取</div>
-        </div>
-        <div class="pill">
-          <div class="pill-icon">📊</div>
-          <div class="pill-val">87</div>
-          <div class="pill-label">腸内スコア</div>
-        </div>
-        <div class="pill">
-          <div class="pill-icon">🎯</div>
-          <div class="pill-val">96%</div>
-          <div class="pill-label">達成率</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- FEATURES -->
-  <section class="section features-section" id="features">
-    <div class="section-inner">
-      <div class="eyebrow">アプリの機能</div>
-      <h2 class="section-h">すべての腸活管理を、<br>ひとつのアプリで。</h2>
-      <p class="section-p">届けるだけじゃない。飲む・記録する・改善するサイクルを、LactoReserve がまるごとサポートします。</p>
-      <div class="features-grid">
-        <div class="feat">
-          <div class="feat-accent"></div>
-          <div class="feat-num">01 —</div>
-          <div class="feat-icon">📅</div>
-          <div class="feat-title">スマート予約管理</div>
-          <div class="feat-desc">次回お届け日・数量・商品をアプリからいつでも変更。飲むペースに合わせてスキップや早期配送も自由自在です。</div>
-        </div>
-        <div class="feat">
-          <div class="feat-num">02 —</div>
-          <div class="feat-icon">🔔</div>
-          <div class="feat-title">飲み忘れリマインダー</div>
-          <div class="feat-desc">毎日の摂取時間をカスタム設定。プッシュ通知が優しくお知らせし、連続摂取の記録をゲーム感覚でキープできます。</div>
-        </div>
-        <div class="feat">
-          <div class="feat-num">03 —</div>
-          <div class="feat-icon">📊</div>
-          <div class="feat-title">腸内スコアの記録</div>
-          <div class="feat-desc">便通・肌の調子・睡眠の質を日々記録。独自アルゴリズムが腸内スコアを可視化し、改善の変化を一目で確認できます。</div>
-        </div>
-        <div class="feat">
-          <div class="feat-num">04 —</div>
-          <div class="feat-icon">🎁</div>
-          <div class="feat-title">ポイント＆ランク制度</div>
-          <div class="feat-desc">購入・連続摂取・レビュー投稿でポイントが貯まります。ランクアップで限定商品や特別割引にアクセスできます。</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- HOW IT WORKS -->
-  <section class="section how-section">
-    <div class="section-inner">
-      <div class="eyebrow">使い方</div>
-      <h2 class="section-h">4ステップで<br>腸活をスタート。</h2>
-      <div class="steps-row">
-        <div class="step-box">
-          <div class="step-line"></div>
-          <div class="step-n">01</div>
-          <div class="step-title">アプリをダウンロード</div>
-          <div class="step-desc">App Store / Google Play から無料でインストール。アカウント登録は30秒で完了します。</div>
-        </div>
-        <div class="step-box">
-          <div class="step-line"></div>
-          <div class="step-n">02</div>
-          <div class="step-title">商品を選ぶ</div>
-          <div class="step-desc">目的・悩みに合わせてサプリを選択。腸活診断を受けると最適な商品をAIがご提案します。</div>
-        </div>
-        <div class="step-box">
-          <div class="step-line"></div>
-          <div class="step-n">03</div>
-          <div class="step-title">定期予約を設定</div>
-          <div class="step-desc">お届けサイクルを選んで予約完了。最短翌日から配送がスタートします。</div>
-        </div>
-        <div class="step-box">
-          <div class="step-n">04</div>
-          <div class="step-title">毎日記録・改善</div>
-          <div class="step-desc">アプリで摂取を記録するだけ。腸内スコアが上がっていく過程を楽しめます。</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- PRODUCTS -->
-  <section class="section products-section" id="products">
-    <div class="section-inner">
-      <div class="eyebrow">ラインナップ</div>
-      <h2 class="section-h">あなたの腸活に<br>ぴったりの一本。</h2>
-      <div class="products-grid">
-        <div class="product featured">
-          <div class="product-img" style="background: #141A10;">🌿</div>
-          <div class="product-body">
-            <span class="product-tag">人気 No.1</span>
-            <div class="product-name">プレミアム乳酸菌</div>
-            <div class="product-desc">100種以上の乳酸菌＋食物繊維を独自配合。毎日の腸活の定番として圧倒的支持を誇るスタンダード商品。</div>
-            <div class="product-footer">
-              <div class="product-price">¥3,980 <small>/ 30日分</small></div>
-              <button class="product-btn">予約する</button>
-            </div>
+        <div class="next-item">
+          <div class="ni-icon" style="background:var(--lime-dim)">🌿</div>
+          <div>
+            <div class="ni-name">プレミアム 30日分</div>
+            <div class="ni-date">6月25日到着予定</div>
           </div>
+          <div class="ni-badge">次回</div>
         </div>
-        <div class="product">
-          <div class="product-img" style="background: #1A1610;">✨</div>
-          <div class="product-body">
-            <span class="product-tag teal">美容特化</span>
-            <div class="product-name">ビューティー乳酸菌</div>
-            <div class="product-desc">コラーゲン・ビタミンC・ヒアルロン酸を追加配合。腸の内側から肌まで同時にケアする美容特化型。</div>
-            <div class="product-footer">
-              <div class="product-price">¥4,480 <small>/ 30日分</small></div>
-              <button class="product-btn">予約する</button>
-            </div>
-          </div>
+        <div class="streak-row" style="margin-top:14px">
+          <div class="streak-dot done">M</div>
+          <div class="streak-dot done">T</div>
+          <div class="streak-dot done">W</div>
+          <div class="streak-dot done">T</div>
+          <div class="streak-dot done">F</div>
+          <div class="streak-dot today">今</div>
+          <div class="streak-dot">S</div>
         </div>
-        <div class="product">
-          <div class="product-img" style="background: #13101A;">🧒</div>
-          <div class="product-body">
-            <span class="product-tag teal">子供向け</span>
-            <div class="product-name">キッズ乳酸菌グミ</div>
-            <div class="product-desc">いちご味のグミタイプ。3歳から飲める安心設計で、着色料・保存料は不使用。毎日のおやつ感覚で続けられます。</div>
-            <div class="product-footer">
-              <div class="product-price">¥2,480 <small>/ 30日分</small></div>
-              <button class="product-btn">予約する</button>
-            </div>
+      </div>
+      <div class="bento-card">
+        <div class="bento-sm">今月の達成率</div>
+        <div class="bento-num">96%</div>
+        <div class="bento-label">目標：毎日摂取</div>
+        <div class="next-item" style="margin-top:14px;background:var(--bg4)">
+          <div class="ni-icon" style="background:var(--teal-dim)">✨</div>
+          <div>
+            <div class="ni-name" style="font-size:12px">ビューティー</div>
+            <div class="ni-date">7月1日到着</div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <hr class="divider">
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <div class="ticker-item"><div class="ticker-dot"></div> 腸内環境の改善</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> 免疫力サポート</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> 肌荒れ対策</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> 睡眠の質向上</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> App Store No.1</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> 30日間返金保証</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> 100種以上の乳酸菌</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> GMP認定工場製造</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> 腸内環境の改善</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> 免疫力サポート</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> 肌荒れ対策</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> 睡眠の質向上</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> App Store No.1</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> 30日間返金保証</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> 100種以上の乳酸菌</div>
+    <div class="ticker-item"><div class="ticker-dot"></div> GMP認定工場製造</div>
+  </div>
+</div>
 
-  <!-- STATS -->
-  <section class="section stats-section">
-    <div class="section-inner">
-      <div class="eyebrow">実績</div>
-      <h2 class="section-h">数字が証明する、<br>信頼のプラットフォーム。</h2>
-      <div class="stats-grid">
-        <div class="stat-box">
-          <div class="stat-num">50万+</div>
-          <div class="stat-label">累計ダウンロード数</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-num">4.9</div>
-          <div class="stat-label">App Store 平均評価</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-num">92%</div>
-          <div class="stat-label">3ヶ月継続率</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-num">30日</div>
-          <div class="stat-label">全額返金保証</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- TESTIMONIALS -->
-  <section class="section testimonials-section" id="reviews">
-    <div class="section-inner">
-      <div class="eyebrow">ユーザーの声</div>
-      <h2 class="section-h">毎日使われている<br>理由があります。</h2>
-      <div class="reviews-grid">
-        <div class="review">
-          <div class="review-stars">★★★★★</div>
-          <div class="review-text">「アプリのリマインダーのおかげで飲み忘れがゼロになりました。腸内スコアが3ヶ月で62→89に上がって、お腹の調子が明らかに変わっています。」</div>
-          <div class="review-author">
-            <div class="review-av">田</div>
-            <div>
-              <div class="review-name">田中 さゆり</div>
-              <div class="review-meta">30代 · 6ヶ月利用</div>
+<!-- FEATURES -->
+<section class="features-sec" id="features">
+  <div class="wrap">
+    <div class="eyebrow">アプリの機能</div>
+    <h2 class="big-h">すべての腸活管理を、<br>ひとつのアプリで<em>完結。</em></h2>
+    <div class="feat-bento">
+      <div class="fb c8">
+        <div class="fb-glow"></div>
+        <div class="fb-num">01 —</div>
+        <div class="fb-icon">📅</div>
+        <div class="fb-title">スマート予約管理</div>
+        <div class="fb-desc">次回お届け日・数量・商品をアプリからいつでも変更可能。スキップ・早期配送・プラン変更もワンタップで完結します。</div>
+        <div class="fb-visual">
+          <div class="progress-row">
+            <div class="prog-item">
+              <div class="prog-label">プレミアム</div>
+              <div class="prog-bar-wrap"><div class="prog-bar" style="width:82%"></div></div>
+              <div class="prog-val">82%</div>
             </div>
-          </div>
-        </div>
-        <div class="review">
-          <div class="review-stars">★★★★★</div>
-          <div class="review-text">「定期予約の変更がアプリで完結するのが最高。以前は電話が面倒で解約してしまったけど、これは続けられます。UIもすごくおしゃれ。」</div>
-          <div class="review-author">
-            <div class="review-av">佐</div>
-            <div>
-              <div class="review-name">佐々木 ひろみ</div>
-              <div class="review-meta">40代 · 1年利用</div>
+            <div class="prog-item">
+              <div class="prog-label">ビューティー</div>
+              <div class="prog-bar-wrap"><div class="prog-bar" style="width:65%;background:var(--teal)"></div></div>
+              <div class="prog-val">65%</div>
             </div>
-          </div>
-        </div>
-        <div class="review">
-          <div class="review-stars">★★★★★</div>
-          <div class="review-text">「子供と一緒にグミタイプを続けています。アプリで家族全員分の摂取を一括管理できるのがとても便利です。」</div>
-          <div class="review-author">
-            <div class="review-av">山</div>
-            <div>
-              <div class="review-name">山本 けいこ</div>
-              <div class="review-meta">30代 · 8ヶ月利用</div>
+            <div class="prog-item">
+              <div class="prog-label">キッズ</div>
+              <div class="prog-bar-wrap"><div class="prog-bar" style="width:91%;background:var(--coral)"></div></div>
+              <div class="prog-val">91%</div>
             </div>
           </div>
         </div>
       </div>
+      <div class="fb c4">
+        <div class="fb-num">02 —</div>
+        <div class="fb-icon">🔔</div>
+        <div class="fb-title">飲み忘れリマインダー</div>
+        <div class="fb-desc">毎日の摂取時間をカスタム設定。プッシュ通知が優しくお知らせします。</div>
+        <div class="fb-visual">
+          <div class="notif-list">
+            <div class="notif-item">
+              <div class="notif-icon-wrap" style="background:var(--lime-dim)">🌿</div>
+              <div class="notif-text">今日の乳酸菌を飲みましょう</div>
+              <div class="notif-time">今</div>
+            </div>
+            <div class="notif-item">
+              <div class="notif-icon-wrap" style="background:var(--teal-dim)">📦</div>
+              <div class="notif-text">明日お届け予定です</div>
+              <div class="notif-time">昨日</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fb c5">
+        <div class="fb-num">03 —</div>
+        <div class="fb-icon">📊</div>
+        <div class="fb-title">腸内スコアの可視化</div>
+        <div class="fb-desc">便通・肌・睡眠を日々記録。独自アルゴリズムが改善の変化を可視化します。</div>
+        <div class="fb-visual" style="text-align:center;padding:12px 0">
+          <div class="score-ring" style="margin:0 auto">
+            <svg viewBox="0 0 80 80" width="80" height="80">
+              <circle class="score-ring-bg" cx="40" cy="40" r="35"/>
+              <circle class="score-ring-fill" cx="40" cy="40" r="35" style="stroke:var(--teal)"/>
+            </svg>
+            <div class="score-val" style="color:var(--teal)">87</div>
+          </div>
+          <div style="font-size:11px;color:var(--text3);margin-top:8px">先月より +12点 ↑</div>
+        </div>
+      </div>
+      <div class="fb c7">
+        <div class="fb-num">04 —</div>
+        <div class="fb-icon">🎁</div>
+        <div class="fb-title">ポイント＆ランク制度</div>
+        <div class="fb-desc">購入・連続摂取・レビューでポイントが貯まり、ランクアップで特典が解放されます。</div>
+        <div class="fb-visual">
+          <div class="point-display">
+            <div class="point-big">2,480</div>
+            <div class="point-sub">現在のポイント残高</div>
+          </div>
+          <div class="rank-badges">
+            <div class="rank-b cur">🌿 グリーン（現在）</div>
+            <div class="rank-b next">⭐ ゴールド まで 520pt</div>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <hr class="divider">
+<hr class="div">
 
-  <!-- DOWNLOAD -->
-  <section class="download-section">
-    <div class="download-inner">
+<!-- HOW IT WORKS -->
+<section class="split-sec" id="how">
+  <div class="wrap">
+    <div class="split-grid">
+      <div class="split-visual">
+        <div class="bento-sm" style="margin-bottom:1.5rem">アプリの使い方フロー</div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-label">STEP 01</div>
+              <div class="tl-title">アプリをダウンロード</div>
+              <div class="tl-desc">App Store / Google Play から30秒でアカウント作成完了。</div>
+              <div class="tl-chip">無料 · iOS & Android</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-label">STEP 02</div>
+              <div class="tl-title">腸活診断を受ける</div>
+              <div class="tl-desc">AIが3分の質問で最適な乳酸菌をご提案します。</div>
+              <div class="tl-chip">AI診断 · 無料</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-label">STEP 03</div>
+              <div class="tl-title">定期予約を設定</div>
+              <div class="tl-desc">お届けサイクルを選んで予約。最短翌日から配送スタート。</div>
+              <div class="tl-chip">最短翌日配送</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot dim"></div></div>
+            <div class="tl-content">
+              <div class="tl-label">STEP 04</div>
+              <div class="tl-title">毎日記録して改善</div>
+              <div class="tl-desc">摂取を記録するだけで腸内スコアが可視化されます。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="split-text">
+        <div class="eyebrow">使い方</div>
+        <h2 class="big-h">始めるのは、<br><em>たった4ステップ。</em></h2>
+        <p class="body-p">難しい設定は一切なし。アプリをダウンロードしてAI診断を受けるだけで、あなた専用の腸活プランが自動で組まれます。</p>
+        <div class="split-steps">
+          <div class="split-step">
+            <div class="ss-num">01</div>
+            <div><div class="ss-title">AIが最適な商品を提案</div><div class="ss-desc">3分の腸活診断でパーソナライズされた乳酸菌をご提案。</div></div>
+          </div>
+          <div class="split-step">
+            <div class="ss-num">02</div>
+            <div><div class="ss-title">定期配送を自動管理</div><div class="ss-desc">飲むペースに合わせてお届けサイクルをいつでも調整できます。</div></div>
+          </div>
+          <div class="split-step">
+            <div class="ss-num">03</div>
+            <div><div class="ss-title">成果をデータで確認</div><div class="ss-desc">腸内スコアの推移をグラフで確認。改善の実感を数字で証明。</div></div>
+          </div>
+        </div>
+        <button class="btn-lime" style="margin-top:2.5rem;width:fit-content">アプリを試してみる ↗</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- PRODUCTS -->
+<section class="products-sec" id="products">
+  <div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:4rem">
+      <div>
+        <div class="eyebrow">ラインナップ</div>
+        <h2 class="big-h" style="margin-bottom:0">あなたに<br>ぴったりの<em>一本。</em></h2>
+      </div>
+      <a href="subscription.html"><button class="btn-ghost" style="height:fit-content">全商品を見る →</button></a>
+    </div>
+    <div class="products-scroll">
+      <div class="pcard feat">
+        <div class="pcard-img" style="background:linear-gradient(135deg,#0D1A0A,#142010)">
+          <div class="pcard-img-tag">人気 No.1</div>
+          🌿
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-cat">スタンダード</div>
+          <div class="pcard-name">プレミアム乳酸菌</div>
+          <div class="pcard-desc">100種以上の乳酸菌＋食物繊維＋オリゴ糖を独自配合。毎日の腸活の定番として圧倒的支持を誇るスタンダード商品。</div>
+          <div class="pcard-footer">
+            <div class="pcard-price">¥3,980 <small>/ 30日分</small></div>
+            <button class="pcard-btn">予約する</button>
+          </div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-img" style="background:linear-gradient(135deg,#1A1200,#201800)">✨</div>
+        <div class="pcard-body">
+          <div class="pcard-cat">美容特化</div>
+          <div class="pcard-name">ビューティー乳酸菌</div>
+          <div class="pcard-desc">コラーゲン・ビタミンC・ヒアルロン酸を追加配合。腸の内側から肌まで同時にケアする美容特化型サプリ。</div>
+          <div class="pcard-footer">
+            <div class="pcard-price">¥4,480 <small>/ 30日分</small></div>
+            <button class="pcard-btn ghost">予約する</button>
+          </div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-img" style="background:linear-gradient(135deg,#120A1A,#180F20)">🧒</div>
+        <div class="pcard-body">
+          <div class="pcard-cat">子供向け</div>
+          <div class="pcard-name">キッズ乳酸菌グミ</div>
+          <div class="pcard-desc">いちご味グミタイプ。3歳から飲める安心設計。着色料・保存料不使用。おやつ感覚で続けられます。</div>
+          <div class="pcard-footer">
+            <div class="pcard-price">¥2,480 <small>/ 30日分</small></div>
+            <button class="pcard-btn ghost">予約する</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-sec" id="stats">
+  <div class="wrap">
+    <div class="eyebrow">実績</div>
+    <h2 class="big-h">数字が語る、<em>信頼。</em></h2>
+    <div class="stats-grid">
+      <div class="st"><div class="st-n">50万+</div><div class="st-l">累計ダウンロード</div><div class="st-sub">2024年7月時点</div></div>
+      <div class="st"><div class="st-n">4.9</div><div class="st-l">App Store 評価</div><div class="st-sub">12,000件以上のレビュー</div></div>
+      <div class="st"><div class="st-n">92%</div><div class="st-l">3ヶ月継続率</div><div class="st-sub">業界平均の2.3倍</div></div>
+      <div class="st"><div class="st-n">30日</div><div class="st-l">全額返金保証</div><div class="st-sub">理由不要・即対応</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- REVIEWS -->
+<section class="reviews-sec" id="reviews">
+  <div class="wrap">
+    <div class="eyebrow">ユーザーの声</div>
+    <h2 class="big-h">毎日使われている<br><em>理由があります。</em></h2>
+    <div class="reviews-grid">
+      <div class="rv">
+        <div class="rv-stars">★★★★★</div>
+        <div class="rv-text">「アプリのリマインダーのおかげで飲み忘れがゼロになりました。腸内スコアが3ヶ月で62→89に上がって、お腹の調子が明らかに変わっています。もう手放せません。」</div>
+        <div class="rv-author">
+          <div class="rv-av" style="background:var(--lime-dim);color:var(--lime)">田</div>
+          <div><div class="rv-name">田中 さゆり</div><div class="rv-meta">30代 · 6ヶ月利用</div></div>
+        </div>
+      </div>
+      <div class="rv">
+        <div class="rv-stars">★★★★★</div>
+        <div class="rv-text">「定期予約の変更がアプリで完結するのが最高。以前は電話が面倒で解約してしまいましたが、これは続けられます。UIのデザインもすごくおしゃれです。」</div>
+        <div class="rv-author">
+          <div class="rv-av" style="background:var(--teal-dim);color:var(--teal)">佐</div>
+          <div><div class="rv-name">佐々木 ひろみ</div><div class="rv-meta">40代 · 1年以上利用</div></div>
+        </div>
+      </div>
+      <div class="rv">
+        <div class="rv-stars">★★★★★</div>
+        <div class="rv-text">「子供と一緒にグミタイプを続けています。アプリで家族全員分の摂取を一括管理できるのがとても便利。ポイントも貯まって嬉しいです。」</div>
+        <div class="rv-author">
+          <div class="rv-av" style="background:var(--coral-dim);color:var(--coral)">山</div>
+          <div><div class="rv-name">山本 けいこ</div><div class="rv-meta">30代 · 8ヶ月利用</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- DOWNLOAD -->
+<section class="dl-sec">
+  <div class="wrap">
+    <div class="dl-grid">
       <div>
         <div class="eyebrow">ダウンロード</div>
-        <h2 class="section-h" style="max-width:420px">今すぐ、腸活を<br>アップグレード。</h2>
-        <p class="section-p">iOS・Android 両対応。無料でダウンロードして、まず30日間お試しください。</p>
-        <div class="store-btns">
-          <div class="store-btn">
-            <div class="store-icon">🍎</div>
-            <div>
-              <div class="store-sub">Download on the</div>
-              <div class="store-name">App Store</div>
-            </div>
+        <h2 class="big-h">今すぐ、腸活を<br><em>アップグレード。</em></h2>
+        <p class="body-p" style="max-width:400px">iOS・Android 両対応。完全無料でダウンロードして、まず30日間お試しください。気に入らなければ全額返金します。</p>
+        <div class="dl-stores">
+          <div class="dl-store">
+            <div class="dl-store-icon">🍎</div>
+            <div><div class="dl-store-sub">Download on the</div><div class="dl-store-name">App Store</div></div>
           </div>
-          <div class="store-btn">
-            <div class="store-icon">▶</div>
-            <div>
-              <div class="store-sub">GET IT ON</div>
-              <div class="store-name">Google Play</div>
-            </div>
+          <div class="dl-store">
+            <div class="dl-store-icon">▶</div>
+            <div><div class="dl-store-sub">GET IT ON</div><div class="dl-store-name">Google Play</div></div>
           </div>
         </div>
       </div>
-      <div class="download-phones">
-        <div class="phone-card">
-          <div class="phone-mini-header">📦 今月の注文</div>
-          <div class="phone-mini-item">
-            <div class="phone-mini-dot" style="background:#C8F55A"></div>
-            <div class="phone-mini-text">プレミアム</div>
-            <div class="phone-mini-badge">配送済</div>
-          </div>
-          <div class="phone-mini-item">
-            <div class="phone-mini-dot" style="background:#2DD4A0"></div>
-            <div class="phone-mini-text">ビューティー</div>
-            <div class="phone-mini-badge">6/25</div>
-          </div>
+      <div class="dl-phones">
+        <div class="dl-phone">
+          <div class="dl-ph-head">📦 今月の注文</div>
+          <div class="dl-ph-row"><div class="dl-ph-dot" style="background:var(--lime)"></div><div class="dl-ph-txt">プレミアム</div><div class="dl-ph-tag" style="background:var(--lime-dim);color:var(--lime)">配送済</div></div>
+          <div class="dl-ph-row"><div class="dl-ph-dot" style="background:var(--teal)"></div><div class="dl-ph-txt">ビューティー</div><div class="dl-ph-tag" style="background:var(--teal-dim);color:var(--teal)">6/25</div></div>
+          <div class="dl-ph-row"><div class="dl-ph-dot" style="background:var(--coral)"></div><div class="dl-ph-txt">キッズ</div><div class="dl-ph-tag" style="background:var(--coral-dim);color:var(--coral)">7/1</div></div>
         </div>
-        <div class="phone-card">
-          <div class="phone-mini-header">📊 腸内スコア</div>
-          <div class="phone-mini-item">
-            <div class="phone-mini-dot" style="background:#C8F55A"></div>
-            <div class="phone-mini-text">今週</div>
-            <div class="phone-mini-badge">87点</div>
-          </div>
-          <div class="phone-mini-item">
-            <div class="phone-mini-dot" style="background:#888780"></div>
-            <div class="phone-mini-text">先週</div>
-            <div class="phone-mini-badge">79点</div>
-          </div>
+        <div class="dl-phone">
+          <div class="dl-ph-head">📊 腸内スコア推移</div>
+          <div class="dl-ph-row"><div class="dl-ph-dot" style="background:var(--text3)"></div><div class="dl-ph-txt">4月</div><div class="dl-ph-tag" style="color:var(--text3)">62点</div></div>
+          <div class="dl-ph-row"><div class="dl-ph-dot" style="background:var(--teal)"></div><div class="dl-ph-txt">5月</div><div class="dl-ph-tag" style="background:var(--teal-dim);color:var(--teal)">74点</div></div>
+          <div class="dl-ph-row"><div class="dl-ph-dot" style="background:var(--lime)"></div><div class="dl-ph-txt">6月</div><div class="dl-ph-tag" style="background:var(--lime-dim);color:var(--lime)">87点 ↑</div></div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="cta-box">
-      <h2>腸から変わる、<br><em>毎日が変わる。</em></h2>
-      <p>30日間の全額返金保証付き。まず試して、実感してください。</p>
-      <div class="cta-row">
-        <button class="btn-lime">無料でダウンロード ↗</button>
-        <a href="subscription.html"><button class="btn-ghost">定期購入プランを見る</button></a>
-      </div>
-    </div>
-  </section>
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="cta-orb"></div>
+  <h2 class="cta-h">腸から変わる、<br><em>毎日が変わる。</em></h2>
+  <p class="cta-p">30日間の全額返金保証付き。まず試して、実感してください。</p>
+  <div class="cta-row">
+    <button class="btn-lime" style="font-size:16px;padding:16px 36px">無料でダウンロード ↗</button>
+    <a href="subscription.html"><button class="btn-ghost" style="font-size:16px;padding:16px 36px">定期購入プランを見る</button></a>
+  </div>
+  <div class="cta-note">クレジットカード不要 · いつでも解約 · 30日間返金保証</div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <div style="font-size:16px;font-weight:500;display:flex;align-items:center;gap:8px;"><div class="logo-dot"></div> LactoReserve</div>
-        <p>腸活を、予約する時代へ。<br>乳酸菌サプリの定期配送・摂取管理・腸内記録をひとつのアプリで。</p>
-      </div>
-      <div class="footer-col">
-        <h4>アプリ</h4>
-        <a href="#">機能一覧</a>
-        <a href="#">アップデート情報</a>
-        <a href="#">使い方ガイド</a>
-      </div>
-      <div class="footer-col">
-        <h4>商品</h4>
-        <a href="#">プレミアム乳酸菌</a>
-        <a href="#">ビューティー乳酸菌</a>
-        <a href="subscription.html">定期購入プラン</a>
-        <a href="ingredients.html">成分・効果</a>
-      </div>
-      <div class="footer-col">
-        <h4>会社</h4>
-        <a href="about.html">会社概要</a>
-        <a href="contact.html">お問い合わせ</a>
-        <a href="#">特定商取引法</a>
-        <a href="#">プライバシーポリシー</a>
-      </div>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="f-brand">
+      <div class="f-brand-logo"><div class="logo-pulse"></div> LactoReserve</div>
+      <p class="f-brand-p">腸活を、予約する時代へ。乳酸菌サプリの定期配送・摂取管理・腸内スコア記録をひとつのアプリで。</p>
     </div>
-    <div class="footer-bottom">
-      <p>© 2026 ラクトケア株式会社</p>
-      <p style="font-size:12px;color:var(--text3)">Made with 🌿 in Osaka, Japan</p>
+    <div class="f-col">
+      <h5>アプリ</h5>
+      <a href="#">機能一覧</a>
+      <a href="#">アップデート</a>
+      <a href="#">使い方ガイド</a>
     </div>
-  </footer>
+    <div class="f-col">
+      <h5>商品</h5>
+      <a href="#">プレミアム乳酸菌</a>
+      <a href="#">ビューティー</a>
+      <a href="subscription.html">定期購入</a>
+      <a href="ingredients.html">成分・効果</a>
+    </div>
+    <div class="f-col">
+      <h5>会社</h5>
+      <a href="about.html">会社概要</a>
+      <a href="contact.html">お問い合わせ</a>
+      <a href="#">特定商取引法</a>
+      <a href="#">プライバシー</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="f-copy">© 2026 ラクトケア株式会社</div>
+    <div class="f-copy">Made with 🌿 in Osaka, Japan</div>
+  </div>
+</footer>
 
 </body>
 </html>
