@@ -3,631 +3,683 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ラクトケア | 乳酸菌サプリメント通販</title>
-  <meta name="description" content="100種以上の乳酸菌を独自配合。GMP認定工場製造の腸活サプリメントをお届けします。30日間返金保証付き。">
+  <title>LactoReserve — 乳酸菌サプリ定期予約アプリ</title>
+  <meta name="description" content="LactoReserve は、あなたの腸活スケジュールを管理する次世代の乳酸菌予約アプリ。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
     :root {
-      --teal-50: #E1F5EE;
-      --teal-100: #9FE1CB;
-      --teal-500: #1D9E75;
-      --teal-700: #0F6E56;
-      --teal-900: #085041;
-      --amber-100: #FAC775;
-      --amber-900: #633806;
-      --gray-50: #F9F9F8;
-      --gray-100: #F1EFE8;
-      --gray-300: #D3D1C7;
-      --gray-500: #888780;
-      --gray-800: #444441;
-      --gray-900: #2C2C2A;
-      --radius-md: 8px;
-      --radius-lg: 12px;
+      --bg: #0A0A0A;
+      --bg2: #111111;
+      --bg3: #1A1A1A;
+      --bg4: #222222;
+      --border: rgba(255,255,255,0.08);
+      --border2: rgba(255,255,255,0.14);
+      --text: #F5F5F0;
+      --text2: rgba(245,245,240,0.55);
+      --text3: rgba(245,245,240,0.3);
+      --accent: #C8F55A;
+      --accent2: #A8D93E;
+      --accent-dim: rgba(200,245,90,0.12);
+      --accent-dim2: rgba(200,245,90,0.06);
+      --teal: #2DD4A0;
+      --teal-dim: rgba(45,212,160,0.12);
+      --r: 14px;
+      --r2: 20px;
+      --r3: 28px;
     }
-
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: 'Noto Sans JP', sans-serif;
-      background: #fff;
-      color: var(--gray-900);
+      font-family: 'DM Sans', 'Noto Sans JP', sans-serif;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
     }
-
     a { color: inherit; text-decoration: none; }
-    button { font-family: inherit; cursor: pointer; }
-
-    /* ===== LAYOUT ===== */
-    .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+    img { display: block; max-width: 100%; }
 
     /* ===== NAV ===== */
-    header {
-      position: sticky;
-      top: 0;
-      background: #fff;
-      border-bottom: 0.5px solid var(--gray-300);
-      z-index: 100;
-    }
     nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 1.5rem;
-      max-width: 960px;
-      margin: 0 auto;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 3rem;
+      background: rgba(10,10,10,0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 0.5px solid var(--border);
     }
-    .logo {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--teal-700);
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .nav-logo { font-size: 17px; font-weight: 500; letter-spacing: -0.02em; display: flex; align-items: center; gap: 10px; }
+    .logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a { font-size: 14px; color: var(--text2); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--accent); color: #0A0A0A;
+      padding: 9px 22px; border-radius: 999px;
+      font-size: 14px; font-weight: 500; cursor: pointer; border: none;
+      font-family: inherit; transition: opacity 0.15s;
     }
-    .logo-icon {
-      width: 28px;
-      height: 28px;
-      background: var(--teal-500);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 14px;
-    }
-    .nav-links { display: flex; gap: 24px; }
-    .nav-links a {
-      font-size: 14px;
-      color: var(--gray-800);
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--teal-500); }
-    .cart-btn {
-      background: #fff;
-      border: 0.5px solid var(--gray-300);
-      border-radius: var(--radius-md);
-      padding: 8px 16px;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: background 0.15s;
-    }
-    .cart-btn:hover { background: var(--gray-50); }
-    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 4px; }
-    .hamburger span { display: block; width: 22px; height: 2px; background: var(--gray-800); border-radius: 2px; }
+    .nav-cta:hover { opacity: 0.88; }
 
     /* ===== HERO ===== */
     .hero {
-      background: var(--teal-50);
-      padding: 5rem 1.5rem 4rem;
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 8rem 2rem 6rem;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    .badge {
-      display: inline-block;
-      background: var(--teal-500);
-      color: #fff;
-      font-size: 12px;
-      font-weight: 500;
-      padding: 4px 16px;
-      border-radius: 999px;
-      margin-bottom: 1.25rem;
+    .hero-glow {
+      position: absolute; top: 20%; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(ellipse at center, rgba(200,245,90,0.08) 0%, transparent 70%);
+      pointer-events: none;
     }
-    .hero h1 {
-      font-size: clamp(26px, 5vw, 40px);
-      font-weight: 700;
-      line-height: 1.4;
-      color: var(--gray-900);
-      margin-bottom: 1rem;
-    }
-    .hero h1 em { font-style: normal; color: var(--teal-500); }
-    .hero p {
-      font-size: 15px;
-      color: var(--gray-800);
-      max-width: 480px;
-      margin: 0 auto 2rem;
-    }
-    .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
-    .btn-primary {
-      background: var(--teal-500);
-      color: #fff;
-      border: none;
-      padding: 14px 32px;
-      border-radius: var(--radius-md);
-      font-size: 15px;
-      font-weight: 500;
-      transition: background 0.15s, transform 0.1s;
-    }
-    .btn-primary:hover { background: var(--teal-700); }
-    .btn-primary:active { transform: scale(0.98); }
-    .btn-secondary {
-      background: #fff;
-      color: var(--gray-900);
-      border: 0.5px solid var(--gray-300);
-      padding: 14px 32px;
-      border-radius: var(--radius-md);
-      font-size: 15px;
-      transition: background 0.15s;
-    }
-    .btn-secondary:hover { background: var(--gray-50); }
-
-    .stats {
-      display: inline-grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      background: #fff;
-      border: 0.5px solid var(--gray-300);
-      border-radius: var(--radius-lg);
-      padding: 1.25rem 2rem;
-    }
-    .stat { text-align: center; }
-    .stat + .stat { border-left: 0.5px solid var(--gray-300); padding-left: 1.5rem; }
-    .stat-num { font-size: 24px; font-weight: 700; color: var(--teal-500); }
-    .stat-label { font-size: 11px; color: var(--gray-500); margin-top: 2px; }
-
-    /* ===== SECTIONS ===== */
-    section { padding: 4rem 1.5rem; }
-    .section-header { text-align: center; margin-bottom: 2.5rem; }
-    .section-label {
-      font-size: 12px;
-      color: var(--teal-500);
-      font-weight: 500;
-      letter-spacing: 0.1em;
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent-dim); border: 0.5px solid rgba(200,245,90,0.25);
+      color: var(--accent); font-size: 12px; font-weight: 500; letter-spacing: 0.06em;
+      padding: 6px 16px; border-radius: 999px; margin-bottom: 2.5rem;
       text-transform: uppercase;
-      margin-bottom: 8px;
     }
-    .section-title { font-size: 22px; font-weight: 700; color: var(--gray-900); }
+    .hero-tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 88px);
+      font-weight: 300;
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+      margin-bottom: 1.5rem;
+      max-width: 900px;
+    }
+    .hero h1 em { font-style: italic; color: var(--accent); font-weight: 300; }
+    .hero-sub {
+      font-size: clamp(15px, 2vw, 18px);
+      color: var(--text2);
+      max-width: 520px;
+      margin: 0 auto 3rem;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+    .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 5rem; }
+    .btn-lime {
+      background: var(--accent); color: #0A0A0A;
+      padding: 14px 32px; border-radius: 999px;
+      font-size: 15px; font-weight: 500; cursor: pointer; border: none;
+      font-family: inherit; transition: opacity 0.15s, transform 0.1s;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .btn-lime:hover { opacity: 0.88; }
+    .btn-lime:active { transform: scale(0.97); }
+    .btn-ghost {
+      background: transparent; color: var(--text);
+      padding: 14px 32px; border-radius: 999px;
+      font-size: 15px; font-weight: 400; cursor: pointer;
+      border: 0.5px solid var(--border2);
+      font-family: inherit; transition: background 0.15s;
+    }
+    .btn-ghost:hover { background: var(--bg3); }
 
-    /* ===== FEATURES ===== */
-    .features-section { background: #fff; }
-    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; max-width: 960px; margin: 0 auto; }
-    .feature-card {
-      background: var(--gray-50);
-      border: 0.5px solid var(--gray-300);
-      border-radius: var(--radius-lg);
-      padding: 1.5rem;
+    /* App mockup */
+    .app-mockup {
+      width: min(380px, 90vw);
+      background: var(--bg3);
+      border: 0.5px solid var(--border2);
+      border-radius: 36px;
+      padding: 28px 22px 22px;
+      position: relative;
     }
-    .feat-icon {
-      width: 44px;
-      height: 44px;
-      background: var(--teal-50);
-      border-radius: var(--radius-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      margin-bottom: 1rem;
-    }
-    .feat-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
-    .feat-desc { font-size: 13px; color: var(--gray-800); line-height: 1.6; }
+    .mockup-notch { width: 100px; height: 10px; background: var(--bg); border-radius: 999px; margin: 0 auto 24px; }
+    .mockup-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .mockup-title { font-size: 22px; font-weight: 500; letter-spacing: -0.02em; }
+    .mockup-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--accent-dim); border: 0.5px solid rgba(200,245,90,0.3); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .mockup-streak { background: var(--accent-dim); border: 0.5px solid rgba(200,245,90,0.2); border-radius: var(--r); padding: 14px 16px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; }
+    .streak-label { font-size: 12px; color: var(--text2); margin-bottom: 4px; }
+    .streak-num { font-size: 28px; font-weight: 500; color: var(--accent); letter-spacing: -0.02em; }
+    .streak-unit { font-size: 12px; color: var(--text2); }
+    .streak-chart { display: flex; gap: 5px; align-items: flex-end; height: 40px; }
+    .bar { width: 8px; border-radius: 4px; background: var(--bg4); }
+    .bar.active { background: var(--accent); }
+    .mockup-next { background: var(--bg4); border-radius: var(--r); padding: 14px 16px; margin-bottom: 14px; }
+    .next-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+    .next-row { display: flex; align-items: center; justify-content: space-between; }
+    .next-product { display: flex; align-items: center; gap: 10px; }
+    .next-icon { width: 36px; height: 36px; border-radius: 10px; background: var(--teal-dim); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .next-name { font-size: 14px; font-weight: 500; }
+    .next-date { font-size: 12px; color: var(--text2); margin-top: 1px; }
+    .next-badge { background: var(--teal-dim); color: var(--teal); font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 999px; }
+    .mockup-pills { display: flex; gap: 8px; }
+    .pill { flex: 1; background: var(--bg4); border-radius: var(--r); padding: 12px; text-align: center; }
+    .pill-icon { font-size: 20px; margin-bottom: 4px; }
+    .pill-val { font-size: 16px; font-weight: 500; }
+    .pill-label { font-size: 10px; color: var(--text3); }
 
-    /* ===== PRODUCTS ===== */
-    .products-section { background: var(--gray-100); }
-    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; max-width: 960px; margin: 0 auto; }
-    .product-card {
-      background: #fff;
-      border: 0.5px solid var(--gray-300);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      transition: transform 0.15s;
-    }
-    .product-card:hover { transform: translateY(-2px); }
-    .product-card.popular { border: 2px solid var(--teal-100); }
-    .product-img { height: 160px; display: flex; align-items: center; justify-content: center; font-size: 64px; }
-    .product-body { padding: 1rem 1.25rem 1.25rem; }
-    .popular-badge {
-      display: inline-block;
-      background: var(--amber-100);
-      color: var(--amber-900);
-      font-size: 11px;
-      font-weight: 500;
-      padding: 2px 10px;
-      border-radius: 999px;
-      margin-bottom: 6px;
-    }
-    .product-tag {
-      display: inline-block;
-      background: var(--teal-50);
-      color: var(--teal-700);
-      font-size: 11px;
-      padding: 2px 10px;
-      border-radius: 999px;
-      margin-bottom: 8px;
-    }
-    .product-name { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
-    .product-desc { font-size: 13px; color: var(--gray-800); margin-bottom: 12px; line-height: 1.5; }
-    .product-price { font-size: 20px; font-weight: 700; color: var(--gray-900); margin-bottom: 12px; }
-    .product-price span { font-size: 13px; color: var(--gray-500); font-weight: 400; }
-    .add-btn {
-      width: 100%;
-      padding: 10px;
-      background: var(--teal-500);
-      color: #fff;
-      border: none;
-      border-radius: var(--radius-md);
-      font-size: 14px;
-      font-weight: 500;
-      transition: background 0.15s;
-    }
-    .add-btn:hover { background: var(--teal-700); }
+    /* ===== SECTION BASE ===== */
+    .section { padding: 7rem 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .eyebrow { font-size: 11px; color: var(--accent); font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; }
+    .section-h { font-size: clamp(28px, 4vw, 48px); font-weight: 300; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 1.5rem; }
+    .section-p { font-size: 16px; color: var(--text2); font-weight: 300; line-height: 1.8; max-width: 500px; }
+    .divider { border: none; border-top: 0.5px solid var(--border); }
 
-    /* ===== STEPS ===== */
-    .steps-section { background: #fff; }
-    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0; max-width: 720px; margin: 0 auto; position: relative; }
-    .step { text-align: center; padding: 1rem; }
-    .step-num {
-      width: 40px;
-      height: 40px;
-      background: var(--teal-500);
-      color: #fff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      font-weight: 700;
-      margin: 0 auto 12px;
-    }
-    .step-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
-    .step-desc { font-size: 13px; color: var(--gray-800); line-height: 1.5; }
+    /* ===== APP FEATURES ===== */
+    .features-section { background: var(--bg); }
+    .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 5rem; }
+    .feat { background: var(--bg2); padding: 2.5rem; position: relative; overflow: hidden; }
+    .feat:first-child { border-radius: var(--r3) 0 0 0; }
+    .feat:nth-child(2) { border-radius: 0 var(--r3) 0 0; }
+    .feat:nth-child(3) { border-radius: 0 0 0 var(--r3); }
+    .feat:last-child { border-radius: 0 0 var(--r3) 0; }
+    .feat-num { font-size: 11px; color: var(--text3); font-weight: 500; letter-spacing: 0.08em; margin-bottom: 2rem; }
+    .feat-icon { font-size: 32px; margin-bottom: 1.25rem; }
+    .feat-title { font-size: 20px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 10px; }
+    .feat-desc { font-size: 14px; color: var(--text2); line-height: 1.75; font-weight: 300; }
+    .feat-accent { position: absolute; top: 0; right: 0; width: 120px; height: 120px; background: radial-gradient(ellipse at top right, rgba(200,245,90,0.06), transparent 70%); pointer-events: none; }
 
-    /* ===== REVIEWS ===== */
-    .reviews-section { background: var(--teal-50); }
-    .reviews { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; max-width: 960px; margin: 0 auto; }
-    .review-card {
-      background: #fff;
-      border: 0.5px solid var(--teal-100);
-      border-radius: var(--radius-lg);
-      padding: 1.25rem;
-    }
-    .stars { color: #EF9F27; font-size: 14px; margin-bottom: 8px; }
-    .review-text { font-size: 14px; color: var(--gray-900); line-height: 1.7; margin-bottom: 12px; }
-    .reviewer { display: flex; align-items: center; gap: 10px; }
-    .avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: var(--teal-50);
-      border: 1px solid var(--teal-100);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--teal-700);
-    }
-    .reviewer-name { font-size: 13px; color: var(--gray-500); }
+    /* ===== HOW IT WORKS ===== */
+    .how-section { background: var(--bg2); }
+    .steps-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 4rem; }
+    .step-box { background: var(--bg3); padding: 2rem 1.5rem; position: relative; }
+    .step-box:first-child { border-radius: var(--r2) 0 0 var(--r2); }
+    .step-box:last-child { border-radius: 0 var(--r2) var(--r2) 0; }
+    .step-line { position: absolute; top: 2rem; right: 0; width: 2px; height: 28px; background: var(--border); }
+    .step-box:last-child .step-line { display: none; }
+    .step-n { font-size: 48px; font-weight: 300; color: var(--border2); letter-spacing: -0.04em; line-height: 1; margin-bottom: 1.25rem; }
+    .step-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+    .step-desc { font-size: 13px; color: var(--text2); line-height: 1.7; font-weight: 300; }
 
-    /* ===== FAQ ===== */
-    .faq-section { background: #fff; }
-    .faq { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; }
-    .faq-item {
-      border: 0.5px solid var(--gray-300);
-      border-radius: var(--radius-md);
-      overflow: hidden;
+    /* ===== PRODUCT CARDS ===== */
+    .products-section { background: var(--bg); }
+    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 4rem; }
+    .product { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--r2); overflow: hidden; transition: border-color 0.2s; }
+    .product:hover { border-color: var(--border2); }
+    .product.featured { border-color: rgba(200,245,90,0.25); }
+    .product-img { height: 180px; display: flex; align-items: center; justify-content: center; font-size: 72px; }
+    .product-body { padding: 1.25rem 1.5rem 1.5rem; }
+    .product-tag { font-size: 11px; color: var(--accent); background: var(--accent-dim); padding: 3px 10px; border-radius: 999px; display: inline-block; margin-bottom: 10px; font-weight: 500; }
+    .product-tag.teal { color: var(--teal); background: var(--teal-dim); }
+    .product-name { font-size: 17px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 6px; }
+    .product-desc { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 16px; font-weight: 300; }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; }
+    .product-price { font-size: 22px; font-weight: 500; letter-spacing: -0.02em; }
+    .product-price small { font-size: 12px; color: var(--text3); font-weight: 300; }
+    .product-btn {
+      background: var(--accent); color: #0A0A0A;
+      padding: 8px 18px; border-radius: 999px;
+      font-size: 13px; font-weight: 500; cursor: pointer; border: none;
+      font-family: inherit; transition: opacity 0.15s;
     }
-    .faq-q {
-      padding: 16px 20px;
-      font-size: 15px;
-      font-weight: 500;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #fff;
-      border: none;
-      width: 100%;
-      text-align: left;
-      color: var(--gray-900);
-    }
-    .faq-q:hover { background: var(--gray-50); }
-    .faq-icon { font-size: 18px; color: var(--gray-500); transition: transform 0.2s; }
-    .faq-item.open .faq-icon { transform: rotate(45deg); }
-    .faq-a {
-      display: none;
-      padding: 0 20px 16px;
-      font-size: 14px;
-      color: var(--gray-800);
-      line-height: 1.7;
-      border-top: 0.5px solid var(--gray-300);
-    }
-    .faq-item.open .faq-a { display: block; }
+    .product-btn:hover { opacity: 0.85; }
 
-    /* ===== CTA BANNER ===== */
-    .cta-section { background: var(--teal-700); color: #fff; text-align: center; padding: 4rem 1.5rem; }
-    .cta-section h2 { font-size: 24px; font-weight: 700; margin-bottom: 10px; }
-    .cta-section p { font-size: 15px; opacity: 0.85; margin-bottom: 2rem; }
-    .btn-white {
-      background: #fff;
-      color: var(--teal-700);
-      border: none;
-      padding: 14px 36px;
-      border-radius: var(--radius-md);
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: opacity 0.15s;
+    /* ===== STATS ===== */
+    .stats-section { background: var(--bg2); }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 4rem; }
+    .stat-box { background: var(--bg3); padding: 2.5rem 2rem; }
+    .stat-box:first-child { border-radius: var(--r2) 0 0 var(--r2); }
+    .stat-box:last-child { border-radius: 0 var(--r2) var(--r2) 0; }
+    .stat-num { font-size: clamp(36px, 5vw, 56px); font-weight: 300; letter-spacing: -0.04em; color: var(--accent); line-height: 1; margin-bottom: 8px; }
+    .stat-label { font-size: 13px; color: var(--text2); font-weight: 300; }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials-section { background: var(--bg); }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 4rem; }
+    .review { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--r2); padding: 1.75rem; }
+    .review-stars { color: var(--accent); font-size: 13px; margin-bottom: 14px; letter-spacing: 2px; }
+    .review-text { font-size: 14px; color: var(--text2); line-height: 1.8; font-weight: 300; margin-bottom: 1.25rem; font-style: italic; }
+    .review-author { display: flex; align-items: center; gap: 10px; }
+    .review-av { width: 32px; height: 32px; border-radius: 50%; background: var(--bg4); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500; color: var(--text2); border: 0.5px solid var(--border2); }
+    .review-name { font-size: 13px; font-weight: 500; }
+    .review-meta { font-size: 12px; color: var(--text3); }
+
+    /* ===== APP DOWNLOAD ===== */
+    .download-section { background: var(--bg2); }
+    .download-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; padding: 7rem 2rem; }
+    .download-phones { display: flex; gap: 16px; justify-content: center; }
+    .phone-card {
+      background: var(--bg3); border: 0.5px solid var(--border2);
+      border-radius: 28px; padding: 20px 16px; width: 160px;
     }
-    .btn-white:hover { opacity: 0.9; }
+    .phone-card:first-child { transform: rotate(-4deg); margin-top: 24px; }
+    .phone-card:last-child { transform: rotate(3deg); }
+    .phone-mini-header { font-size: 13px; font-weight: 500; margin-bottom: 12px; }
+    .phone-mini-item { background: var(--bg4); border-radius: 8px; padding: 8px 10px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .phone-mini-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .phone-mini-text { font-size: 11px; color: var(--text2); }
+    .phone-mini-badge { background: var(--accent-dim); color: var(--accent); font-size: 10px; padding: 2px 6px; border-radius: 999px; margin-left: auto; white-space: nowrap; }
+    .store-btns { display: flex; flex-direction: column; gap: 12px; margin-top: 2.5rem; }
+    .store-btn {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--bg3); border: 0.5px solid var(--border2);
+      border-radius: var(--r); padding: 14px 20px; cursor: pointer;
+      transition: border-color 0.15s; max-width: 240px;
+    }
+    .store-btn:hover { border-color: var(--border2); background: var(--bg4); }
+    .store-icon { font-size: 26px; }
+    .store-sub { font-size: 11px; color: var(--text3); }
+    .store-name { font-size: 15px; font-weight: 500; margin-top: 1px; }
+
+    /* ===== CTA ===== */
+    .cta-section { background: var(--bg); padding: 7rem 2rem; text-align: center; }
+    .cta-box { max-width: 680px; margin: 0 auto; }
+    .cta-box h2 { font-size: clamp(32px, 5vw, 60px); font-weight: 300; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 1.25rem; }
+    .cta-box h2 em { font-style: italic; color: var(--accent); }
+    .cta-box p { font-size: 16px; color: var(--text2); font-weight: 300; margin-bottom: 2.5rem; }
+    .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
     /* ===== FOOTER ===== */
-    footer {
-      background: var(--gray-900);
-      color: #fff;
-      padding: 2rem 1.5rem;
-    }
-    .footer-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .footer-logo { font-size: 16px; font-weight: 700; color: var(--teal-100); }
-    .footer-links { display: flex; gap: 20px; }
-    .footer-links a { font-size: 13px; color: var(--gray-300); transition: color 0.15s; }
-    .footer-links a:hover { color: #fff; }
-    .copyright { font-size: 12px; color: var(--gray-500); margin-top: 4px; }
+    footer { background: var(--bg2); border-top: 0.5px solid var(--border); padding: 3rem 2rem; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+    .footer-brand p { font-size: 13px; color: var(--text3); line-height: 1.8; margin-top: 12px; font-weight: 300; }
+    .footer-col h4 { font-size: 13px; font-weight: 500; margin-bottom: 1rem; color: var(--text2); }
+    .footer-col a { display: block; font-size: 13px; color: var(--text3); margin-bottom: 8px; transition: color 0.15s; font-weight: 300; }
+    .footer-col a:hover { color: var(--text2); }
+    .footer-bottom { max-width: 1100px; margin: 2rem auto 0; padding-top: 2rem; border-top: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .footer-bottom p { font-size: 12px; color: var(--text3); }
 
     /* ===== RESPONSIVE ===== */
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
       .nav-links { display: none; }
-      .hamburger { display: flex; }
-      .stats { grid-template-columns: repeat(3, 1fr); padding: 1rem; }
-      .stat + .stat { padding-left: 1rem; }
-      .stat-num { font-size: 20px; }
+      .hero h1 { font-size: 38px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .feat:first-child, .feat:nth-child(2), .feat:nth-child(3), .feat:last-child { border-radius: 0; }
+      .features-grid { border-radius: var(--r2); overflow: hidden; }
+      .steps-row { grid-template-columns: 1fr 1fr; }
+      .step-box:first-child { border-radius: var(--r2) 0 0 0; }
+      .step-box:nth-child(2) { border-radius: 0 var(--r2) 0 0; }
+      .step-box:nth-child(3) { border-radius: 0 0 0 var(--r2); }
+      .step-box:last-child { border-radius: 0 0 var(--r2) 0; }
+      .products-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stat-box:first-child { border-radius: var(--r2) 0 0 0; }
+      .stat-box:nth-child(2) { border-radius: 0 var(--r2) 0 0; }
+      .stat-box:nth-child(3) { border-radius: 0 0 0 var(--r2); }
+      .stat-box:last-child { border-radius: 0 0 var(--r2) 0; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .download-inner { grid-template-columns: 1fr; padding: 4rem 1.25rem; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <nav>
-      <div class="logo">
-        <div class="logo-icon">🌿</div>
-        ラクトケア
-      </div>
-      <div class="nav-links">
-        <a href="#features">特長</a>
-        <a href="#products">商品</a>
-        <a href="#reviews">お客様の声</a>
-        <a href="#faq">FAQ</a>
-      </div>
-      <button class="cart-btn" aria-label="カートを見る">
-        🛒 カート (0)
-      </button>
-      <button class="hamburger" aria-label="メニューを開く">
-        <span></span><span></span><span></span>
-      </button>
-    </nav>
-  </header>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo"><div class="logo-dot"></div> LactoReserve</div>
+    <div class="nav-links">
+      <a href="#features">機能</a>
+      <a href="#products">商品</a>
+      <a href="#reviews">レビュー</a>
+      <a href="about.html">会社概要</a>
+    </div>
+    <button class="nav-cta">無料で始める</button>
+  </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="badge">累計販売数 50万個突破</div>
-    <h1>腸から変わる、<br><em>毎日が変わる。</em></h1>
-    <p>厳選された100種類以上の乳酸菌を独自配合。国内GMP認定工場製造で安心・安全な腸活サプリメント。</p>
-    <div class="cta-row">
-      <a href="#products"><button class="btn-primary">今すぐ購入する →</button></a>
-      <a href="#features"><button class="btn-secondary">詳しく見る</button></a>
+    <div class="hero-glow"></div>
+    <div class="hero-tag"><div class="hero-tag-dot"></div> App Store 腸活カテゴリ No.1</div>
+    <h1>腸活を、<em>予約する</em><br>時代へ。</h1>
+    <p class="hero-sub">LactoReserve は、乳酸菌サプリの定期配送・飲み忘れ管理・腸内スコアの記録をひとつのアプリで完結させる、次世代の腸活プラットフォームです。</p>
+    <div class="hero-actions">
+      <button class="btn-lime">アプリを無料ダウンロード <span>↗</span></button>
+      <button class="btn-ghost">機能を見る</button>
     </div>
-    <div class="stats">
-      <div class="stat">
-        <div class="stat-num">100<span style="font-size:16px">+</span></div>
-        <div class="stat-label">乳酸菌種類</div>
+
+    <!-- App mockup -->
+    <div class="app-mockup">
+      <div class="mockup-notch"></div>
+      <div class="mockup-header">
+        <div class="mockup-title">腸活ダッシュボード</div>
+        <div class="mockup-avatar">🌿</div>
       </div>
-      <div class="stat">
-        <div class="stat-num">4.8</div>
-        <div class="stat-label">平均評価</div>
+      <div class="mockup-streak">
+        <div>
+          <div class="streak-label">連続摂取</div>
+          <div class="streak-num">28<span class="streak-unit"> 日</span></div>
+        </div>
+        <div class="streak-chart">
+          <div class="bar active" style="height:60%"></div>
+          <div class="bar active" style="height:80%"></div>
+          <div class="bar active" style="height:55%"></div>
+          <div class="bar active" style="height:90%"></div>
+          <div class="bar active" style="height:70%"></div>
+          <div class="bar active" style="height:100%"></div>
+          <div class="bar" style="height:30%"></div>
+        </div>
       </div>
-      <div class="stat">
-        <div class="stat-num">30日</div>
-        <div class="stat-label">返金保証</div>
+      <div class="mockup-next">
+        <div class="next-label">次回お届け</div>
+        <div class="next-row">
+          <div class="next-product">
+            <div class="next-icon">🦠</div>
+            <div>
+              <div class="next-name">プレミアム 30日分</div>
+              <div class="next-date">6月25日（水）到着予定</div>
+            </div>
+          </div>
+          <div class="next-badge">自動</div>
+        </div>
+      </div>
+      <div class="mockup-pills">
+        <div class="pill">
+          <div class="pill-icon">💊</div>
+          <div class="pill-val">2</div>
+          <div class="pill-label">本日の摂取</div>
+        </div>
+        <div class="pill">
+          <div class="pill-icon">📊</div>
+          <div class="pill-val">87</div>
+          <div class="pill-label">腸内スコア</div>
+        </div>
+        <div class="pill">
+          <div class="pill-icon">🎯</div>
+          <div class="pill-val">96%</div>
+          <div class="pill-label">達成率</div>
+        </div>
       </div>
     </div>
   </section>
+
+  <hr class="divider">
 
   <!-- FEATURES -->
-  <section class="features-section" id="features">
-    <div class="section-header">
-      <div class="section-label">なぜラクトケア？</div>
-      <div class="section-title">選ばれる4つの理由</div>
-    </div>
-    <div class="features">
-      <div class="feature-card">
-        <div class="feat-icon">🔬</div>
-        <div class="feat-title">100種以上の乳酸菌</div>
-        <div class="feat-desc">多様な菌種を配合し、腸内フローラのバランスをサポートします。</div>
-      </div>
-      <div class="feature-card">
-        <div class="feat-icon">🏅</div>
-        <div class="feat-title">GMP認定工場製造</div>
-        <div class="feat-desc">国内最高水準の品質管理を行う認定工場で製造。安心の品質。</div>
-      </div>
-      <div class="feature-card">
-        <div class="feat-icon">📦</div>
-        <div class="feat-title">定期便で送料無料</div>
-        <div class="feat-desc">定期購入なら毎月自動お届け。送料無料でさらにお得に。</div>
-      </div>
-      <div class="feature-card">
-        <div class="feat-icon">🛡️</div>
-        <div class="feat-title">30日間返金保証</div>
-        <div class="feat-desc">効果を感じなければ全額返金。はじめての方も安心してお試しください。</div>
+  <section class="section features-section" id="features">
+    <div class="section-inner">
+      <div class="eyebrow">アプリの機能</div>
+      <h2 class="section-h">すべての腸活管理を、<br>ひとつのアプリで。</h2>
+      <p class="section-p">届けるだけじゃない。飲む・記録する・改善するサイクルを、LactoReserve がまるごとサポートします。</p>
+      <div class="features-grid">
+        <div class="feat">
+          <div class="feat-accent"></div>
+          <div class="feat-num">01 —</div>
+          <div class="feat-icon">📅</div>
+          <div class="feat-title">スマート予約管理</div>
+          <div class="feat-desc">次回お届け日・数量・商品をアプリからいつでも変更。飲むペースに合わせてスキップや早期配送も自由自在です。</div>
+        </div>
+        <div class="feat">
+          <div class="feat-num">02 —</div>
+          <div class="feat-icon">🔔</div>
+          <div class="feat-title">飲み忘れリマインダー</div>
+          <div class="feat-desc">毎日の摂取時間をカスタム設定。プッシュ通知が優しくお知らせし、連続摂取の記録をゲーム感覚でキープできます。</div>
+        </div>
+        <div class="feat">
+          <div class="feat-num">03 —</div>
+          <div class="feat-icon">📊</div>
+          <div class="feat-title">腸内スコアの記録</div>
+          <div class="feat-desc">便通・肌の調子・睡眠の質を日々記録。独自アルゴリズムが腸内スコアを可視化し、改善の変化を一目で確認できます。</div>
+        </div>
+        <div class="feat">
+          <div class="feat-num">04 —</div>
+          <div class="feat-icon">🎁</div>
+          <div class="feat-title">ポイント＆ランク制度</div>
+          <div class="feat-desc">購入・連続摂取・レビュー投稿でポイントが貯まります。ランクアップで限定商品や特別割引にアクセスできます。</div>
+        </div>
       </div>
     </div>
   </section>
+
+  <hr class="divider">
+
+  <!-- HOW IT WORKS -->
+  <section class="section how-section">
+    <div class="section-inner">
+      <div class="eyebrow">使い方</div>
+      <h2 class="section-h">4ステップで<br>腸活をスタート。</h2>
+      <div class="steps-row">
+        <div class="step-box">
+          <div class="step-line"></div>
+          <div class="step-n">01</div>
+          <div class="step-title">アプリをダウンロード</div>
+          <div class="step-desc">App Store / Google Play から無料でインストール。アカウント登録は30秒で完了します。</div>
+        </div>
+        <div class="step-box">
+          <div class="step-line"></div>
+          <div class="step-n">02</div>
+          <div class="step-title">商品を選ぶ</div>
+          <div class="step-desc">目的・悩みに合わせてサプリを選択。腸活診断を受けると最適な商品をAIがご提案します。</div>
+        </div>
+        <div class="step-box">
+          <div class="step-line"></div>
+          <div class="step-n">03</div>
+          <div class="step-title">定期予約を設定</div>
+          <div class="step-desc">お届けサイクルを選んで予約完了。最短翌日から配送がスタートします。</div>
+        </div>
+        <div class="step-box">
+          <div class="step-n">04</div>
+          <div class="step-title">毎日記録・改善</div>
+          <div class="step-desc">アプリで摂取を記録するだけ。腸内スコアが上がっていく過程を楽しめます。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
 
   <!-- PRODUCTS -->
-  <section class="products-section" id="products">
-    <div class="section-header">
-      <div class="section-label">ラインナップ</div>
-      <div class="section-title">人気商品</div>
-    </div>
-    <div class="products">
-      <div class="product-card popular">
-        <div class="product-img" style="background: #E1F5EE;">🌿</div>
-        <div class="product-body">
-          <div class="popular-badge">人気 No.1</div><br>
-          <div class="product-tag">スタンダード</div>
-          <div class="product-name">ラクトケア プレミアム</div>
-          <div class="product-desc">100種の乳酸菌 + 食物繊維。毎日の腸活に最適な定番商品。</div>
-          <div class="product-price">¥3,980 <span>/ 30日分</span></div>
-          <button class="add-btn">カートに追加</button>
+  <section class="section products-section" id="products">
+    <div class="section-inner">
+      <div class="eyebrow">ラインナップ</div>
+      <h2 class="section-h">あなたの腸活に<br>ぴったりの一本。</h2>
+      <div class="products-grid">
+        <div class="product featured">
+          <div class="product-img" style="background: #141A10;">🌿</div>
+          <div class="product-body">
+            <span class="product-tag">人気 No.1</span>
+            <div class="product-name">プレミアム乳酸菌</div>
+            <div class="product-desc">100種以上の乳酸菌＋食物繊維を独自配合。毎日の腸活の定番として圧倒的支持を誇るスタンダード商品。</div>
+            <div class="product-footer">
+              <div class="product-price">¥3,980 <small>/ 30日分</small></div>
+              <button class="product-btn">予約する</button>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="product-card">
-        <div class="product-img" style="background: #FAEEDA;">✨</div>
-        <div class="product-body">
-          <div class="product-tag">美容特化</div>
-          <div class="product-name">ビューティー乳酸菌</div>
-          <div class="product-desc">コラーゲン・ビタミンC配合。腸活しながら肌の内側からケア。</div>
-          <div class="product-price">¥4,480 <span>/ 30日分</span></div>
-          <button class="add-btn">カートに追加</button>
+        <div class="product">
+          <div class="product-img" style="background: #1A1610;">✨</div>
+          <div class="product-body">
+            <span class="product-tag teal">美容特化</span>
+            <div class="product-name">ビューティー乳酸菌</div>
+            <div class="product-desc">コラーゲン・ビタミンC・ヒアルロン酸を追加配合。腸の内側から肌まで同時にケアする美容特化型。</div>
+            <div class="product-footer">
+              <div class="product-price">¥4,480 <small>/ 30日分</small></div>
+              <button class="product-btn">予約する</button>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="product-card">
-        <div class="product-img" style="background: #EEEDFE;">🧒</div>
-        <div class="product-body">
-          <div class="product-tag">子供向け</div>
-          <div class="product-name">キッズ乳酸菌グミ</div>
-          <div class="product-desc">いちご味のグミタイプ。子供が喜んで食べる乳酸菌サプリ。</div>
-          <div class="product-price">¥2,480 <span>/ 30日分</span></div>
-          <button class="add-btn">カートに追加</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STEPS -->
-  <section class="steps-section">
-    <div class="section-header">
-      <div class="section-label">購入の流れ</div>
-      <div class="section-title">かんたん3ステップ</div>
-    </div>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-title">商品を選ぶ</div>
-        <div class="step-desc">目的や悩みに合わせてサプリを選択</div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-title">注文・決済</div>
-        <div class="step-desc">クレジットカード・PayPayなど各種決済対応</div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-title">自宅でお届け</div>
-        <div class="step-desc">注文から最短翌日発送。ポスト投函可</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- REVIEWS -->
-  <section class="reviews-section" id="reviews">
-    <div class="section-header">
-      <div class="section-label">お客様の声</div>
-      <div class="section-title">使って実感した方々の声</div>
-    </div>
-    <div class="reviews">
-      <div class="review-card">
-        <div class="stars">★★★★★</div>
-        <div class="review-text">「飲み始めて2週間でお腹の調子が整ってきました。続けやすい価格も嬉しいです。」</div>
-        <div class="reviewer">
-          <div class="avatar">田</div>
-          <div class="reviewer-name">田中さん・30代女性</div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="stars">★★★★★</div>
-        <div class="review-text">「子供に飲ませています。グミタイプなのでおやつ感覚で続けられています！」</div>
-        <div class="reviewer">
-          <div class="avatar">佐</div>
-          <div class="reviewer-name">佐藤さん・40代女性</div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="stars">★★★★☆</div>
-        <div class="review-text">「定期便にしたらコスパも良く、飲み忘れも減りました。肌の調子も上がった気がします。」</div>
-        <div class="reviewer">
-          <div class="avatar">山</div>
-          <div class="reviewer-name">山田さん・20代女性</div>
+        <div class="product">
+          <div class="product-img" style="background: #13101A;">🧒</div>
+          <div class="product-body">
+            <span class="product-tag teal">子供向け</span>
+            <div class="product-name">キッズ乳酸菌グミ</div>
+            <div class="product-desc">いちご味のグミタイプ。3歳から飲める安心設計で、着色料・保存料は不使用。毎日のおやつ感覚で続けられます。</div>
+            <div class="product-footer">
+              <div class="product-price">¥2,480 <small>/ 30日分</small></div>
+              <button class="product-btn">予約する</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section class="faq-section" id="faq">
-    <div class="section-header">
-      <div class="section-label">よくある質問</div>
-      <div class="section-title">FAQ</div>
+  <hr class="divider">
+
+  <!-- STATS -->
+  <section class="section stats-section">
+    <div class="section-inner">
+      <div class="eyebrow">実績</div>
+      <h2 class="section-h">数字が証明する、<br>信頼のプラットフォーム。</h2>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-num">50万+</div>
+          <div class="stat-label">累計ダウンロード数</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">4.9</div>
+          <div class="stat-label">App Store 平均評価</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">92%</div>
+          <div class="stat-label">3ヶ月継続率</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">30日</div>
+          <div class="stat-label">全額返金保証</div>
+        </div>
+      </div>
     </div>
-    <div class="faq">
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          <span>定期購入はいつでも解約できますか？</span>
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">はい、いつでも解約いただけます。次回発送の3日前までにお電話またはメールにてご連絡ください。違約金等は一切かかりません。</div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- TESTIMONIALS -->
+  <section class="section testimonials-section" id="reviews">
+    <div class="section-inner">
+      <div class="eyebrow">ユーザーの声</div>
+      <h2 class="section-h">毎日使われている<br>理由があります。</h2>
+      <div class="reviews-grid">
+        <div class="review">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-text">「アプリのリマインダーのおかげで飲み忘れがゼロになりました。腸内スコアが3ヶ月で62→89に上がって、お腹の調子が明らかに変わっています。」</div>
+          <div class="review-author">
+            <div class="review-av">田</div>
+            <div>
+              <div class="review-name">田中 さゆり</div>
+              <div class="review-meta">30代 · 6ヶ月利用</div>
+            </div>
+          </div>
+        </div>
+        <div class="review">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-text">「定期予約の変更がアプリで完結するのが最高。以前は電話が面倒で解約してしまったけど、これは続けられます。UIもすごくおしゃれ。」</div>
+          <div class="review-author">
+            <div class="review-av">佐</div>
+            <div>
+              <div class="review-name">佐々木 ひろみ</div>
+              <div class="review-meta">40代 · 1年利用</div>
+            </div>
+          </div>
+        </div>
+        <div class="review">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-text">「子供と一緒にグミタイプを続けています。アプリで家族全員分の摂取を一括管理できるのがとても便利です。」</div>
+          <div class="review-author">
+            <div class="review-av">山</div>
+            <div>
+              <div class="review-name">山本 けいこ</div>
+              <div class="review-meta">30代 · 8ヶ月利用</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          <span>妊娠中・授乳中でも飲めますか？</span>
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">妊娠中・授乳中の方は、ご利用前に医師または薬剤師にご相談ください。乳酸菌自体は食品由来のものですが、個人差がありますのでご注意ください。</div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- DOWNLOAD -->
+  <section class="download-section">
+    <div class="download-inner">
+      <div>
+        <div class="eyebrow">ダウンロード</div>
+        <h2 class="section-h" style="max-width:420px">今すぐ、腸活を<br>アップグレード。</h2>
+        <p class="section-p">iOS・Android 両対応。無料でダウンロードして、まず30日間お試しください。</p>
+        <div class="store-btns">
+          <div class="store-btn">
+            <div class="store-icon">🍎</div>
+            <div>
+              <div class="store-sub">Download on the</div>
+              <div class="store-name">App Store</div>
+            </div>
+          </div>
+          <div class="store-btn">
+            <div class="store-icon">▶</div>
+            <div>
+              <div class="store-sub">GET IT ON</div>
+              <div class="store-name">Google Play</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          <span>支払い方法はどうなっていますか？</span>
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">クレジットカード（VISA・Mastercard・JCB・AMEX）、コンビニ払い、PayPay、代金引換に対応しています。定期便はクレジットカードのみとなります。</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          <span>効果が出るまでどれくらいかかりますか？</span>
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">個人差がありますが、腸内環境が整ってくるまでの目安は2〜4週間です。まずは3ヶ月間継続してお飲みいただくことをおすすめします。</div>
+      <div class="download-phones">
+        <div class="phone-card">
+          <div class="phone-mini-header">📦 今月の注文</div>
+          <div class="phone-mini-item">
+            <div class="phone-mini-dot" style="background:#C8F55A"></div>
+            <div class="phone-mini-text">プレミアム</div>
+            <div class="phone-mini-badge">配送済</div>
+          </div>
+          <div class="phone-mini-item">
+            <div class="phone-mini-dot" style="background:#2DD4A0"></div>
+            <div class="phone-mini-text">ビューティー</div>
+            <div class="phone-mini-badge">6/25</div>
+          </div>
+        </div>
+        <div class="phone-card">
+          <div class="phone-mini-header">📊 腸内スコア</div>
+          <div class="phone-mini-item">
+            <div class="phone-mini-dot" style="background:#C8F55A"></div>
+            <div class="phone-mini-text">今週</div>
+            <div class="phone-mini-badge">87点</div>
+          </div>
+          <div class="phone-mini-item">
+            <div class="phone-mini-dot" style="background:#888780"></div>
+            <div class="phone-mini-text">先週</div>
+            <div class="phone-mini-badge">79点</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
   <section class="cta-section">
-    <h2>まずは1ヶ月、試してみませんか？</h2>
-    <p>30日間の返金保証付き。効果を感じなければ全額お返しします。</p>
-    <a href="#products"><button class="btn-white">定期購入で始める（送料無料）</button></a>
+    <div class="cta-box">
+      <h2>腸から変わる、<br><em>毎日が変わる。</em></h2>
+      <p>30日間の全額返金保証付き。まず試して、実感してください。</p>
+      <div class="cta-row">
+        <button class="btn-lime">無料でダウンロード ↗</button>
+        <a href="subscription.html"><button class="btn-ghost">定期購入プランを見る</button></a>
+      </div>
+    </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
-      <div>
-        <div class="footer-logo">🌿 ラクトケア</div>
-        <div class="copyright">© 2026 ラクトケア株式会社</div>
+      <div class="footer-brand">
+        <div style="font-size:16px;font-weight:500;display:flex;align-items:center;gap:8px;"><div class="logo-dot"></div> LactoReserve</div>
+        <p>腸活を、予約する時代へ。<br>乳酸菌サプリの定期配送・摂取管理・腸内記録をひとつのアプリで。</p>
       </div>
-      <div class="footer-links">
+      <div class="footer-col">
+        <h4>アプリ</h4>
+        <a href="#">機能一覧</a>
+        <a href="#">アップデート情報</a>
+        <a href="#">使い方ガイド</a>
+      </div>
+      <div class="footer-col">
+        <h4>商品</h4>
+        <a href="#">プレミアム乳酸菌</a>
+        <a href="#">ビューティー乳酸菌</a>
+        <a href="subscription.html">定期購入プラン</a>
+        <a href="ingredients.html">成分・効果</a>
+      </div>
+      <div class="footer-col">
+        <h4>会社</h4>
+        <a href="about.html">会社概要</a>
+        <a href="contact.html">お問い合わせ</a>
         <a href="#">特定商取引法</a>
         <a href="#">プライバシーポリシー</a>
-        <a href="#">お問い合わせ</a>
       </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 ラクトケア株式会社</p>
+      <p style="font-size:12px;color:var(--text3)">Made with 🌿 in Osaka, Japan</p>
     </div>
   </footer>
 
-  <script>
-    function toggleFaq(btn) {
-      const item = btn.closest('.faq-item');
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
-      if (!isOpen) item.classList.add('open');
-    }
-  </script>
 </body>
 </html>
