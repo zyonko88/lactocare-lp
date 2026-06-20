@@ -10,32 +10,31 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #080808;
-      --bg2: #0F0F0F;
-      --bg3: #161616;
-      --bg4: #1E1E1E;
-      --bg5: #252525;
-      --line: rgba(255,255,255,0.07);
-      --line2: rgba(255,255,255,0.12);
-      --line3: rgba(255,255,255,0.2);
-      --text: #EFEFEB;
-      --text2: rgba(239,239,235,0.5);
-      --text3: rgba(239,239,235,0.25);
-      --lime: #D4F73C;
-      --lime2: #B8D932;
-      --lime-dim: rgba(212,247,60,0.1);
-      --lime-glow: rgba(212,247,60,0.06);
-      --teal: #34D9A5;
-      --teal-dim: rgba(52,217,165,0.1);
-      --coral: #FF6B4A;
-      --coral-dim: rgba(255,107,74,0.1);
+      --bg:   #FBF7F3;
+      --bg2:  #F5EDE6;
+      --bg3:  #EDE0D6;
+      --bg4:  #E4D3C7;
+      --bg5:  #D9C5B6;
+      --line:  rgba(100,60,30,0.07);
+      --line2: rgba(100,60,30,0.12);
+      --line3: rgba(100,60,30,0.22);
+      --text:  #1C1410;
+      --text2: rgba(28,20,16,0.52);
+      --text3: rgba(28,20,16,0.28);
+      --rose:      #C4506A;
+      --rose2:     #A83550;
+      --rose-dim:  rgba(196,80,106,0.1);
+      --rose-glow: rgba(196,80,106,0.06);
+      --sage:      #4E8C68;
+      --sage-dim:  rgba(78,140,104,0.1);
+      --terra:     #C06840;
+      --terra-dim: rgba(192,104,64,0.1);
       --r: 12px; --r2: 18px; --r3: 24px; --r4: 32px;
     }
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    body { font-family: 'DM Sans','Noto Sans JP',sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     a { color: inherit; text-decoration: none; }
-    .serif { font-family: 'DM Serif Display', serif; }
 
     /* NAV */
     nav {
@@ -43,19 +42,19 @@
       z-index: 200; width: min(900px, calc(100% - 32px));
       display: flex; align-items: center; justify-content: space-between;
       padding: 12px 20px;
-      background: rgba(15,15,15,0.75);
-      backdrop-filter: blur(24px) saturate(180%);
+      background: rgba(251,247,243,0.82);
+      backdrop-filter: blur(24px) saturate(160%);
       border: 0.5px solid var(--line2);
       border-radius: 999px;
     }
     .nav-logo { font-size: 15px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
-    .logo-pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); animation: pulse 2s ease-in-out infinite; }
-    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+    .logo-pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--rose); animation: pulse 2.2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.45;transform:scale(0.75)} }
     .nav-center { display: flex; gap: 1.75rem; }
     .nav-center a { font-size: 13px; color: var(--text2); transition: color 0.2s; }
     .nav-center a:hover { color: var(--text); }
-    .nav-btn { background: var(--lime); color: #080808; padding: 8px 20px; border-radius: 999px; font-size: 13px; font-weight: 500; cursor: pointer; border: none; font-family: inherit; transition: opacity 0.15s, transform 0.1s; }
-    .nav-btn:hover { opacity: 0.88; } .nav-btn:active { transform: scale(0.96); }
+    .nav-btn { background: var(--rose); color: #fff; padding: 8px 20px; border-radius: 999px; font-size: 13px; font-weight: 500; cursor: pointer; border: none; font-family: inherit; transition: opacity 0.15s, transform 0.1s; }
+    .nav-btn:hover { opacity: 0.86; } .nav-btn:active { transform: scale(0.96); }
 
     /* HERO */
     .hero { min-height: 100vh; display: grid; place-items: center; padding: 8rem 2rem 4rem; position: relative; overflow: hidden; }
@@ -63,186 +62,178 @@
     .hero-grid {
       position: absolute; inset: 0;
       background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(ellipse 80% 80% at 50% 40%, black 30%, transparent 100%);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 40%, black 20%, transparent 100%);
     }
-    .hero-orb1 { position: absolute; top: 10%; left: 50%; transform: translateX(-50%); width: 800px; height: 500px; background: radial-gradient(ellipse, rgba(212,247,60,0.07) 0%, transparent 65%); }
-    .hero-orb2 { position: absolute; top: 30%; left: 20%; width: 400px; height: 400px; background: radial-gradient(ellipse, rgba(52,217,165,0.05) 0%, transparent 65%); }
-    .hero-orb3 { position: absolute; top: 20%; right: 15%; width: 300px; height: 300px; background: radial-gradient(ellipse, rgba(255,107,74,0.04) 0%, transparent 65%); }
+    .hero-orb1 { position: absolute; top: 8%; left: 50%; transform: translateX(-50%); width: 700px; height: 480px; background: radial-gradient(ellipse, rgba(196,80,106,0.09) 0%, transparent 65%); }
+    .hero-orb2 { position: absolute; top: 35%; left: 15%; width: 360px; height: 360px; background: radial-gradient(ellipse, rgba(78,140,104,0.06) 0%, transparent 65%); }
+    .hero-orb3 { position: absolute; top: 18%; right: 10%; width: 280px; height: 280px; background: radial-gradient(ellipse, rgba(192,104,64,0.05) 0%, transparent 65%); }
     .hero-content { position: relative; text-align: center; max-width: 960px; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(212,247,60,0.08); border: 0.5px solid rgba(212,247,60,0.2); color: var(--lime); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 16px; border-radius: 999px; margin-bottom: 2.5rem; }
-    .hero-badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--lime); animation: pulse 2s ease-in-out infinite; }
-    .hero-h { font-size: clamp(48px, 8vw, 108px); font-weight: 300; letter-spacing: -0.05em; line-height: 0.95; margin-bottom: 2rem; }
-    .hero-h .line2 { display: block; }
-    .hero-h em { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--lime); }
-    .hero-p { font-size: clamp(15px, 1.8vw, 18px); color: var(--text2); max-width: 480px; margin: 0 auto 3rem; font-weight: 300; line-height: 1.9; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--rose-dim); border: 0.5px solid rgba(196,80,106,0.22); color: var(--rose); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 16px; border-radius: 999px; margin-bottom: 2.5rem; }
+    .hero-badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--rose); animation: pulse 2.2s ease-in-out infinite; }
+    .hero-h { font-size: clamp(46px, 8vw, 104px); font-weight: 300; letter-spacing: -0.05em; line-height: 0.95; margin-bottom: 2rem; color: var(--text); }
+    .hero-h em { font-family: 'DM Serif Display',serif; font-style: italic; color: var(--rose); }
+    .hero-p { font-size: clamp(15px, 1.8vw, 17px); color: var(--text2); max-width: 460px; margin: 0 auto 3rem; font-weight: 300; line-height: 1.9; }
     .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem; }
-    .btn-lime { background: var(--lime); color: #080808; padding: 14px 30px; border-radius: 999px; font-size: 15px; font-weight: 500; cursor: pointer; border: none; font-family: inherit; display: flex; align-items: center; gap: 8px; transition: opacity 0.15s, transform 0.1s; }
-    .btn-lime:hover { opacity: 0.88; } .btn-lime:active { transform: scale(0.97); }
+    .btn-rose { background: var(--rose); color: #fff; padding: 14px 30px; border-radius: 999px; font-size: 15px; font-weight: 500; cursor: pointer; border: none; font-family: inherit; display: flex; align-items: center; gap: 8px; transition: opacity 0.15s, transform 0.1s; }
+    .btn-rose:hover { opacity: 0.86; } .btn-rose:active { transform: scale(0.97); }
     .btn-ghost { background: transparent; color: var(--text); padding: 14px 30px; border-radius: 999px; font-size: 15px; font-weight: 300; cursor: pointer; border: 0.5px solid var(--line2); font-family: inherit; transition: background 0.15s, border-color 0.15s; }
-    .btn-ghost:hover { background: var(--bg3); border-color: var(--line3); }
+    .btn-ghost:hover { background: var(--bg2); border-color: var(--line3); }
 
     /* HERO BENTO */
-    .hero-bento { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 10px; max-width: 860px; margin: 0 auto; }
-    .bento-card { background: var(--bg2); border: 0.5px solid var(--line2); border-radius: var(--r3); padding: 18px; }
+    .hero-bento { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 10px; max-width: 840px; margin: 0 auto; }
+    .bento-card { background: #fff; border: 0.5px solid var(--line2); border-radius: var(--r3); padding: 18px; box-shadow: 0 2px 20px rgba(100,60,30,0.06); }
     .bento-card.tall { grid-row: span 2; }
     .bento-sm { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
-    .bento-num { font-size: 38px; font-weight: 300; letter-spacing: -0.04em; color: var(--lime); line-height: 1; }
+    .bento-num { font-size: 38px; font-weight: 300; letter-spacing: -0.04em; color: var(--rose); line-height: 1; }
     .bento-label { font-size: 12px; color: var(--text2); margin-top: 4px; }
     .score-ring { width: 80px; height: 80px; position: relative; margin: 12px auto; }
     .score-ring svg { transform: rotate(-90deg); }
-    .score-ring-bg { fill: none; stroke: var(--bg4); stroke-width: 6; }
-    .score-ring-fill { fill: none; stroke: var(--lime); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 220; stroke-dashoffset: 28; }
-    .score-val { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 500; }
+    .score-ring-bg { fill: none; stroke: var(--bg3); stroke-width: 6; }
+    .score-ring-fill { fill: none; stroke: var(--rose); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 220; stroke-dashoffset: 28; }
+    .score-val { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 500; color: var(--text); }
     .mini-bars { display: flex; gap: 4px; align-items: flex-end; height: 44px; margin-top: 12px; }
-    .mini-bar { flex: 1; border-radius: 3px; background: var(--bg4); }
-    .mini-bar.on { background: var(--lime); }
+    .mini-bar { flex: 1; border-radius: 3px; background: var(--bg3); }
+    .mini-bar.on { background: var(--rose); }
     .streak-row { display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap; }
-    .streak-dot { width: 22px; height: 22px; border-radius: 6px; background: var(--bg4); display: flex; align-items: center; justify-content: center; font-size: 9px; }
-    .streak-dot.done { background: var(--lime); color: #080808; font-weight: 700; }
-    .streak-dot.today { background: var(--lime-dim); border: 1px solid var(--lime); color: var(--lime); font-size: 8px; }
-    .next-item { background: var(--bg3); border-radius: var(--r); padding: 12px 14px; margin-top: 10px; display: flex; align-items: center; gap: 10px; }
+    .streak-dot { width: 22px; height: 22px; border-radius: 6px; background: var(--bg3); display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--text3); }
+    .streak-dot.done { background: var(--rose); color: #fff; font-weight: 700; }
+    .streak-dot.today { background: var(--rose-dim); border: 1px solid var(--rose); color: var(--rose); font-size: 8px; }
+    .next-item { background: var(--bg2); border-radius: var(--r); padding: 12px 14px; margin-top: 10px; display: flex; align-items: center; gap: 10px; border: 0.5px solid var(--line); }
     .ni-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-    .ni-name { font-size: 13px; font-weight: 500; }
+    .ni-name { font-size: 13px; font-weight: 500; color: var(--text); }
     .ni-date { font-size: 11px; color: var(--text3); margin-top: 1px; }
-    .ni-badge { margin-left: auto; background: var(--lime-dim); color: var(--lime); font-size: 10px; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+    .ni-badge { margin-left: auto; background: var(--rose-dim); color: var(--rose); font-size: 10px; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
 
     /* TICKER */
     .ticker-wrap { overflow: hidden; border-top: 0.5px solid var(--line); border-bottom: 0.5px solid var(--line); padding: 14px 0; background: var(--bg2); }
-    .ticker { display: flex; gap: 0; animation: ticker 28s linear infinite; width: max-content; }
+    .ticker { display: flex; gap: 0; animation: ticker 30s linear infinite; width: max-content; }
     @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
     .ticker-item { display: flex; align-items: center; gap: 10px; padding: 0 2.5rem; white-space: nowrap; font-size: 13px; color: var(--text2); font-weight: 300; }
-    .ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--lime); }
+    .ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--rose); }
 
     /* LAYOUT */
     .wrap { max-width: 1120px; margin: 0 auto; padding: 0 2rem; }
-    .eyebrow { font-size: 11px; color: var(--lime); font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.25rem; }
-    .big-h { font-size: clamp(32px, 4.5vw, 60px); font-weight: 300; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 1.25rem; }
-    .big-h em { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--lime); }
+    .eyebrow { font-size: 11px; color: var(--rose); font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.25rem; }
+    .big-h { font-size: clamp(30px, 4.5vw, 58px); font-weight: 300; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 1.25rem; }
+    .big-h em { font-family: 'DM Serif Display',serif; font-style: italic; color: var(--rose); }
     .body-p { font-size: 16px; color: var(--text2); font-weight: 300; line-height: 1.85; }
     hr.div { border: none; border-top: 0.5px solid var(--line); }
 
+    /* SCENE */
+    .scene-sec { padding: 7rem 0; }
+    .scene-header { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 3rem; }
+    .scene-grid { display: grid; grid-template-columns: 1.2fr 0.9fr 0.9fr; grid-template-rows: 320px 280px; gap: 10px; }
+    .scene-card { border-radius: var(--r3); overflow: hidden; position: relative; }
+    .scene-card.tall { grid-row: span 2; }
+    .scene-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+    .scene-card:hover .scene-img { transform: scale(1.04); }
+    .scene-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(28,20,16,0.55) 0%, transparent 55%); }
+    .scene-chip { position: absolute; bottom: 16px; left: 16px; background: rgba(251,247,243,0.88); backdrop-filter: blur(12px); border: 0.5px solid var(--line2); border-radius: 999px; padding: 6px 14px; font-size: 12px; color: var(--text); display: flex; align-items: center; gap: 6px; }
+    .scene-chip-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--rose); }
+    .scene-app-badge { position: absolute; top: 14px; right: 14px; background: rgba(251,247,243,0.9); backdrop-filter: blur(12px); border: 0.5px solid var(--line2); border-radius: var(--r2); padding: 10px 14px; min-width: 130px; }
+    .sab-label { font-size: 10px; color: var(--text3); margin-bottom: 4px; }
+    .sab-val { font-size: 18px; font-weight: 500; color: var(--rose); letter-spacing: -0.02em; }
+
     /* FEATURES BENTO */
-    .features-sec { padding: 7rem 0; }
-    .feat-bento { display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: auto; gap: 10px; margin-top: 4rem; }
-    .fb { background: var(--bg2); border: 0.5px solid var(--line2); border-radius: var(--r3); padding: 2rem 2.25rem; position: relative; overflow: hidden; transition: border-color 0.2s; }
-    .fb:hover { border-color: var(--line3); }
-    .fb.c8 { grid-column: span 8; }
-    .fb.c4 { grid-column: span 4; }
-    .fb.c6 { grid-column: span 6; }
-    .fb.c5 { grid-column: span 5; }
-    .fb.c7 { grid-column: span 7; }
-    .fb-glow { position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(ellipse at top right, rgba(212,247,60,0.06), transparent 70%); pointer-events: none; }
+    .features-sec { padding: 7rem 0; background: var(--bg2); }
+    .feat-bento { display: grid; grid-template-columns: repeat(12,1fr); gap: 10px; margin-top: 4rem; }
+    .fb { background: var(--bg); border: 0.5px solid var(--line2); border-radius: var(--r3); padding: 2rem 2.25rem; position: relative; overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s; }
+    .fb:hover { border-color: var(--line3); box-shadow: 0 4px 24px rgba(100,60,30,0.08); }
+    .fb.c8 { grid-column: span 8; } .fb.c4 { grid-column: span 4; }
+    .fb.c6 { grid-column: span 6; } .fb.c5 { grid-column: span 5; } .fb.c7 { grid-column: span 7; }
+    .fb-glow { position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(ellipse at top right, rgba(196,80,106,0.07), transparent 70%); pointer-events: none; }
     .fb-num { font-size: 11px; color: var(--text3); letter-spacing: 0.08em; margin-bottom: 2rem; }
-    .fb-icon { font-size: 36px; margin-bottom: 1.25rem; }
-    .fb-title { font-size: 21px; font-weight: 500; letter-spacing: -0.025em; margin-bottom: 10px; }
+    .fb-icon { font-size: 34px; margin-bottom: 1.25rem; }
+    .fb-title { font-size: 20px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 10px; color: var(--text); }
     .fb-desc { font-size: 14px; color: var(--text2); line-height: 1.75; font-weight: 300; max-width: 400px; }
-    .fb-visual { margin-top: 1.75rem; }
-    .fb-tag { display: inline-flex; align-items: center; gap: 6px; background: var(--lime-dim); border: 0.5px solid rgba(212,247,60,0.15); color: var(--lime); font-size: 11px; font-weight: 500; padding: 4px 12px; border-radius: 999px; }
     .progress-row { display: flex; flex-direction: column; gap: 8px; margin-top: 1rem; }
     .prog-item { display: flex; align-items: center; gap: 10px; }
     .prog-label { font-size: 12px; color: var(--text2); width: 70px; flex-shrink: 0; }
-    .prog-bar-wrap { flex: 1; height: 6px; background: var(--bg4); border-radius: 3px; overflow: hidden; }
-    .prog-bar { height: 100%; border-radius: 3px; background: var(--lime); }
+    .prog-bar-wrap { flex: 1; height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
+    .prog-bar { height: 100%; border-radius: 3px; background: var(--rose); }
     .prog-val { font-size: 11px; color: var(--text3); width: 32px; text-align: right; }
     .notif-list { display: flex; flex-direction: column; gap: 8px; margin-top: 1rem; }
-    .notif-item { background: var(--bg3); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; border: 0.5px solid var(--line); }
+    .notif-item { background: var(--bg2); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; border: 0.5px solid var(--line); }
     .notif-icon-wrap { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
     .notif-text { font-size: 12px; color: var(--text2); }
     .notif-time { font-size: 11px; color: var(--text3); margin-left: auto; white-space: nowrap; }
     .point-display { margin-top: 1rem; }
-    .point-big { font-size: 52px; font-weight: 300; letter-spacing: -0.04em; color: var(--lime); line-height: 1; }
+    .point-big { font-size: 50px; font-weight: 300; letter-spacing: -0.04em; color: var(--rose); line-height: 1; }
     .point-sub { font-size: 13px; color: var(--text3); margin-top: 4px; }
     .rank-badges { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
     .rank-b { padding: 5px 12px; border-radius: 999px; font-size: 11px; font-weight: 500; }
-    .rank-b.cur { background: var(--lime-dim); color: var(--lime); border: 0.5px solid rgba(212,247,60,0.25); }
-    .rank-b.next { background: var(--bg4); color: var(--text3); border: 0.5px solid var(--line); }
+    .rank-b.cur { background: var(--rose-dim); color: var(--rose); border: 0.5px solid rgba(196,80,106,0.2); }
+    .rank-b.next { background: var(--bg3); color: var(--text3); border: 0.5px solid var(--line); }
 
-    /* SPLIT SECTION */
+    /* HOW IT WORKS */
     .split-sec { padding: 7rem 0; }
     .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
     .split-visual { background: var(--bg2); border: 0.5px solid var(--line2); border-radius: var(--r4); padding: 2rem; }
     .timeline { display: flex; flex-direction: column; gap: 0; }
     .tl-item { display: flex; gap: 16px; }
     .tl-left { display: flex; flex-direction: column; align-items: center; }
-    .tl-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--lime); flex-shrink: 0; margin-top: 4px; }
-    .tl-dot.dim { background: var(--bg5); border: 1px solid var(--line2); }
-    .tl-line { width: 1px; flex: 1; background: var(--line); margin: 4px 0; min-height: 28px; }
+    .tl-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--rose); flex-shrink: 0; margin-top: 4px; }
+    .tl-dot.dim { background: var(--bg4); border: 1px solid var(--line2); }
+    .tl-line { width: 1px; flex: 1; background: var(--line2); margin: 4px 0; min-height: 28px; }
     .tl-content { padding-bottom: 20px; }
     .tl-label { font-size: 11px; color: var(--text3); margin-bottom: 3px; }
-    .tl-title { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+    .tl-title { font-size: 14px; font-weight: 500; margin-bottom: 4px; color: var(--text); }
     .tl-desc { font-size: 12px; color: var(--text2); line-height: 1.6; }
-    .tl-chip { display: inline-block; background: var(--lime-dim); color: var(--lime); font-size: 10px; padding: 2px 8px; border-radius: 999px; margin-top: 6px; }
-    .split-text .eyebrow { display: block; }
+    .tl-chip { display: inline-block; background: var(--rose-dim); color: var(--rose); font-size: 10px; padding: 2px 8px; border-radius: 999px; margin-top: 6px; }
     .split-steps { display: flex; flex-direction: column; gap: 2rem; margin-top: 2.5rem; }
     .split-step { display: flex; gap: 1.25rem; align-items: flex-start; }
     .ss-num { width: 32px; height: 32px; border-radius: 50%; border: 0.5px solid var(--line2); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500; color: var(--text2); flex-shrink: 0; }
-    .ss-title { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+    .ss-title { font-size: 16px; font-weight: 500; margin-bottom: 4px; color: var(--text); }
     .ss-desc { font-size: 14px; color: var(--text2); font-weight: 300; line-height: 1.7; }
 
     /* PRODUCTS */
     .products-sec { padding: 7rem 0; background: var(--bg2); }
     .products-scroll { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 4rem; }
-    .pcard { background: var(--bg); border: 0.5px solid var(--line2); border-radius: var(--r3); overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.2s, transform 0.2s; cursor: pointer; }
-    .pcard:hover { border-color: var(--line3); transform: translateY(-4px); }
-    .pcard.feat { border-color: rgba(212,247,60,0.2); }
+    .pcard { background: var(--bg); border: 0.5px solid var(--line2); border-radius: var(--r3); overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.2s, transform 0.25s, box-shadow 0.25s; cursor: pointer; }
+    .pcard:hover { border-color: var(--line3); transform: translateY(-5px); box-shadow: 0 12px 40px rgba(100,60,30,0.1); }
+    .pcard.feat { border-color: rgba(196,80,106,0.25); }
     .pcard-img { height: 200px; display: flex; align-items: center; justify-content: center; font-size: 80px; position: relative; }
-    .pcard-img-tag { position: absolute; top: 12px; left: 12px; background: var(--lime); color: #080808; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+    .pcard-img-tag { position: absolute; top: 12px; left: 12px; background: var(--rose); color: #fff; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
     .pcard-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
     .pcard-cat { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
-    .pcard-name { font-size: 20px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .pcard-name { font-size: 20px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 8px; color: var(--text); }
     .pcard-desc { font-size: 13px; color: var(--text2); line-height: 1.7; font-weight: 300; margin-bottom: auto; }
     .pcard-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 0.5px solid var(--line); }
-    .pcard-price { font-size: 24px; font-weight: 500; letter-spacing: -0.03em; }
+    .pcard-price { font-size: 24px; font-weight: 500; letter-spacing: -0.03em; color: var(--text); }
     .pcard-price small { font-size: 12px; color: var(--text3); font-weight: 300; }
-    .pcard-btn { background: var(--lime); color: #080808; padding: 9px 20px; border-radius: 999px; font-size: 13px; font-weight: 500; cursor: pointer; border: none; font-family: inherit; transition: opacity 0.15s; }
-    .pcard-btn:hover { opacity: 0.85; }
+    .pcard-btn { background: var(--rose); color: #fff; padding: 9px 20px; border-radius: 999px; font-size: 13px; font-weight: 500; cursor: pointer; border: none; font-family: inherit; transition: opacity 0.15s; }
+    .pcard-btn:hover { opacity: 0.84; }
     .pcard-btn.ghost { background: transparent; color: var(--text); border: 0.5px solid var(--line2); }
-    .pcard-btn.ghost:hover { background: var(--bg3); }
+    .pcard-btn.ghost:hover { background: var(--bg2); }
 
     /* STATS */
     .stats-sec { padding: 7rem 0; }
     .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 4rem; }
-    .st { background: var(--bg2); padding: 2.5rem 2rem; border-radius: 0; }
+    .st { background: var(--bg2); padding: 2.5rem 2rem; }
     .st:first-child { border-radius: var(--r3) 0 0 var(--r3); }
     .st:last-child { border-radius: 0 var(--r3) var(--r3) 0; }
-    .st-n { font-size: clamp(40px, 5vw, 64px); font-weight: 300; color: var(--lime); letter-spacing: -0.05em; line-height: 1; margin-bottom: 10px; }
+    .st-n { font-size: clamp(38px, 5vw, 62px); font-weight: 300; color: var(--rose); letter-spacing: -0.05em; line-height: 1; margin-bottom: 10px; }
     .st-l { font-size: 13px; color: var(--text2); font-weight: 300; }
     .st-sub { font-size: 11px; color: var(--text3); margin-top: 4px; }
-
-    /* SCENE SECTION */
-    .scene-sec { padding: 7rem 0; background: var(--bg); }
-    .scene-header { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 3rem; }
-    .scene-grid { display: grid; grid-template-columns: 1.2fr 0.9fr 0.9fr; grid-template-rows: 320px 280px; gap: 10px; }
-    .scene-card { border-radius: var(--r3); overflow: hidden; position: relative; }
-    .scene-card.tall { grid-row: span 2; }
-    .scene-img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.88) saturate(1.1); transition: transform 0.5s ease, filter 0.4s; }
-    .scene-card:hover .scene-img { transform: scale(1.03); filter: brightness(0.95) saturate(1.15); }
-    .scene-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,8,8,0.7) 0%, transparent 50%); }
-    .scene-chip { position: absolute; bottom: 16px; left: 16px; background: rgba(15,15,15,0.75); backdrop-filter: blur(12px); border: 0.5px solid var(--line2); border-radius: 999px; padding: 6px 14px; font-size: 12px; color: var(--text); display: flex; align-items: center; gap: 6px; }
-    .scene-chip-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--lime); }
-    .scene-app-badge { position: absolute; top: 14px; right: 14px; background: rgba(8,8,8,0.8); backdrop-filter: blur(12px); border: 0.5px solid rgba(212,247,60,0.2); border-radius: var(--r2); padding: 10px 14px; min-width: 130px; }
-    .sab-label { font-size: 10px; color: var(--text3); margin-bottom: 4px; }
-    .sab-val { font-size: 18px; font-weight: 500; color: var(--lime); letter-spacing: -0.02em; }
 
     /* REVIEWS */
     .reviews-sec { padding: 7rem 0; background: var(--bg2); }
     .reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 4rem; }
-    .rv { background: var(--bg); border: 0.5px solid var(--line2); border-radius: var(--r3); padding: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
-    .rv-stars { font-size: 14px; color: var(--lime); letter-spacing: 3px; }
+    .rv { background: var(--bg); border: 0.5px solid var(--line2); border-radius: var(--r3); padding: 2rem; display: flex; flex-direction: column; gap: 1.25rem; box-shadow: 0 2px 16px rgba(100,60,30,0.05); }
+    .rv-stars { font-size: 14px; color: var(--rose); letter-spacing: 3px; }
     .rv-text { font-size: 14px; color: var(--text2); line-height: 1.85; font-weight: 300; font-style: italic; flex: 1; }
     .rv-author { display: flex; align-items: center; gap: 12px; padding-top: 1rem; border-top: 0.5px solid var(--line); }
-    .rv-av { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
-    .rv-av-txt { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; flex-shrink: 0; }
-    .rv-name { font-size: 14px; font-weight: 500; }
+    .rv-av { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid var(--bg3); }
+    .rv-name { font-size: 14px; font-weight: 500; color: var(--text); }
     .rv-meta { font-size: 12px; color: var(--text3); }
-    .rv-verified { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; color: var(--lime); background: var(--lime-dim); padding: 2px 8px; border-radius: 999px; margin-top: 4px; }
+    .rv-verified { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; color: var(--rose); background: var(--rose-dim); padding: 2px 8px; border-radius: 999px; margin-top: 4px; }
 
     /* DOWNLOAD */
     .dl-sec { padding: 7rem 0; }
     .dl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
     .dl-phones { display: flex; gap: 14px; justify-content: center; }
-    .dl-phone { background: var(--bg2); border: 0.5px solid var(--line2); border-radius: 28px; padding: 22px 18px; width: 170px; }
+    .dl-phone { background: var(--bg2); border: 0.5px solid var(--line2); border-radius: 28px; padding: 22px 18px; width: 170px; box-shadow: 0 4px 24px rgba(100,60,30,0.08); }
     .dl-phone:first-child { transform: rotate(-5deg) translateY(12px); }
     .dl-phone:last-child { transform: rotate(4deg) translateY(-8px); }
     .dl-ph-head { font-size: 12px; font-weight: 500; margin-bottom: 14px; color: var(--text2); }
@@ -251,25 +242,25 @@
     .dl-ph-txt { font-size: 11px; color: var(--text2); }
     .dl-ph-tag { font-size: 10px; padding: 1px 6px; border-radius: 999px; margin-left: auto; white-space: nowrap; }
     .dl-stores { display: flex; flex-direction: column; gap: 10px; margin-top: 2.5rem; }
-    .dl-store { display: flex; align-items: center; gap: 14px; background: var(--bg2); border: 0.5px solid var(--line2); border-radius: var(--r2); padding: 14px 20px; cursor: pointer; transition: border-color 0.15s; max-width: 260px; }
-    .dl-store:hover { border-color: var(--line3); }
+    .dl-store { display: flex; align-items: center; gap: 14px; background: var(--bg2); border: 0.5px solid var(--line2); border-radius: var(--r2); padding: 14px 20px; cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s; max-width: 260px; }
+    .dl-store:hover { border-color: var(--line3); box-shadow: 0 4px 16px rgba(100,60,30,0.08); }
     .dl-store-icon { font-size: 28px; }
     .dl-store-sub { font-size: 11px; color: var(--text3); }
-    .dl-store-name { font-size: 15px; font-weight: 500; margin-top: 2px; }
+    .dl-store-name { font-size: 15px; font-weight: 500; color: var(--text); margin-top: 2px; }
 
     /* CTA */
-    .cta-sec { padding: 9rem 2rem; text-align: center; position: relative; overflow: hidden; }
-    .cta-orb { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 400px; background: radial-gradient(ellipse, rgba(212,247,60,0.07) 0%, transparent 65%); pointer-events: none; }
-    .cta-h { font-size: clamp(40px, 6vw, 80px); font-weight: 300; letter-spacing: -0.05em; line-height: 1; margin-bottom: 1.5rem; position: relative; }
-    .cta-h em { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--lime); }
+    .cta-sec { padding: 9rem 2rem; text-align: center; position: relative; overflow: hidden; background: var(--bg2); }
+    .cta-orb { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 600px; height: 400px; background: radial-gradient(ellipse, rgba(196,80,106,0.09) 0%, transparent 65%); pointer-events: none; }
+    .cta-h { font-size: clamp(38px, 6vw, 76px); font-weight: 300; letter-spacing: -0.05em; line-height: 1.05; margin-bottom: 1.5rem; position: relative; }
+    .cta-h em { font-family: 'DM Serif Display',serif; font-style: italic; color: var(--rose); }
     .cta-p { font-size: 16px; color: var(--text2); font-weight: 300; margin-bottom: 2.5rem; position: relative; }
     .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; }
     .cta-note { font-size: 12px; color: var(--text3); margin-top: 1.25rem; }
 
     /* FOOTER */
-    footer { background: var(--bg2); border-top: 0.5px solid var(--line); padding: 4rem 2rem 2rem; }
+    footer { background: var(--bg3); border-top: 0.5px solid var(--line); padding: 4rem 2rem 2rem; }
     .footer-top { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
-    .f-brand-logo { font-size: 16px; font-weight: 500; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+    .f-brand-logo { font-size: 16px; font-weight: 500; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: var(--text); }
     .f-brand-p { font-size: 13px; color: var(--text3); line-height: 1.8; font-weight: 300; max-width: 280px; }
     .f-col h5 { font-size: 11px; color: var(--text3); font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
     .f-col a { display: block; font-size: 13px; color: var(--text3); margin-bottom: 10px; font-weight: 300; transition: color 0.15s; }
@@ -280,9 +271,12 @@
     @media (max-width: 768px) {
       nav { width: calc(100% - 24px); border-radius: 16px; }
       .nav-center { display: none; }
+      .hero-h { font-size: 40px; }
       .hero-bento { grid-template-columns: 1fr 1fr; }
       .hero-bento .bento-card.tall { grid-row: span 1; }
-      .feat-bento .fb.c8, .feat-bento .fb.c4, .feat-bento .fb.c6, .feat-bento .fb.c5, .feat-bento .fb.c7 { grid-column: span 12; }
+      .scene-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 240px 240px 220px; }
+      .scene-card.tall { grid-row: span 1; grid-column: span 2; }
+      .feat-bento .fb { grid-column: span 12 !important; }
       .split-grid, .dl-grid { grid-template-columns: 1fr; }
       .products-scroll { grid-template-columns: 1fr; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
@@ -292,16 +286,15 @@
       .st:last-child { border-radius: 0 0 var(--r3) 0; }
       .reviews-grid { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr 1fr; }
-      .f-brand { grid-column: 1 / -1; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-logo"><div class="logo-pulse"></div> LactoReserve</div>
   <div class="nav-center">
+    <a href="#scene">使用シーン</a>
     <a href="#features">機能</a>
     <a href="#products">商品</a>
     <a href="#reviews">レビュー</a>
@@ -320,13 +313,10 @@
   </div>
   <div class="hero-content">
     <div class="hero-badge"><div class="hero-badge-dot"></div> App Store 腸活 No.1 — 50万DL突破</div>
-    <h1 class="hero-h">
-      腸活を、<em>予約</em>する<br>
-      <span class="line2">時代へ。</span>
-    </h1>
+    <h1 class="hero-h">腸活を、<em>予約</em>する<br>時代へ。</h1>
     <p class="hero-p">LactoReserve は、乳酸菌サプリの定期配送・飲み忘れ管理・腸内スコア記録をひとつのアプリで完結させる、次世代の腸活プラットフォームです。</p>
     <div class="hero-actions">
-      <button class="btn-lime">無料ダウンロード <span style="font-size:18px;line-height:1">↗</span></button>
+      <button class="btn-rose">無料ダウンロード <span style="font-size:17px;line-height:1">↗</span></button>
       <button class="btn-ghost">機能を見る</button>
     </div>
     <div class="hero-bento">
@@ -357,7 +347,7 @@
           <div style="font-size:12px;color:var(--text2);margin-top:4px">腸内スコア</div>
         </div>
         <div class="next-item">
-          <div class="ni-icon" style="background:var(--lime-dim)">🌿</div>
+          <div class="ni-icon" style="background:var(--rose-dim)">🌿</div>
           <div>
             <div class="ni-name">プレミアム 30日分</div>
             <div class="ni-date">6月25日到着予定</div>
@@ -378,8 +368,8 @@
         <div class="bento-sm">今月の達成率</div>
         <div class="bento-num">96%</div>
         <div class="bento-label">目標：毎日摂取</div>
-        <div class="next-item" style="margin-top:14px;background:var(--bg4)">
-          <div class="ni-icon" style="background:var(--teal-dim)">✨</div>
+        <div class="next-item" style="margin-top:14px">
+          <div class="ni-icon" style="background:var(--sage-dim)">✨</div>
           <div>
             <div class="ni-name" style="font-size:12px">ビューティー</div>
             <div class="ni-date">7月1日到着</div>
@@ -412,6 +402,66 @@
   </div>
 </div>
 
+<!-- SCENE -->
+<section class="scene-sec" id="scene">
+  <div class="wrap">
+    <div class="scene-header">
+      <div>
+        <div class="eyebrow">使用シーン</div>
+        <h2 class="big-h" style="margin-bottom:0">実際に使っている<br><em>毎日の姿。</em></h2>
+      </div>
+      <p class="body-p" style="max-width:300px;font-size:14px">朝の習慣に、仕事の合間に、育児の傍らに。ライフスタイルに自然に溶け込む腸活。</p>
+    </div>
+    <div class="scene-grid">
+      <div class="scene-card tall">
+        <img class="scene-img"
+          src="https://images.unsplash.com/photo-1596038890429-c2c4e16f36a8?w=900&q=85&auto=format&fit=crop&crop=top"
+          alt="日本人女性が朝の時間に乳酸菌サプリを摂取">
+        <div class="scene-overlay"></div>
+        <div class="scene-app-badge">
+          <div class="sab-label">今日の腸内スコア</div>
+          <div class="sab-val">87 <span style="font-size:12px;color:var(--text2);font-weight:300">/ 100</span></div>
+        </div>
+        <div class="scene-chip"><div class="scene-chip-dot"></div> 朝のルーティン</div>
+      </div>
+      <div class="scene-card">
+        <img class="scene-img"
+          src="https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=700&q=85&auto=format&fit=crop&crop=center"
+          alt="女性がスマートフォンでアプリを使用">
+        <div class="scene-overlay"></div>
+        <div class="scene-chip"><div class="scene-chip-dot"></div> アプリで記録</div>
+      </div>
+      <div class="scene-card">
+        <img class="scene-img"
+          src="https://images.unsplash.com/photo-1515023115689-589c33041d3c?w=700&q=85&auto=format&fit=crop&crop=top"
+          alt="女性がリラックスしながら過ごす">
+        <div class="scene-overlay"></div>
+        <div class="scene-chip"><div class="scene-chip-dot"></div> くつろぎの時間に</div>
+      </div>
+      <div class="scene-card">
+        <img class="scene-img"
+          src="https://images.unsplash.com/photo-1546961342-ea5f62d5a27b?w=700&q=85&auto=format&fit=crop&crop=face"
+          alt="笑顔の日本人女性">
+        <div class="scene-overlay"></div>
+        <div class="scene-app-badge" style="top:auto;bottom:52px;right:14px">
+          <div class="sab-label">連続摂取</div>
+          <div class="sab-val">28日 🔥</div>
+        </div>
+        <div class="scene-chip"><div class="scene-chip-dot"></div> 28日継続達成</div>
+      </div>
+      <div class="scene-card">
+        <img class="scene-img"
+          src="https://images.unsplash.com/photo-1505932794465-147d1f1b2c97?w=700&q=85&auto=format&fit=crop&crop=center"
+          alt="女性が健康的な生活を楽しむ">
+        <div class="scene-overlay"></div>
+        <div class="scene-chip"><div class="scene-chip-dot"></div> 肌の調子が改善</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
 <!-- FEATURES -->
 <section class="features-sec" id="features">
   <div class="wrap">
@@ -424,23 +474,11 @@
         <div class="fb-icon">📅</div>
         <div class="fb-title">スマート予約管理</div>
         <div class="fb-desc">次回お届け日・数量・商品をアプリからいつでも変更可能。スキップ・早期配送・プラン変更もワンタップで完結します。</div>
-        <div class="fb-visual">
+        <div style="margin-top:1.5rem">
           <div class="progress-row">
-            <div class="prog-item">
-              <div class="prog-label">プレミアム</div>
-              <div class="prog-bar-wrap"><div class="prog-bar" style="width:82%"></div></div>
-              <div class="prog-val">82%</div>
-            </div>
-            <div class="prog-item">
-              <div class="prog-label">ビューティー</div>
-              <div class="prog-bar-wrap"><div class="prog-bar" style="width:65%;background:var(--teal)"></div></div>
-              <div class="prog-val">65%</div>
-            </div>
-            <div class="prog-item">
-              <div class="prog-label">キッズ</div>
-              <div class="prog-bar-wrap"><div class="prog-bar" style="width:91%;background:var(--coral)"></div></div>
-              <div class="prog-val">91%</div>
-            </div>
+            <div class="prog-item"><div class="prog-label">プレミアム</div><div class="prog-bar-wrap"><div class="prog-bar" style="width:82%"></div></div><div class="prog-val">82%</div></div>
+            <div class="prog-item"><div class="prog-label">ビューティー</div><div class="prog-bar-wrap"><div class="prog-bar" style="width:65%;background:var(--sage)"></div></div><div class="prog-val">65%</div></div>
+            <div class="prog-item"><div class="prog-label">キッズ</div><div class="prog-bar-wrap"><div class="prog-bar" style="width:91%;background:var(--terra)"></div></div><div class="prog-val">91%</div></div>
           </div>
         </div>
       </div>
@@ -449,19 +487,9 @@
         <div class="fb-icon">🔔</div>
         <div class="fb-title">飲み忘れリマインダー</div>
         <div class="fb-desc">毎日の摂取時間をカスタム設定。プッシュ通知が優しくお知らせします。</div>
-        <div class="fb-visual">
-          <div class="notif-list">
-            <div class="notif-item">
-              <div class="notif-icon-wrap" style="background:var(--lime-dim)">🌿</div>
-              <div class="notif-text">今日の乳酸菌を飲みましょう</div>
-              <div class="notif-time">今</div>
-            </div>
-            <div class="notif-item">
-              <div class="notif-icon-wrap" style="background:var(--teal-dim)">📦</div>
-              <div class="notif-text">明日お届け予定です</div>
-              <div class="notif-time">昨日</div>
-            </div>
-          </div>
+        <div class="notif-list">
+          <div class="notif-item"><div class="notif-icon-wrap" style="background:var(--rose-dim)">🌿</div><div class="notif-text">今日の乳酸菌を飲みましょう</div><div class="notif-time">今</div></div>
+          <div class="notif-item"><div class="notif-icon-wrap" style="background:var(--sage-dim)">📦</div><div class="notif-text">明日お届け予定です</div><div class="notif-time">昨日</div></div>
         </div>
       </div>
       <div class="fb c5">
@@ -469,13 +497,13 @@
         <div class="fb-icon">📊</div>
         <div class="fb-title">腸内スコアの可視化</div>
         <div class="fb-desc">便通・肌・睡眠を日々記録。独自アルゴリズムが改善の変化を可視化します。</div>
-        <div class="fb-visual" style="text-align:center;padding:12px 0">
+        <div style="text-align:center;padding:14px 0">
           <div class="score-ring" style="margin:0 auto">
             <svg viewBox="0 0 80 80" width="80" height="80">
               <circle class="score-ring-bg" cx="40" cy="40" r="35"/>
-              <circle class="score-ring-fill" cx="40" cy="40" r="35" style="stroke:var(--teal)"/>
+              <circle class="score-ring-fill" cx="40" cy="40" r="35" style="stroke:var(--sage)"/>
             </svg>
-            <div class="score-val" style="color:var(--teal)">87</div>
+            <div class="score-val" style="color:var(--sage)">87</div>
           </div>
           <div style="font-size:11px;color:var(--text3);margin-top:8px">先月より +12点 ↑</div>
         </div>
@@ -485,15 +513,13 @@
         <div class="fb-icon">🎁</div>
         <div class="fb-title">ポイント＆ランク制度</div>
         <div class="fb-desc">購入・連続摂取・レビューでポイントが貯まり、ランクアップで特典が解放されます。</div>
-        <div class="fb-visual">
-          <div class="point-display">
-            <div class="point-big">2,480</div>
-            <div class="point-sub">現在のポイント残高</div>
-          </div>
-          <div class="rank-badges">
-            <div class="rank-b cur">🌿 グリーン（現在）</div>
-            <div class="rank-b next">⭐ ゴールド まで 520pt</div>
-          </div>
+        <div class="point-display">
+          <div class="point-big">2,480</div>
+          <div class="point-sub">現在のポイント残高</div>
+        </div>
+        <div class="rank-badges">
+          <div class="rank-b cur">🌸 ローズ（現在）</div>
+          <div class="rank-b next">⭐ ゴールド まで 520pt</div>
         </div>
       </div>
     </div>
@@ -546,25 +572,16 @@
           </div>
         </div>
       </div>
-      <div class="split-text">
+      <div>
         <div class="eyebrow">使い方</div>
         <h2 class="big-h">始めるのは、<br><em>たった4ステップ。</em></h2>
         <p class="body-p">難しい設定は一切なし。アプリをダウンロードしてAI診断を受けるだけで、あなた専用の腸活プランが自動で組まれます。</p>
         <div class="split-steps">
-          <div class="split-step">
-            <div class="ss-num">01</div>
-            <div><div class="ss-title">AIが最適な商品を提案</div><div class="ss-desc">3分の腸活診断でパーソナライズされた乳酸菌をご提案。</div></div>
-          </div>
-          <div class="split-step">
-            <div class="ss-num">02</div>
-            <div><div class="ss-title">定期配送を自動管理</div><div class="ss-desc">飲むペースに合わせてお届けサイクルをいつでも調整できます。</div></div>
-          </div>
-          <div class="split-step">
-            <div class="ss-num">03</div>
-            <div><div class="ss-title">成果をデータで確認</div><div class="ss-desc">腸内スコアの推移をグラフで確認。改善の実感を数字で証明。</div></div>
-          </div>
+          <div class="split-step"><div class="ss-num">01</div><div><div class="ss-title">AIが最適な商品を提案</div><div class="ss-desc">3分の腸活診断でパーソナライズされた乳酸菌をご提案。</div></div></div>
+          <div class="split-step"><div class="ss-num">02</div><div><div class="ss-title">定期配送を自動管理</div><div class="ss-desc">飲むペースに合わせてお届けサイクルをいつでも調整できます。</div></div></div>
+          <div class="split-step"><div class="ss-num">03</div><div><div class="ss-title">成果をデータで確認</div><div class="ss-desc">腸内スコアの推移をグラフで確認。改善の実感を数字で証明。</div></div></div>
         </div>
-        <button class="btn-lime" style="margin-top:2.5rem;width:fit-content">アプリを試してみる ↗</button>
+        <button class="btn-rose" style="margin-top:2.5rem;width:fit-content">アプリを試してみる ↗</button>
       </div>
     </div>
   </div>
@@ -584,9 +601,8 @@
     </div>
     <div class="products-scroll">
       <div class="pcard feat">
-        <div class="pcard-img" style="background:linear-gradient(135deg,#0D1A0A,#142010)">
-          <div class="pcard-img-tag">人気 No.1</div>
-          🌿
+        <div class="pcard-img" style="background:linear-gradient(135deg,#F5E8E0,#EDD5C8)">
+          <div class="pcard-img-tag">人気 No.1</div>🌿
         </div>
         <div class="pcard-body">
           <div class="pcard-cat">スタンダード</div>
@@ -599,7 +615,7 @@
         </div>
       </div>
       <div class="pcard">
-        <div class="pcard-img" style="background:linear-gradient(135deg,#1A1200,#201800)">✨</div>
+        <div class="pcard-img" style="background:linear-gradient(135deg,#EDE8F5,#DDD0EC)">✨</div>
         <div class="pcard-body">
           <div class="pcard-cat">美容特化</div>
           <div class="pcard-name">ビューティー乳酸菌</div>
@@ -611,7 +627,7 @@
         </div>
       </div>
       <div class="pcard">
-        <div class="pcard-img" style="background:linear-gradient(135deg,#120A1A,#180F20)">🧒</div>
+        <div class="pcard-img" style="background:linear-gradient(135deg,#E8F5EE,#D0ECD8)">🧒</div>
         <div class="pcard-body">
           <div class="pcard-cat">子供向け</div>
           <div class="pcard-name">キッズ乳酸菌グミ</div>
@@ -625,62 +641,6 @@
     </div>
   </div>
 </section>
-
-<!-- SCENE -->
-<section class="scene-sec">
-  <div class="wrap">
-    <div class="scene-header">
-      <div>
-        <div class="eyebrow">使用シーン</div>
-        <h2 class="big-h" style="margin-bottom:0">実際に使っている<br><em>毎日の姿。</em></h2>
-      </div>
-      <p class="body-p" style="max-width:320px;font-size:14px">朝の習慣に、仕事の合間に、育児の傍らに。ライフスタイルに自然に溶け込む腸活。</p>
-    </div>
-    <div class="scene-grid">
-
-      <div class="scene-card tall">
-        <img class="scene-img" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=900&q=85&auto=format&fit=crop" alt="女性が朝のルーティンで乳酸菌サプリを摂取">
-        <div class="scene-overlay"></div>
-        <div class="scene-app-badge">
-          <div class="sab-label">今日の腸内スコア</div>
-          <div class="sab-val">87 <span style="font-size:12px;color:var(--text2);font-weight:300">/ 100</span></div>
-        </div>
-        <div class="scene-chip"><div class="scene-chip-dot"></div> 朝のルーティン</div>
-      </div>
-
-      <div class="scene-card">
-        <img class="scene-img" src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=700&q=85&auto=format&fit=crop" alt="女性がスマートフォンでアプリを使用">
-        <div class="scene-overlay"></div>
-        <div class="scene-chip"><div class="scene-chip-dot"></div> アプリで記録</div>
-      </div>
-
-      <div class="scene-card">
-        <img class="scene-img" src="https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?w=700&q=85&auto=format&fit=crop" alt="女性がリラックスしながらアプリを使用">
-        <div class="scene-overlay"></div>
-        <div class="scene-chip"><div class="scene-chip-dot"></div> くつろぎの時間に</div>
-      </div>
-
-      <div class="scene-card">
-        <img class="scene-img" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=700&q=85&auto=format&fit=crop" alt="笑顔の女性">
-        <div class="scene-overlay"></div>
-        <div class="scene-app-badge" style="top:auto;bottom:52px;right:14px">
-          <div class="sab-label">連続摂取</div>
-          <div class="sab-val">28日 🔥</div>
-        </div>
-        <div class="scene-chip"><div class="scene-chip-dot"></div> 28日継続達成</div>
-      </div>
-
-      <div class="scene-card">
-        <img class="scene-img" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=700&q=85&auto=format&fit=crop" alt="女性のポートレート">
-        <div class="scene-overlay"></div>
-        <div class="scene-chip"><div class="scene-chip-dot"></div> 肌の調子が改善</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<hr class="div">
 
 <!-- STATS -->
 <section class="stats-sec" id="stats">
@@ -708,7 +668,7 @@
         <div class="rv-stars">★★★★★</div>
         <div class="rv-text">「アプリのリマインダーのおかげで飲み忘れがゼロになりました。腸内スコアが3ヶ月で62→89に上がって、お腹の調子が明らかに変わっています。もう手放せません。」</div>
         <div class="rv-author">
-          <img class="rv-av" src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=88&h=88&q=80&auto=format&fit=crop&crop=face" alt="田中さゆり">
+          <img class="rv-av" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=88&h=88&q=80&auto=format&fit=crop&crop=face" alt="田中さゆり">
           <div>
             <div class="rv-name">田中 さゆり</div>
             <div class="rv-meta">30代 · 6ヶ月利用</div>
@@ -720,7 +680,7 @@
         <div class="rv-stars">★★★★★</div>
         <div class="rv-text">「定期予約の変更がアプリで完結するのが最高。以前は電話が面倒で解約してしまいましたが、これは続けられます。UIのデザインもすごくおしゃれです。」</div>
         <div class="rv-author">
-          <img class="rv-av" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=88&h=88&q=80&auto=format&fit=crop&crop=face" alt="佐々木ひろみ">
+          <img class="rv-av" src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=88&h=88&q=80&auto=format&fit=crop&crop=face" alt="佐々木ひろみ">
           <div>
             <div class="rv-name">佐々木 ひろみ</div>
             <div class="rv-meta">40代 · 1年以上利用</div>
@@ -732,7 +692,7 @@
         <div class="rv-stars">★★★★★</div>
         <div class="rv-text">「子供と一緒にグミタイプを続けています。アプリで家族全員分の摂取を一括管理できるのがとても便利。ポイントも貯まって嬉しいです。」</div>
         <div class="rv-author">
-          <img class="rv-av" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=88&h=88&q=80&auto=format&fit=crop&crop=face" alt="山本けいこ">
+          <img class="rv-av" src="https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?w=88&h=88&q=80&auto=format&fit=crop&crop=face" alt="山本けいこ">
           <div>
             <div class="rv-name">山本 けいこ</div>
             <div class="rv-meta">30代 · 8ヶ月利用</div>
@@ -755,28 +715,22 @@
         <h2 class="big-h">今すぐ、腸活を<br><em>アップグレード。</em></h2>
         <p class="body-p" style="max-width:400px">iOS・Android 両対応。完全無料でダウンロードして、まず30日間お試しください。気に入らなければ全額返金します。</p>
         <div class="dl-stores">
-          <div class="dl-store">
-            <div class="dl-store-icon">🍎</div>
-            <div><div class="dl-store-sub">Download on the</div><div class="dl-store-name">App Store</div></div>
-          </div>
-          <div class="dl-store">
-            <div class="dl-store-icon">▶</div>
-            <div><div class="dl-store-sub">GET IT ON</div><div class="dl-store-name">Google Play</div></div>
-          </div>
+          <div class="dl-store"><div class="dl-store-icon">🍎</div><div><div class="dl-store-sub">Download on the</div><div class="dl-store-name">App Store</div></div></div>
+          <div class="dl-store"><div class="dl-store-icon">▶</div><div><div class="dl-store-sub">GET IT ON</div><div class="dl-store-name">Google Play</div></div></div>
         </div>
       </div>
       <div class="dl-phones">
         <div class="dl-phone">
           <div class="dl-ph-head">📦 今月の注文</div>
-          <div class="dl-ph-row"><div class="dl-ph-dot" style="background:var(--lime)"></div><div class="dl-ph-txt">プレミアム</div><div class="dl-ph-tag" style="background:var(--lime-dim);color:var(--lime)">配送済</div></div>
-          <div class="dl-ph-row"><div class="dl-ph-dot" style="background:var(--teal)"></div><div class="dl-ph-txt">ビューティー</div><div class="dl-ph-tag" style="background:var(--teal-dim);color:var(--teal)">6/25</div></div>
-          <div class="dl-ph-row"><div class="dl-ph-dot" style="background:var(--coral)"></div><div class="dl-ph-txt">キッズ</div><div class="dl-ph-tag" style="background:var(--coral-dim);color:var(--coral)">7/1</div></div>
+          <div class="dl-ph-row"><div class="dl-ph-dot" style="background:var(--rose)"></div><div class="dl-ph-txt">プレミアム</div><div class="dl-ph-tag" style="background:var(--rose-dim);color:var(--rose)">配送済</div></div>
+          <div class="dl-ph-row"><div class="dl-ph-dot" style="background:var(--sage)"></div><div class="dl-ph-txt">ビューティー</div><div class="dl-ph-tag" style="background:var(--sage-dim);color:var(--sage)">6/25</div></div>
+          <div class="dl-ph-row"><div class="dl-ph-dot" style="background:var(--terra)"></div><div class="dl-ph-txt">キッズ</div><div class="dl-ph-tag" style="background:var(--terra-dim);color:var(--terra)">7/1</div></div>
         </div>
         <div class="dl-phone">
           <div class="dl-ph-head">📊 腸内スコア推移</div>
-          <div class="dl-ph-row"><div class="dl-ph-dot" style="background:var(--text3)"></div><div class="dl-ph-txt">4月</div><div class="dl-ph-tag" style="color:var(--text3)">62点</div></div>
-          <div class="dl-ph-row"><div class="dl-ph-dot" style="background:var(--teal)"></div><div class="dl-ph-txt">5月</div><div class="dl-ph-tag" style="background:var(--teal-dim);color:var(--teal)">74点</div></div>
-          <div class="dl-ph-row"><div class="dl-ph-dot" style="background:var(--lime)"></div><div class="dl-ph-txt">6月</div><div class="dl-ph-tag" style="background:var(--lime-dim);color:var(--lime)">87点 ↑</div></div>
+          <div class="dl-ph-row"><div class="dl-ph-dot" style="background:var(--bg5)"></div><div class="dl-ph-txt">4月</div><div class="dl-ph-tag" style="color:var(--text3)">62点</div></div>
+          <div class="dl-ph-row"><div class="dl-ph-dot" style="background:var(--terra)"></div><div class="dl-ph-txt">5月</div><div class="dl-ph-tag" style="background:var(--terra-dim);color:var(--terra)">74点</div></div>
+          <div class="dl-ph-row"><div class="dl-ph-dot" style="background:var(--rose)"></div><div class="dl-ph-txt">6月</div><div class="dl-ph-tag" style="background:var(--rose-dim);color:var(--rose)">87点 ↑</div></div>
         </div>
       </div>
     </div>
@@ -789,7 +743,7 @@
   <h2 class="cta-h">腸から変わる、<br><em>毎日が変わる。</em></h2>
   <p class="cta-p">30日間の全額返金保証付き。まず試して、実感してください。</p>
   <div class="cta-row">
-    <button class="btn-lime" style="font-size:16px;padding:16px 36px">無料でダウンロード ↗</button>
+    <button class="btn-rose" style="font-size:16px;padding:16px 36px">無料でダウンロード ↗</button>
     <a href="subscription.html"><button class="btn-ghost" style="font-size:16px;padding:16px 36px">定期購入プランを見る</button></a>
   </div>
   <div class="cta-note">クレジットカード不要 · いつでも解約 · 30日間返金保証</div>
@@ -798,7 +752,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
-    <div class="f-brand">
+    <div>
       <div class="f-brand-logo"><div class="logo-pulse"></div> LactoReserve</div>
       <p class="f-brand-p">腸活を、予約する時代へ。乳酸菌サプリの定期配送・摂取管理・腸内スコア記録をひとつのアプリで。</p>
     </div>
@@ -825,7 +779,7 @@
   </div>
   <div class="footer-bottom">
     <div class="f-copy">© 2026 ラクトケア株式会社</div>
-    <div class="f-copy">Made with 🌿 in Osaka, Japan</div>
+    <div class="f-copy">Made with 🌸 in Osaka, Japan</div>
   </div>
 </footer>
 
